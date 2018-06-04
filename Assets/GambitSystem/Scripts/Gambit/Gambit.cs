@@ -7,23 +7,14 @@ using UnityEngine;
 /// </summary>
 public class Gambit{
 	/// <summary>
-	/// name of gambit
-	/// </summary>
-	private string _name;
-
-	/// <summary>
 	/// Execution priority of gambit
 	/// </summary>
 	private int _priority;
 
 	/// <summary>
-	/// Gets or sets the name.
+	/// The skill.
 	/// </summary>
-	/// <value>The name.</value>
-	public string Name{
-		get { return _name;}
-		set{ _name = value;}
-	}
+	private Skill _skill;
 
 	/// <summary>
 	/// Gets or sets the priority.
@@ -34,12 +25,17 @@ public class Gambit{
 		set{ _priority = value;}
 	}
 
+	public Skill Skill{
+		get{ return _skill;}
+		set{ _skill = value;}
+	}
+
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Gambit"/> class.
 	/// </summary>
 	public Gambit(){
-		Name = string.Empty;
 		Priority = 0;
+		Skill = new Skill(string.Empty);
 	}
 
 	/// <summary>
@@ -47,15 +43,15 @@ public class Gambit{
 	/// </summary>
 	/// <param name="name">Name.</param>
 	/// <param name="priority">Priority.</param>
-	public Gambit(string name, int priority){
-		Name = name;
+	public Gambit(int priority, Skill skill){
 		Priority = priority;
+		Skill = skill;
 	}
 
 	/// <summary>
 	/// can be called every update
 	/// </summary>
 	public virtual void Update(){
-		Debug.Log (string.Format("{0} update",Name));
+		Debug.Log (string.Format("{0} update",Skill.Name));
 	}
 }

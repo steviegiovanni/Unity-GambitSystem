@@ -28,8 +28,8 @@ public class GambitCollection : MonoBehaviour {
 	/// Configures the gambits.
 	/// </summary>
 	public void ConfigureGambits(){
-		Gambits.Add (new Gambit ("gambit 1", 0));
-		Gambits.Add (new Gambit ("gambit 2", 0));
+		Gambits.Add (new Gambit (0, new Skill("skill 1")));
+		Gambits.Add (new Gambit (0, new Skill("skill 2")));
 	}
 
 	// Use this for initialization
