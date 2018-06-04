@@ -43,4 +43,19 @@ public class Skill{
 	public virtual bool CanUse(){
 		return true;
 	}
+
+	/// <summary>
+	/// Uses the skill.
+	/// </summary>
+	public virtual void UseSkill(){
+		Debug.Log (string.Format("using {0}",Name));
+	}
+
+	/// <summary>
+	/// Determines whether this instance cancel skill.
+	/// </summary>
+	/// <returns><c>true</c> if this instance cancel skill; otherwise, <c>false</c>.</returns>
+	public virtual void CancelSkill(){
+		Debug.Log (string.Format ("no longer using {0}", Name));
+	}
 }

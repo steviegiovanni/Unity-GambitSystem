@@ -39,7 +39,9 @@ public class GambitCollection : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		for (int i = 0; i < Gambits.Count; i++)
-			Gambits [i].Update ();
+		for (int i = 0; i < Gambits.Count; i++) {
+			if (Gambits [i].Skill.CanUse ())
+				Gambits [i].Skill.UseSkill ();
+		}
 	}
 }
