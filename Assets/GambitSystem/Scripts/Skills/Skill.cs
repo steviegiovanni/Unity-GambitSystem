@@ -31,7 +31,16 @@ public class Skill{
 	/// Initializes a new instance of the <see cref="Skill"/> class.
 	/// </summary>
 	/// <param name="name">Name.</param>
+	/// <param name="range">Range.</param>
 	public Skill(string name){
 		Name = name;
+	}
+
+	/// <summary>
+	/// Determines whether skill can be used
+	/// </summary>
+	/// <returns><c>true</c> if this instance can use; otherwise, <c>false</c>.</returns>
+	public virtual bool CanUse(){
+		return true;
 	}
 }

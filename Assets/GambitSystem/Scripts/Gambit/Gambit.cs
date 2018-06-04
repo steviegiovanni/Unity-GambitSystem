@@ -41,8 +41,8 @@ public class Gambit{
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Gambit"/> class.
 	/// </summary>
-	/// <param name="name">Name.</param>
 	/// <param name="priority">Priority.</param>
+	/// <param name="skill">Skill.</param>
 	public Gambit(int priority, Skill skill){
 		Priority = priority;
 		Skill = skill;
