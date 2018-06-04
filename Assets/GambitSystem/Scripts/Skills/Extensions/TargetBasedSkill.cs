@@ -12,7 +12,7 @@ public class TargetBasedSkill : Skill, ITargetBased {
 	/// <returns>The distance.</returns>
 	public float SqrDistance (GameObject user, GameObject target)
 	{
-		return Vector3.SqrMagnitude (user.gameObject.transform - target.gameObject.transform);
+		return Vector3.SqrMagnitude (user.gameObject.transform.position - target.gameObject.transform.position);
 	}
 
 	#endregion
