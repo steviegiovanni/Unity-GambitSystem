@@ -52,6 +52,6 @@ public class Gambit{
 	/// can be called every update
 	/// </summary>
 	public virtual void Update(){
-		//Debug.Log (string.Format("{0} update",Skill.Name));
+		Debug.Log (string.Format("{0} update",Skill.Name));
 	}
 }

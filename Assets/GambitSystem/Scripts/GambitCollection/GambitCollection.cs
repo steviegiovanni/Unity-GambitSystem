@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 /// <summary>
 /// monobehaviour that contains the list of gambits
@@ -10,6 +11,11 @@ public class GambitCollection : MonoBehaviour {
 	/// the collection of gambits
 	/// </summary>
 	private List<Gambit> _gambits;
+
+	/// <summary>
+	/// The active gambit identifier.
+	/// </summary>
+	private int _activeGambitId = -1;
 
 	/// <summary>
 	/// Gets the gambits.
@@ -22,6 +28,15 @@ public class GambitCollection : MonoBehaviour {
 			}
 			return _gambits;
 		}
+	}
+
+	/// <summary>
+	/// Gets or sets the active gambit identifier.
+	/// </summary>
+	/// <value>The active gambit identifier.</value>
+	public int ActiveGambitId{
+		get{ return _activeGambitId;}
+		set{ _activeGambitId = value;}
 	}
 
 	/// <summary>
@@ -39,9 +54,28 @@ public class GambitCollection : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Gambits.Count <= 0) // if there's nothing in the list of gambits, return
+			return;
+
+		// find the highest priority runnable gambit
+		int highestPriority = 0;
+		int highestIndex = -1; // case where there's no runnable gambit
 		for (int i = 0; i < Gambits.Count; i++) {
-			if (Gambits [i].Skill.CanUse ())
-				Gambits [i].Skill.UseSkill ();
+			if (Gambits [i].Priority >= highestPriority) {
+				highestIndex = i;
+				highestPriority = Gambits [i].Priority;
+			}
 		}
+
+		if (highestIndex == -1) // no runnable gambit
+			return;
+
+		// if runnable gambit has higher priority than active gambit, and not locked, switch active gambit
+		if (ActiveGambitId != highestIndex) {
+			ActiveGambitId = highestIndex;
+		}
+
+		// run active gambit
+		Gambits[ActiveGambitId].Update();
 	}
 }
