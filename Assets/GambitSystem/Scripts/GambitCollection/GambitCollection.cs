@@ -44,7 +44,11 @@ public class GambitCollection : MonoBehaviour {
 	/// </summary>
 	public void ConfigureGambits(){
 		Gambits.Add (new Gambit (0, new Skill("skill 1")));
-		Gambits.Add (new Gambit (0, new Skill("skill 2")));
+		//Gambits.Add (new Gambit (0, new Skill("skill 2")));
+		Perception perception = this.GetComponent<Perception>();
+		if (perception == null)
+			perception = this.gameObject.AddComponent<Perception> ();
+		Gambits.Add (new TargetFirstGambit (0, new Skill("skill 2"),null,perception));
 	}
 
 	// Use this for initialization
