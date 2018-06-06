@@ -21,10 +21,25 @@ public class Skill{
 	}
 
 	/// <summary>
+	/// The cooldown.
+	/// </summary>
+	private int _cooldown;
+
+	/// <summary>
+	/// Gets or sets the cooldown.
+	/// </summary>
+	/// <value>The cooldown.</value>
+	public int Cooldown{
+		get{ return _cooldown; }
+		set{ _cooldown = value; }
+	}
+
+	/// <summary>
 	/// Initializes a new instance of the <see cref="Skill"/> class.
 	/// </summary>
 	public Skill(){
 		Name = string.Empty;
+		Cooldown = 0;
 	}
 
 	/// <summary>
@@ -32,22 +47,8 @@ public class Skill{
 	/// </summary>
 	/// <param name="name">Name.</param>
 	/// <param name="range">Range.</param>
-	public Skill(string name){
+	public Skill(string name, int cooldown){
 		Name = name;
-	}
-
-	/// <summary>
-	/// Determines whether skill can be used
-	/// </summary>
-	/// <returns><c>true</c> if this instance can use; otherwise, <c>false</c>.</returns>
-	public virtual bool CanUse(){
-		return true;
-	}
-
-	/// <summary>
-	/// Uses the skill.
-	/// </summary>
-	public virtual void UseSkill(){
-		Debug.Log (string.Format("using {0}",Name));
+		Cooldown = cooldown;
 	}
 }

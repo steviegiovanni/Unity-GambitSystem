@@ -76,8 +76,10 @@ public class TargetFirstGambit : Gambit, ITargetGambit {
 
 		GameObject target = null;
 		foreach (var key in Perception.Percepts.Keys) {
-			target = Perception.Percepts [key];
-			break;
+			if (Perception.Percepts [key].Entity != null) {
+				target = Perception.Percepts [key].Entity;
+				break;
+			}
 		}
 
 		return target;

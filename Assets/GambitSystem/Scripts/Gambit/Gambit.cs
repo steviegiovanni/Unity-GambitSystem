@@ -35,7 +35,7 @@ public class Gambit{
 	/// </summary>
 	public Gambit(){
 		Priority = 0;
-		Skill = new Skill(string.Empty);
+		Skill = new Skill();
 	}
 
 	/// <summary>
