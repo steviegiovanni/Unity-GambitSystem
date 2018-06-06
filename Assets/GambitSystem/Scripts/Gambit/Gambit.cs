@@ -49,9 +49,12 @@ public class Gambit{
 	}
 
 	/// <summary>
-	/// can be called every update
+	/// Coroutine this instance.
 	/// </summary>
-	public virtual void Update(){
-		Debug.Log (string.Format("{0} update",Skill.Name));
+	public virtual IEnumerator Coroutine(){
+		while (true) {
+			Debug.Log (string.Format("{0} coroutine",Skill.Name));
+			yield return null;
+		}
 	}
 }

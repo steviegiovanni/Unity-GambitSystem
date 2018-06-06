@@ -67,15 +67,19 @@ public class GambitCollection : MonoBehaviour {
 			}
 		}
 
-		if (highestIndex == -1) // no runnable gambit
+		if (highestIndex == -1) { // no runnable gambit
+			if (ActiveGambitId != -1) // stop currently running gambit if there's any
+				StopCoroutine (Gambits [ActiveGambitId].Coroutine());
+			ActiveGambitId = -1;
 			return;
+		}
 
 		// if runnable gambit has higher priority than active gambit, and not locked, switch active gambit
 		if (ActiveGambitId != highestIndex) {
+			if (ActiveGambitId != -1) // stop currently running gambit if there's any
+				StopCoroutine (Gambits [ActiveGambitId].Coroutine());
 			ActiveGambitId = highestIndex;
+			StartCoroutine (Gambits [ActiveGambitId].Coroutine());
 		}
-
-		// run active gambit
-		Gambits[ActiveGambitId].Update();
 	}
 }
