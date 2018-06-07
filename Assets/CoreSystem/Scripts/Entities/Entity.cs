@@ -15,6 +15,14 @@ public class Entity : MonoBehaviour {
     [SerializeField]
     private bool _isTargetable = true;
 
+	[SerializeField]
+	private EntityTags _entityTag;
+
+	public int EntityTag{
+		get{ return (int)_entityTag;}
+		set{ _entityTag = (EntityTags)value;}
+	}
+
     private RPGStatCollection _statCollection;
 
     private RPGVital _health;

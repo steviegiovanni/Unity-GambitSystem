@@ -7,6 +7,20 @@ using UnityEngine;
 /// </summary>
 public class TargetGambit : Gambit{
 	/// <summary>
+	/// The type of the target.
+	/// </summary>
+	private int _targetType;
+
+	/// <summary>
+	/// Gets or sets the type of the target.
+	/// </summary>
+	/// <value>The type of the target.</value>
+	public int TargetType{
+		get{ return _targetType;}
+		set{ _targetType = value;}
+	}
+
+	/// <summary>
 	/// The target
 	/// </summary>
 	private GameObject _target;
@@ -36,8 +50,9 @@ public class TargetGambit : Gambit{
 	/// Initializes a new instance of the <see cref="TargetGambit"/> class.
 	/// </summary>
 	public TargetGambit():base(){
-		_target = null;
-		_perception = null;
+		TargetType = 0;
+		Target = null;
+		Perception = null;
 	}
 
 	/// <summary>
@@ -47,9 +62,10 @@ public class TargetGambit : Gambit{
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public TargetGambit(GameObject owner, int priority, Skill skill, GameObject target, Perception perception):base(owner, priority,skill){
-		_target = target;
-		_perception = perception;
+	public TargetGambit(GameObject owner, int priority, Skill skill, int targetType, Perception perception):base(owner, priority,skill){
+		TargetType = targetType;
+		Target = null;
+		Perception = perception;
 	}
 
 	/// <summary>
@@ -77,7 +93,7 @@ public class TargetGambit : Gambit{
 
 		GameObject target = null;
 		foreach (var key in Perception.Percepts.Keys) {
-			if (Perception.Percepts [key].Entity != null) {
+			if ((Perception.Percepts [key].Entity != null) && ((Perception.Percepts[key].Entity.GetComponent<Entity>().EntityTag & TargetType) != 0)) {
 				target = Perception.Percepts [key].Entity;
 				break;
 			}

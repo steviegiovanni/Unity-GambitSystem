@@ -14,7 +14,7 @@ public class HighestEnmityGambit : TargetGambit {
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public HighestEnmityGambit(GameObject owner, int priority, Skill skill, GameObject target, Perception perception):base(owner, priority,skill,target,perception){}
+	public HighestEnmityGambit(GameObject owner, int priority, Skill skill, int targetType, Perception perception):base(owner, priority,skill,targetType,perception){}
 
 	/// <summary>
 	/// Finds the target.
@@ -30,7 +30,10 @@ public class HighestEnmityGambit : TargetGambit {
 		GameObject target = null;
 		int highestEnmity = 0;
 		foreach (var key in Perception.Percepts.Keys) {
-			if ((Perception.Percepts [key].Entity != null) && (Perception.Percepts[key].Enmity >= highestEnmity) && (Perception.Percepts[key].Entity != Owner)){
+			if ((Perception.Percepts [key].Entity != null) 
+				&& (Perception.Percepts[key].Enmity >= highestEnmity) 
+				//&& (Perception.Percepts[key].Entity != Owner) 
+				&& ((Perception.Percepts[key].Entity.GetComponent<Entity>().EntityTag & TargetType) != 0)){
 				highestEnmity = Perception.Percepts [key].Enmity;
 				target = Perception.Percepts [key].Entity;
 				break;
