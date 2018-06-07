@@ -3,39 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Skill.
+/// base class for Skill
 /// </summary>
 public class Skill{
 	/// <summary>
-	/// The name.
+	/// the name of the skill
 	/// </summary>
 	private string _name;
 
 	/// <summary>
-	/// Gets or sets the name.
+	/// Gets or sets the name of the skill
 	/// </summary>
-	/// <value>The name.</value>
 	public string Name{
 		get{ return _name;}
 		set{ _name = value;}
 	}
 
 	/// <summary>
-	/// The cooldown.
+	/// skill cooldown
 	/// </summary>
 	private int _cooldown;
 
 	/// <summary>
-	/// Gets or sets the cooldown.
+	/// Gets or sets the skill cooldown
 	/// </summary>
-	/// <value>The cooldown.</value>
 	public int Cooldown{
 		get{ return _cooldown; }
 		set{ _cooldown = value; }
 	}
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="Skill"/> class.
+	/// default constructor
 	/// </summary>
 	public Skill(){
 		Name = string.Empty;
@@ -43,10 +41,10 @@ public class Skill{
 	}
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="Skill"/> class.
+	/// parameterized constructor
 	/// </summary>
-	/// <param name="name">Name.</param>
-	/// <param name="range">Range.</param>
+	/// <param name="name">the skill name</param>
+	/// <param name="cooldown">cooldown duration</param>
 	public Skill(string name, int cooldown){
 		Name = name;
 		Cooldown = cooldown;

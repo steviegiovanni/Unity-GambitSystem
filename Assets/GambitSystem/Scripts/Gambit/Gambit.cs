@@ -12,19 +12,21 @@ public class Gambit{
 	private int _priority;
 
 	/// <summary>
-	/// The skill.
+	/// The skill associated with this gambit
 	/// </summary>
 	private Skill _skill;
 
 	/// <summary>
-	/// Gets or sets the priority.
+	/// Gets or sets the priority
 	/// </summary>
-	/// <value>The priority.</value>
 	public int Priority{
 		get{ return _priority;}
 		set{ _priority = value;}
 	}
 
+	/// <summary>
+	/// Gets or sets the skill
+	/// </summary>
 	public Skill Skill{
 		get{ return _skill;}
 		set{ _skill = value;}
@@ -49,7 +51,7 @@ public class Gambit{
 	}
 
 	/// <summary>
-	/// Coroutine this instance.
+	/// Coroutine associated to this gambit when it's active
 	/// </summary>
 	public virtual IEnumerator Coroutine(){
 		while (true) {

@@ -2,30 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// extension to the gambit class that will target the first entry on the table of percepts
+/// </summary>
 public class TargetFirstGambit : Gambit, ITargetGambit {
 	/// <summary>
-	/// The target.
+	/// The target
 	/// </summary>
 	private GameObject _target;
 
 	/// <summary>
-	/// Gets or sets the target.
+	/// Gets or sets the target
 	/// </summary>
-	/// <value>The target.</value>
 	public GameObject Target{
 		get{ return _target;}
 		set{ _target = value;}
 	}
 
 	/// <summary>
-	/// The perception.
+	/// The perception
 	/// </summary>
 	private Perception _perception;
 
 	/// <summary>
 	/// Gets or sets the perception.
 	/// </summary>
-	/// <value>The perception.</value>
 	public Perception Perception{
 		get{ return _perception;}
 		set{ _perception = value;}
@@ -40,18 +41,19 @@ public class TargetFirstGambit : Gambit, ITargetGambit {
 	}
 
 	/// <summary>
-	/// Initializes a new instance of the <see cref="TargetGambit"/> class.
+	/// Initializes a new instance of the <see cref="TargetFirstGambit"/> class.
 	/// </summary>
 	/// <param name="priority">Priority.</param>
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
+	/// <param name="perception">Perception.</param>
 	public TargetFirstGambit(int priority, Skill skill, GameObject target, Perception perception):base(priority,skill){
 		_target = target;
 		_perception = perception;
 	}
 
 	/// <summary>
-	/// Coroutine this instance.
+	/// override coroutine of this gambit
 	/// </summary>
 	public override IEnumerator Coroutine(){
 		while (true) {

@@ -18,9 +18,8 @@ public class GambitCollection : MonoBehaviour {
 	private int _activeGambitId = -1;
 
 	/// <summary>
-	/// Gets the gambits.
+	/// Gets the gambits
 	/// </summary>
-	/// <value>The gambits.</value>
 	public List<Gambit> Gambits{
 		get{
 			if (_gambits == null) {
@@ -33,14 +32,13 @@ public class GambitCollection : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets the active gambit identifier.
 	/// </summary>
-	/// <value>The active gambit identifier.</value>
 	public int ActiveGambitId{
 		get{ return _activeGambitId;}
 		set{ _activeGambitId = value;}
 	}
 
 	/// <summary>
-	/// Configures the gambits.
+	/// Configures the gambits
 	/// </summary>
 	public void ConfigureGambits(){
 		Gambits.Add (new Gambit (0, new Skill("skill 1",0)));

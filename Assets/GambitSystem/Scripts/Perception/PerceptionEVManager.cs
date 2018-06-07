@@ -4,18 +4,23 @@ using UnityEngine;
 using UnityEngine.Events;
 using UtilitySystems;
 
+/// <summary>
+/// event with hashtable parameter
+/// </summary>
 public class HashtableEvent : UnityEvent <Hashtable> {}
 
+/// <summary>
+/// singleton event manager to process all perception event
+/// </summary>
 public class PerceptionEVManager : Singleton<PerceptionEVManager> {
 	/// <summary>
-	/// The event dictionary.
+	/// the event dictionary
 	/// </summary>
 	private Dictionary <string, HashtableEvent> _eventDictionary;
 
 	/// <summary>
-	/// Gets the event dictionary.
+	/// get the event dictionary
 	/// </summary>
-	/// <value>The event dictionary.</value>
 	public Dictionary<string, HashtableEvent> EventDictionary{
 		get{
 			if (_eventDictionary == null)
@@ -24,7 +29,11 @@ public class PerceptionEVManager : Singleton<PerceptionEVManager> {
 		}
 	}
 
-	// register a listener to the event manager
+	/// <summary>
+	/// register a listener to the event manager
+	/// </summary>
+	/// <param name="eventName">the event name</param>
+	/// <param name="listener">the listener</param>
 	public static void StartListening(string eventName, UnityAction<Hashtable> listener){
 		HashtableEvent thisEvent = null;
 		if (Instance.EventDictionary.TryGetValue (eventName, out thisEvent))
@@ -36,7 +45,11 @@ public class PerceptionEVManager : Singleton<PerceptionEVManager> {
 		}
 	}
 
-	// unregister a listener from the event manager
+	/// <summary>
+	/// unregister a listener from the event manager
+	/// </summary>
+	/// <param name="eventName">the event name</param>
+	/// <param name="listener">the listener</param>
 	public static void StopListening (string eventName, UnityAction<Hashtable> listener){
 		if (Instance == null)
 			return;
@@ -46,7 +59,11 @@ public class PerceptionEVManager : Singleton<PerceptionEVManager> {
 			thisEvent.RemoveListener(listener);
 	}
 
-	// call to trigger the event
+	/// <summary>
+	/// call to trigger the event
+	/// </summary>
+	/// <param name="eventName">the event name</param>
+	/// <param name="eventParams">Event parameters</param>
 	public static void TriggerEvent(string eventName, Hashtable eventParams = default(Hashtable)){
 		HashtableEvent thisEvent = null;
 		if (Instance.EventDictionary.TryGetValue (eventName, out thisEvent))

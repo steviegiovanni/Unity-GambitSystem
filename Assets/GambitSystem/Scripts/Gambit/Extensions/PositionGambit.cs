@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// extension to the gambit class that will target a location on the map
+/// </summary>
 public class PositionGambit : Gambit {
 	/// <summary>
 	/// Initializes a new instance of the <see cref="PositionGambit"/> class.
