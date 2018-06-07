@@ -66,7 +66,8 @@ public class PerceptionEVManager : Singleton<PerceptionEVManager> {
 	/// <param name="eventParams">Event parameters</param>
 	public static void TriggerEvent(string eventName, Hashtable eventParams = default(Hashtable)){
 		HashtableEvent thisEvent = null;
-		if (Instance.EventDictionary.TryGetValue (eventName, out thisEvent))
+		if (Instance.EventDictionary.TryGetValue (eventName, out thisEvent)) {
 			thisEvent.Invoke (eventParams);
+		}
 	}
 }

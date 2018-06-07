@@ -21,7 +21,7 @@ public class HighestEnmityGambit : TargetGambit {
 	/// </summary>
 	/// <returns>The target.</returns>
 	public override GameObject FindTarget ()
-	{
+	{		
 		if (Owner == null)
 			return null;
 		if (Perception == null)
