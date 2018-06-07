@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 333431484}
   - component: {fileID: 333431487}
   - component: {fileID: 333431486}
-  - component: {fileID: 333431488}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -164,20 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 333431483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986d79db296dd0247bccd97295d207ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 07016205f59e8a4439013e70ff3f7923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 0
-  _target: {fileID: 0}
-  _isTargetable: 1
   _entityTag: 1
-  _healthType: 1
-  _healthRegenType: 7
-  _energyType: 10
-  _energyRegenType: 9
-  _manaType: 3
-  _manaRegenType: 8
-  _isKillable: 0
 --- !u!114 &333431487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,19 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e02cea3161e9d4db22a4595958fd67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &333431488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 333431483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172ba00023166314c897a33ff0cffce3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _statCollectionId: 2
-  _normalLevel: 1
 --- !u!1 &499918332
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +333,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1428455374}
   - component: {fileID: 1428455373}
-  - component: {fileID: 1428455372}
   - component: {fileID: 1428455371}
   m_Layer: 0
   m_Name: Entity (1)
@@ -374,33 +349,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1428455370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172ba00023166314c897a33ff0cffce3, type: 3}
+  m_Script: {fileID: 11500000, guid: 07016205f59e8a4439013e70ff3f7923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statCollectionId: 2
-  _normalLevel: 1
---- !u!114 &1428455372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1428455370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986d79db296dd0247bccd97295d207ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _target: {fileID: 0}
-  _isTargetable: 1
   _entityTag: 2
-  _healthType: 1
-  _healthRegenType: 7
-  _energyType: 10
-  _energyRegenType: 9
-  _manaType: 3
-  _manaRegenType: 8
-  _isKillable: 0
 --- !u!114 &1428455373
 MonoBehaviour:
   m_ObjectHideFlags: 0
