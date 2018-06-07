@@ -6,7 +6,7 @@ using UtilitySystems;
 
 public class HashtableEvent : UnityEvent <Hashtable> {}
 
-public class EventManager : Singleton<EventManager> {
+public class PerceptionEVManager : Singleton<PerceptionEVManager> {
 	/// <summary>
 	/// The event dictionary.
 	/// </summary>

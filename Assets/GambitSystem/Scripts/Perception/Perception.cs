@@ -72,14 +72,14 @@ public class Perception : MonoBehaviour{
 	/// Raises the enable event.
 	/// </summary>
 	void OnEnable(){
-		EventManager.StartListening ("PERCEPTION", Perceived);
+		PerceptionEVManager.StartListening ("PERCEPTION", Perceived);
 	}
 
 	/// <summary>
 	/// Raises the disable event.
 	/// </summary>
 	void OnDisable(){
-		EventManager.StopListening ("PERCEPTION", Perceived);
+		PerceptionEVManager.StopListening ("PERCEPTION", Perceived);
 	}
 
 	// percept is detected
