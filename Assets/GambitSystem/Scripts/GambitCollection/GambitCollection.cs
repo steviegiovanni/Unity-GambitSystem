@@ -46,7 +46,7 @@ public class GambitCollection : MonoBehaviour {
 		Perception perception = this.GetComponent<Perception>();
 		if (perception == null)
 			perception = this.gameObject.AddComponent<Perception> ();
-		Gambits.Add (new TargetGambit (this.gameObject, 0, new Skill("skill 2",0),(int)GambitTags.Enemy,perception));
+		Gambits.Add (new HighestEnmityGambit (this.gameObject, 0, new Skill("skill 2",0),(int)GambitTags.Enemy,perception));
 	}
 
 	// Use this for initialization

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Entity : MonoBehaviour {
-
-	[SerializeField]
-	private GambitTags _entityTag;
-
-	public int EntityTag{
+public class Entity : MonoBehaviour, ITargetable {
+	#region ITargetable implementation
+	public int TargetType {
 		get{ return (int)_entityTag;}
 		set{ _entityTag = (GambitTags)value;}
 	}
+	#endregion
+
+	[SerializeField]
+	private GambitTags _entityTag;
 
 	// Use this for initialization
 	void Start () {

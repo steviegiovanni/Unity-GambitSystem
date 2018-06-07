@@ -93,7 +93,7 @@ public class TargetGambit : Gambit{
 
 		GameObject target = null;
 		foreach (var key in Perception.Percepts.Keys) {
-			if ((Perception.Percepts [key].Entity != null) && ((Perception.Percepts[key].Entity.GetComponent<Entity>().EntityTag & TargetType) != 0)) {
+			if ((Perception.Percepts [key].Entity != null) && ((Perception.Percepts[key].Entity.GetComponent<ITargetable>().TargetType & TargetType) != 0)) {
 				target = Perception.Percepts [key].Entity;
 				break;
 			}
