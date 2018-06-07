@@ -19,5 +19,6 @@ namespace RPGSystems.StatSystem {
 		ManaRegen = 8,
 		EnergyRegen = 9,
 		Energy = 10,
+		Cooldown = 11,
 	}
 }

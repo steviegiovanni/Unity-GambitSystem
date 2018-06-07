@@ -17,6 +17,11 @@ public class Gambit{
 	private Skill _skill;
 
 	/// <summary>
+	/// The owner.
+	/// </summary>
+	private GameObject _owner;
+
+	/// <summary>
 	/// Gets or sets the priority
 	/// </summary>
 	public int Priority{
@@ -33,11 +38,21 @@ public class Gambit{
 	}
 
 	/// <summary>
+	/// Gets or sets the owner.
+	/// </summary>
+	/// <value>The owner.</value>
+	public GameObject Owner{
+		get{ return _owner;}
+		set{ _owner = value;}
+	}
+
+	/// <summary>
 	/// Initializes a new instance of the <see cref="Gambit"/> class.
 	/// </summary>
 	public Gambit(){
 		Priority = 0;
 		Skill = new Skill();
+		Owner = null;
 	}
 
 	/// <summary>
@@ -45,7 +60,8 @@ public class Gambit{
 	/// </summary>
 	/// <param name="priority">Priority.</param>
 	/// <param name="skill">Skill.</param>
-	public Gambit(int priority, Skill skill){
+	public Gambit(GameObject owner, int priority, Skill skill){
+		Owner = owner;
 		Priority = priority;
 		Skill = skill;
 	}

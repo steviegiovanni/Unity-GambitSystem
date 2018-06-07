@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// extension to the gambit class that will target the first entry on the table of percepts
+/// gambit that looks for a target
 /// </summary>
-public class TargetFirstGambit : Gambit, ITargetGambit {
+public class TargetGambit : Gambit{
 	/// <summary>
 	/// The target
 	/// </summary>
@@ -35,7 +35,7 @@ public class TargetFirstGambit : Gambit, ITargetGambit {
 	/// <summary>
 	/// Initializes a new instance of the <see cref="TargetGambit"/> class.
 	/// </summary>
-	public TargetFirstGambit():base(){
+	public TargetGambit():base(){
 		_target = null;
 		_perception = null;
 	}
@@ -47,7 +47,7 @@ public class TargetFirstGambit : Gambit, ITargetGambit {
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public TargetFirstGambit(int priority, Skill skill, GameObject target, Perception perception):base(priority,skill){
+	public TargetGambit(GameObject owner, int priority, Skill skill, GameObject target, Perception perception):base(owner, priority,skill){
 		_target = target;
 		_perception = perception;
 	}
@@ -65,13 +65,12 @@ public class TargetFirstGambit : Gambit, ITargetGambit {
 			yield return null;
 		}
 	}
-
-	#region ITargetGambit implementation
+		
 	/// <summary>
 	/// Finds the target.
 	/// </summary>
 	/// <returns>The target.</returns>
-	public GameObject FindTarget ()
+	public virtual GameObject FindTarget ()
 	{
 		if (Perception == null)
 			return null;
@@ -86,6 +85,4 @@ public class TargetFirstGambit : Gambit, ITargetGambit {
 
 		return target;
 	}
-
-	#endregion
 }
