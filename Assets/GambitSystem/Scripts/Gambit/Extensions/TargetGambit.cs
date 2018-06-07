@@ -7,6 +7,20 @@ using UnityEngine;
 /// </summary>
 public class TargetGambit : Gambit{
 	/// <summary>
+	/// include self when finding a target
+	/// </summary>
+	private bool _includeSelf;
+
+	/// <summary>
+	/// Gets or sets a value indicating whether this <see cref="TargetGambit"/> include self.
+	/// </summary>
+	/// <value><c>true</c> if include self; otherwise, <c>false</c>.</value>
+	public bool IncludeSelf{
+		get{ return _includeSelf;}
+		set{ _includeSelf = value;}
+	}
+
+	/// <summary>
 	/// The type of the target.
 	/// </summary>
 	private int _targetType;
@@ -53,6 +67,7 @@ public class TargetGambit : Gambit{
 		TargetType = 0;
 		Target = null;
 		Perception = null;
+		IncludeSelf = true;
 	}
 
 	/// <summary>
@@ -62,10 +77,11 @@ public class TargetGambit : Gambit{
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public TargetGambit(GameObject owner, int priority, Skill skill, int targetType, Perception perception):base(owner, priority,skill){
+	public TargetGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf, Perception perception):base(owner, priority,skill){
 		TargetType = targetType;
 		Target = null;
 		Perception = perception;
+		IncludeSelf = includeSelf;
 	}
 
 	/// <summary>
@@ -93,7 +109,9 @@ public class TargetGambit : Gambit{
 
 		GameObject target = null;
 		foreach (var key in Perception.Percepts.Keys) {
-			if ((Perception.Percepts [key].Entity != null) && ((Perception.Percepts[key].Entity.GetComponent<ITargetable>().TargetType & TargetType) != 0)) {
+			if ((Perception.Percepts [key].Entity != null) 
+				&& ((IncludeSelf && (Perception.Percepts[key].Entity == Owner)) || (Perception.Percepts[key].Entity != Owner))
+				&& ((Perception.Percepts[key].Entity.GetComponent<ITargetable>().TargetType & TargetType) != 0)) {
 				target = Perception.Percepts [key].Entity;
 				break;
 			}
