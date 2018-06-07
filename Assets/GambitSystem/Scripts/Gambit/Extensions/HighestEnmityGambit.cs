@@ -33,7 +33,7 @@ public class HighestEnmityGambit : TargetGambit {
 			if ((Perception.Percepts [key].Entity != null) 
 				&& (Perception.Percepts[key].Enmity >= highestEnmity) 
 				&& ((IncludeSelf && (Perception.Percepts[key].Entity == Owner)) || (Perception.Percepts[key].Entity != Owner))
-				&& ((Perception.Percepts[key].Entity.GetComponent<ITargetable>().TargetType & TargetType) != 0)){
+				&& ((Perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)){
 				highestEnmity = Perception.Percepts [key].Enmity;
 				target = Perception.Percepts [key].Entity;
 				break;

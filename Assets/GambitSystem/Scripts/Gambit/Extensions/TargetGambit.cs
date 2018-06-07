@@ -111,7 +111,7 @@ public class TargetGambit : Gambit{
 		foreach (var key in Perception.Percepts.Keys) {
 			if ((Perception.Percepts [key].Entity != null) 
 				&& ((IncludeSelf && (Perception.Percepts[key].Entity == Owner)) || (Perception.Percepts[key].Entity != Owner))
-				&& ((Perception.Percepts[key].Entity.GetComponent<ITargetable>().TargetType & TargetType) != 0)) {
+				&& ((Perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)) {
 				target = Perception.Percepts [key].Entity;
 				break;
 			}
