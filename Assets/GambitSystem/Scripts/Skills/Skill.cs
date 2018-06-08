@@ -35,15 +35,15 @@ public class Skill{
 	/// <summary>
 	/// The delay for using the skill
 	/// </summary>
-	public float _delay;
+	public float _castTime;
 
 	/// <summary>
 	/// Gets or sets the delay.
 	/// </summary>
 	/// <value>The delay</value>
-	public float Delay{
-		get{ return _delay;}
-		set{ _delay = value;}
+	public float CastTime{
+		get{ return _castTime;}
+		set{ _castTime = value;}
 	}
 
 	/// <summary>
@@ -66,7 +66,7 @@ public class Skill{
 	public Skill(){
 		Name = string.Empty;
 		Cooldown = 0.0f;
-		Delay = 0.0f;
+		CastTime = 0.0f;
 		Interruptable = true;
 	}
 
@@ -75,11 +75,11 @@ public class Skill{
 	/// </summary>
 	/// <param name="name">the skill name</param>
 	/// <param name="cooldown">cooldown duration</param>
-	public Skill(string name, float cooldown, bool interruptable, float delay){
+	public Skill(string name, float cooldown, bool interruptable, float castTime){
 		Name = name;
 		Cooldown = cooldown;
 		Interruptable = interruptable;
-		Delay = delay;
+		CastTime = castTime;
 	}
 
 	public IEnumerator SkillCoroutine(){

@@ -79,7 +79,7 @@ public class Gambit{
 			yield return null;
 		}
 
-		yield return null;
+		yield return new WaitForSeconds(Skill.CastTime);
 	}
 
 	/// <summary>
