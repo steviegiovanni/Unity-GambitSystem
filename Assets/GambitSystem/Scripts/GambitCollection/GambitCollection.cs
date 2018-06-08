@@ -77,18 +77,27 @@ public class GambitCollection : MonoBehaviour {
 		int potentialGambit = FindPotentialGambit ();
 
 		if (potentialGambit == -1) { // no runnable gambit
-			if (ActiveGambitId != -1) // stop currently running gambit if there's any
-				StopCoroutine (Gambits [ActiveGambitId].Coroutine());
+			StopAllCoroutines();
 			ActiveGambitId = -1;
 			return;
 		}
 
 		// if runnable gambit has higher priority than active gambit, and not locked, switch active gambit
 		if (ActiveGambitId != potentialGambit) {
-			if (ActiveGambitId != -1) // stop currently running gambit if there's any
-				StopCoroutine (Gambits [ActiveGambitId].Coroutine());
+			StopAllCoroutines();
 			ActiveGambitId = potentialGambit;
-			StartCoroutine (Gambits [ActiveGambitId].Coroutine());
+			StartCoroutine(RunGambit(ActiveGambitId));
+		}
+	}
+
+	/// <summary>
+	/// run the appropriate gambit and run the skill coroutine associated with the gambit
+	/// </summary>
+	public IEnumerator RunGambit(int gambitId){
+		while (true) {
+			yield return StartCoroutine (Gambits [ActiveGambitId].GambitCoroutine ());
+			yield return StartCoroutine (Gambits [ActiveGambitId].Skill.SkillCoroutine ());
+			yield return null;
 		}
 	}
 
@@ -117,6 +126,6 @@ public class GambitCollection : MonoBehaviour {
 	void OnEnable(){
 		ActiveGambitId = FindPotentialGambit ();
 		if(ActiveGambitId != -1)
-			StartCoroutine (Gambits [ActiveGambitId].Coroutine());
+			StartCoroutine (RunGambit(ActiveGambitId));
 	}
 }

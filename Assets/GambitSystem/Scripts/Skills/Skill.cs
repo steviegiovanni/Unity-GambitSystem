@@ -82,7 +82,8 @@ public class Skill{
 		Delay = delay;
 	}
 
-	public void UseSkill(){
+	public IEnumerator SkillCoroutine(){
 		Debug.Log ("Using " + Name);
+		yield return null;
 	}
 }

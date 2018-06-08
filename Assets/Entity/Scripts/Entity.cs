@@ -24,6 +24,11 @@ public class Entity : MonoBehaviour, IPerceivable, IUseCooldown {
 		set {_cooldown = value;}
 	}
 
+	public void ResetCooldown ()
+	{
+		Cooldown = 0.0f;
+	}
+
 	#endregion
 
 	[SerializeField]
@@ -59,6 +64,7 @@ public class Entity : MonoBehaviour, IPerceivable, IUseCooldown {
 	// Update is called once per frame
 	void Update () {
 		PerceptionEVManager.TriggerEvent ("PERCEPTION", new Hashtable (){ { "OBJECT",this.gameObject } });
+		Cooldown += Time.deltaTime;
 	}
 
 	void OnAlerted(){

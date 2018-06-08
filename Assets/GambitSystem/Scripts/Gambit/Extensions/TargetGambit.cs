@@ -87,23 +87,21 @@ public class TargetGambit : Gambit{
 	/// <summary>
 	/// override coroutine of this gambit
 	/// </summary>
-	public override IEnumerator Coroutine(){
+	public override IEnumerator GambitCoroutine(){
 		while (true) {
-			IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
-			cooldownOwner.Cooldown += Time.deltaTime;
-
 			if (Target == null)
 				Target = FindTarget ();
 
 			if (Target != null) {
-				if (Skill.Cooldown <= cooldownOwner.Cooldown) {
-					Skill.UseSkill ();
-					cooldownOwner.Cooldown = 0.0f;
+				if (Skill.Cooldown <= GetOwnerCooldown()) {
+					ResetOwnerCooldown ();
+					break;
 				}
 			}
 
 			yield return null;
 		}
+		yield return null;
 	}
 		
 	/// <summary>

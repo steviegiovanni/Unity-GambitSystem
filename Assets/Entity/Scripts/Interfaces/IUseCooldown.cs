@@ -4,4 +4,5 @@ using UnityEngine;
 
 public interface IUseCooldown {
 	float Cooldown{ get; set;}
+	void ResetCooldown ();
 }

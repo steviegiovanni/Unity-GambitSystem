@@ -69,16 +69,37 @@ public class Gambit{
 	/// <summary>
 	/// Coroutine associated to this gambit when it's active
 	/// </summary>
-	public virtual IEnumerator Coroutine(){
+	public virtual IEnumerator GambitCoroutine(){
 		while (true) {
-			IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
-			cooldownOwner.Cooldown += Time.deltaTime;
-			if (Skill.Cooldown <= cooldownOwner.Cooldown) {
-				Skill.UseSkill ();
-				cooldownOwner.Cooldown = 0.0f;
+			if (Skill.Cooldown <= GetOwnerCooldown()) {
+				ResetOwnerCooldown ();
+				break;
 			}
 				
 			yield return null;
 		}
+
+		yield return null;
+	}
+
+	/// <summary>
+	/// Gets the owner cooldown.
+	/// </summary>
+	/// <returns>The owner cooldown.</returns>
+	public float GetOwnerCooldown(){
+		IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
+		if (cooldownOwner == null)
+			Debug.LogError ("Owner doesn't implement IUseCooldown interface...");
+		return cooldownOwner.Cooldown;
+	}
+
+	/// <summary>
+	/// Resets the owner cooldown.
+	/// </summary>
+	public void ResetOwnerCooldown(){
+		IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
+		if (cooldownOwner == null)
+			Debug.LogError ("Owner doesn't implement IUseCooldown interface...");
+		cooldownOwner.ResetCooldown ();
 	}
 }

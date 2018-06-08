@@ -19,14 +19,4 @@ public class PositionGambit : Gambit {
 	/// <param name="skill">Skill.</param>
 	public PositionGambit(GameObject owner, int priority, Skill skill):base(owner, priority, skill){
 	}
-
-	/// <summary>
-	/// Coroutine this instance.
-	/// </summary>
-	public override IEnumerator Coroutine(){
-		while (true) {
-			Debug.Log (string.Format("{0} coroutine",Skill.Name));
-			yield return null;
-		}
-	}
 }
