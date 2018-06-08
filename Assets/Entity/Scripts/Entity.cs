@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Entity : MonoBehaviour, IPerceivable {
+public class Entity : MonoBehaviour, IPerceivable, IUseCooldown {
+	[SerializeField]
+	private GambitTags _tag;
+
 	#region ITargetable implementation
 	public int Tag {
 		get{ return (int)_tag;}
@@ -12,7 +15,16 @@ public class Entity : MonoBehaviour, IPerceivable {
 	#endregion
 
 	[SerializeField]
-	private GambitTags _tag;
+	private float _cooldown = 10.0f;
+
+	#region IUseCooldown implementation
+
+	public float Cooldown {
+		get {return _cooldown;}
+		set {_cooldown = value;}
+	}
+
+	#endregion
 
 	[SerializeField]
 	private GambitCollection _gambitCollection;

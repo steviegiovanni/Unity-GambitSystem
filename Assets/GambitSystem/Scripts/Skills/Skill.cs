@@ -22,14 +22,42 @@ public class Skill{
 	/// <summary>
 	/// skill cooldown
 	/// </summary>
-	private int _cooldown;
+	private float _cooldown;
 
 	/// <summary>
 	/// Gets or sets the skill cooldown
 	/// </summary>
-	public int Cooldown{
+	public float Cooldown{
 		get{ return _cooldown; }
 		set{ _cooldown = value; }
+	}
+
+	/// <summary>
+	/// The delay for using the skill
+	/// </summary>
+	public float _delay;
+
+	/// <summary>
+	/// Gets or sets the delay.
+	/// </summary>
+	/// <value>The delay</value>
+	public float Delay{
+		get{ return _delay;}
+		set{ _delay = value;}
+	}
+
+	/// <summary>
+	/// whether the skill can be interrupted
+	/// </summary>
+	public bool _interruptable;
+
+	/// <summary>
+	/// Gets or sets a value indicating whether this <see cref="Skill"/> is interruptable.
+	/// </summary>
+	/// <value><c>true</c> if interruptable; otherwise, <c>false</c>.</value>
+	public bool Interruptable{
+		get{ return _interruptable;}
+		set{ _interruptable = value;}
 	}
 
 	/// <summary>
@@ -37,7 +65,9 @@ public class Skill{
 	/// </summary>
 	public Skill(){
 		Name = string.Empty;
-		Cooldown = 0;
+		Cooldown = 0.0f;
+		Delay = 0.0f;
+		Interruptable = true;
 	}
 
 	/// <summary>
@@ -45,8 +75,14 @@ public class Skill{
 	/// </summary>
 	/// <param name="name">the skill name</param>
 	/// <param name="cooldown">cooldown duration</param>
-	public Skill(string name, int cooldown){
+	public Skill(string name, float cooldown, bool interruptable, float delay){
 		Name = name;
 		Cooldown = cooldown;
+		Interruptable = interruptable;
+		Delay = delay;
+	}
+
+	public void UseSkill(){
+		Debug.Log ("Using " + Name);
 	}
 }

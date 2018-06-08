@@ -71,7 +71,13 @@ public class Gambit{
 	/// </summary>
 	public virtual IEnumerator Coroutine(){
 		while (true) {
-			Debug.Log (string.Format("{0} coroutine",Skill.Name));
+			IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
+			cooldownOwner.Cooldown += Time.deltaTime;
+			if (Skill.Cooldown <= cooldownOwner.Cooldown) {
+				Skill.UseSkill ();
+				cooldownOwner.Cooldown = 0.0f;
+			}
+				
 			yield return null;
 		}
 	}

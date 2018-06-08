@@ -89,11 +89,19 @@ public class TargetGambit : Gambit{
 	/// </summary>
 	public override IEnumerator Coroutine(){
 		while (true) {
+			IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
+			cooldownOwner.Cooldown += Time.deltaTime;
+
 			if (Target == null)
 				Target = FindTarget ();
 
-			if(Target != null)
-				Debug.Log (string.Format("targetting {0}",Target.name));
+			if (Target != null) {
+				if (Skill.Cooldown <= cooldownOwner.Cooldown) {
+					Skill.UseSkill ();
+					cooldownOwner.Cooldown = 0.0f;
+				}
+			}
+
 			yield return null;
 		}
 	}
