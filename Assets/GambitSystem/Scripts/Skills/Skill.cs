@@ -2,6 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// a skill should have a list of SkillEffectEntry 
+public class SkillEffectEntry{
+	private SkillEffect _effect;
+	public SkillEffect Effect{get { return _effect;} set{ _effect = value;}}
+	private float _delay;
+	public float Delay{get{ return _delay;}set{ _delay = value;}}
+	public SkillEffectEntry(SkillEffect effect, float delay){
+		Effect = effect;
+		Delay = delay;
+	}
+}
+
 /// <summary>
 /// base class for Skill
 /// </summary>
@@ -101,6 +113,23 @@ public class Skill{
 	}
 
 	/// <summary>
+	/// The effects.
+	/// </summary>
+	private List<SkillEffectEntry> _effects;
+
+	/// <summary>
+	/// Gets the effects.
+	/// </summary>
+	/// <value>The effects.</value>
+	public List<SkillEffectEntry> Effects{
+		get{ 
+			if (_effects == null)
+				_effects = new List<SkillEffectEntry> ();
+			return _effects;
+		}
+	}
+
+	/// <summary>
 	/// default constructor
 	/// </summary>
 	public Skill(){
@@ -126,6 +155,7 @@ public class Skill{
 		CastTime = castTime;
 		Range = range;
 		Delay = delay;
+		_effects = new List<SkillEffectEntry> ();
 	}
 
 	/// <summary>
@@ -133,7 +163,14 @@ public class Skill{
 	/// </summary>
 	public IEnumerator SkillCoroutine(){
 		Debug.Log ("Using " + Name);
-		float time = Time.time;
-		yield return new WaitForSeconds(Delay - time);
+		float startTime = Time.time;
+		float curDelay = 0.0f;
+		for (int i = 0; i < Effects.Count; i++) {
+			yield return new WaitForSeconds (Effects [i].Delay - curDelay);
+			Effects [i].Effect.ApplyEffect ();
+			curDelay = Effects[i].Delay;
+		}
+
+		yield return new WaitForSeconds(Delay - (Time.time - startTime));
 	}
 }

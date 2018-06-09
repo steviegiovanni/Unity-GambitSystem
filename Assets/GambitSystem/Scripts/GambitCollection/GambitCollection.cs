@@ -62,9 +62,12 @@ public class GambitCollection : MonoBehaviour {
 	/// Configures the gambits
 	/// </summary>
 	public void ConfigureGambits(){
-		Gambits.Add (new Gambit (this.gameObject, 0, new Skill(this.gameObject, "skill 1",3.0f,true,0.0f,2.0f,3.0f)));
-		//Gambits.Add (new Gambit (0, new Skill("skill 2")));
-		Gambits.Add (new HighestEnmityGambit (this.gameObject, 0, new TargetableSkill(this.gameObject,"skill 2",5.0f,true,2.0f,2.0f,3.0f),(int)GambitTags.Enemy,false,Perception));
+		Skill skill1 = new Skill(this.gameObject, "skill 1",10.0f,true,0.0f,2.0f,5.0f);
+		Gambits.Add (new Gambit (this.gameObject, 0, skill1));
+		Skill skill2 = new TargetableSkill (this.gameObject, "skill 2", 10.0f, true, 2.0f, 2.0f, 5.0f);
+		skill2.Effects.Add (new SkillEffectEntry (new SkillEffect (), 2.0f));
+		skill2.Effects.Add (new SkillEffectEntry (new SkillEffect (), 4.0f));
+		Gambits.Add (new HighestEnmityGambit (this.gameObject, 0, skill2,(int)GambitTags.Enemy,false,Perception));
 	}
 
 	// Use this for initialization

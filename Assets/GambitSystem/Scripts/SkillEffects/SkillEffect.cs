@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillEffect : MonoBehaviour {
+public class SkillEffect {
 	public virtual void ApplyEffect(){
 		Debug.Log ("apply skill effect");
 	}
