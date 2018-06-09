@@ -7,14 +7,43 @@ using UtilitySystems.XmlDatabase;
 
 namespace GameSystems.SkillSystem.Database{
 	public class SkillCollectionAsset : XmlDatabaseAsset {
+		public List<SkillAsset> Skills{ get; private set;}
+
+		public SkillCollectionAsset(): base(){Skills = new List<SkillAsset> ();}
+		public SkillCollectionAsset(int id): base(id){Skills = new List<SkillAsset> ();}
+
 		#region implemented abstract members of XmlDatabaseAsset
 		public override void OnSaveAsset (XmlWriter writer)
 		{
-			throw new NotImplementedException ();
+			foreach (var skill in Skills) {
+				writer.WriteStartElement ("Skill");
+				skill.OnSaveAsset (writer);
+				writer.WriteEndElement ();
+			}
 		}
 		public override void OnLoadAsset (XmlReader reader)
 		{
-			throw new NotImplementedException ();
+			switch (reader.Name) {
+			case "Skill":
+				{
+					// create an instance of the skill asset
+					var asset = SkillUtility.CreateAssetOfType("default");
+					if (asset != null) {
+						Skills.Add (asset);
+						// initialize the value
+						Skills[Skills.Count-1].OnLoadAsset(reader);
+					}
+				}
+				break;
+			default:
+				{
+					if (Skills.Count > 0) {
+						// element is not handled, pass to skill asset loader (most recent one)
+						Skills [Skills.Count - 1].OnLoadAsset (reader);
+					}
+				}
+				break;
+			}
 		}
 		#endregion
 	}
