@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 333431484}
   - component: {fileID: 333431486}
   - component: {fileID: 333431487}
+  - component: {fileID: 333431488}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -167,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: 1
+  _cooldown: 10
+  _movementComp: {fileID: 0}
   _gambitCollection: {fileID: 0}
   _perception: {fileID: 0}
 --- !u!114 &333431487
@@ -182,6 +185,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 5
   _alertMask: 2
+--- !u!195 &333431488
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333431483}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &499918332
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +466,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tag: 2
+  _cooldown: 10
+  _movementComp: {fileID: 0}
   _gambitCollection: {fileID: 0}
   _perception: {fileID: 0}
 --- !u!4 &1428455374
@@ -451,7 +477,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1428455370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 4.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

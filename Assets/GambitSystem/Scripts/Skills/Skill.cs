@@ -61,6 +61,20 @@ public class Skill{
 	}
 
 	/// <summary>
+	/// The range.
+	/// </summary>
+	private float _range = 0.5f;
+
+	/// <summary>
+	/// Gets or sets the range.
+	/// </summary>
+	/// <value>The range.</value>
+	public float Range{
+		get{ return _range;}
+		set{ _range = value;}
+	}
+
+	/// <summary>
 	/// default constructor
 	/// </summary>
 	public Skill(){
@@ -68,6 +82,7 @@ public class Skill{
 		Cooldown = 0.0f;
 		CastTime = 0.0f;
 		Interruptable = true;
+		Range = 0.5f;
 	}
 
 	/// <summary>
@@ -75,11 +90,12 @@ public class Skill{
 	/// </summary>
 	/// <param name="name">the skill name</param>
 	/// <param name="cooldown">cooldown duration</param>
-	public Skill(string name, float cooldown, bool interruptable, float castTime){
+	public Skill(string name, float cooldown, bool interruptable, float castTime, float range){
 		Name = name;
 		Cooldown = cooldown;
 		Interruptable = interruptable;
 		CastTime = castTime;
+		Range = range;
 	}
 
 	public IEnumerator SkillCoroutine(){

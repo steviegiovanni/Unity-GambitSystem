@@ -91,14 +91,23 @@ public class TargetGambit : Gambit{
 		while (true) {
 			if (Target == null)
 				Target = FindTarget ();
-
 			if (Target != null) {
-				if (Skill.Cooldown <= GetOwnerCooldown()) {
-					ResetOwnerCooldown ();
-					break;
+				IMovable movableEntity = Owner.GetComponent<IMovable> ();
+				if (movableEntity == null)
+					Debug.LogWarning ("Owner does not implement IMovable");
+				else {
+					if (movableEntity.RemainingDistance (Target.transform.position) <= Skill.Range) {
+						movableEntity.StopMove ();
+					}else {
+						movableEntity.MoveTo (Target.transform.position);
+					}
+					
+					if (Skill.Cooldown <= GetOwnerCooldown () && (movableEntity.RemainingDistance(Target.transform.position) <= Skill.Range)) {
+						ResetOwnerCooldown ();
+						break;
+					}
 				}
 			}
-
 			yield return null;
 		}
 		yield return new WaitForSeconds(Skill.CastTime);

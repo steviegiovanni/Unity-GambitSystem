@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [System.Serializable]
-public class Entity : MonoBehaviour, IPerceivable, IUseCooldown {
+public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable {
 	[SerializeField]
 	private GambitTags _tag;
 
@@ -29,6 +30,40 @@ public class Entity : MonoBehaviour, IPerceivable, IUseCooldown {
 		Cooldown = 0.0f;
 	}
 
+	#endregion
+
+	[SerializeField]
+	private NavMeshAgent _movementComp;
+
+	public NavMeshAgent MovementComponent{
+		get{ 
+			if (_movementComp == null) 
+				_movementComp = GetComponent<NavMeshAgent> ();
+			if (_movementComp == null)
+				_movementComp = this.gameObject.AddComponent<NavMeshAgent> ();
+			return _movementComp;
+		}
+	}
+
+	#region IMovable implementation
+
+	public void MoveTo (Vector3 targetPos)
+	{
+		MovementComponent.SetDestination (targetPos);
+	}
+
+	public void StopMove ()
+	{
+		MovementComponent.isStopped = true;
+	}
+		
+	public float RemainingDistance (Vector3 targetPos)
+	{
+		if (!MovementComponent.hasPath) 
+			return Vector3.Distance(this.transform.position,targetPos);
+
+		return MovementComponent.remainingDistance;
+	}
 	#endregion
 
 	[SerializeField]

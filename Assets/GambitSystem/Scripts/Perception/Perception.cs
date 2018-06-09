@@ -95,7 +95,7 @@ public class Perception : MonoBehaviour{
 			if (entity == null)
 				Percepts.Remove (perceptKeys [i]);
 			else {
-				if ((Vector3.SqrMagnitude (entity.transform.position - this.transform.position) <= Range * Range)
+				if ((Vector3.Distance (entity.transform.position,this.transform.position) <= Range)
 				    && ((entity.GetComponent<IPerceivable> ().Tag & AlertMask) != 0))
 					alerted = true;
 			}
