@@ -7,6 +7,19 @@ using UnityEngine;
 /// </summary>
 public class Skill{
 	/// <summary>
+	/// The owner.
+	/// </summary>
+	private GameObject _owner;
+
+	/// <summary>
+	/// Gets or sets the priority
+	/// </summary>
+	public GameObject Owner{
+		get{ return _owner;}
+		set{ _owner = value;}
+	}
+
+	/// <summary>
 	/// the name of the skill
 	/// </summary>
 	private string _name;
@@ -33,17 +46,30 @@ public class Skill{
 	}
 
 	/// <summary>
-	/// The delay for using the skill
+	/// The cast time for using the skill
 	/// </summary>
 	public float _castTime;
 
 	/// <summary>
-	/// Gets or sets the delay.
+	/// Gets or sets the cast time.
 	/// </summary>
-	/// <value>The delay</value>
 	public float CastTime{
 		get{ return _castTime;}
 		set{ _castTime = value;}
+	}
+
+	/// <summary>
+	/// The delay.
+	/// </summary>
+	public float _delay;
+
+	/// <summary>
+	/// Gets or sets the delay.
+	/// </summary>
+	/// <value>The delay.</value>
+	public float Delay{
+		get{ return _delay;}
+		set{ _delay = value;}
 	}
 
 	/// <summary>
@@ -78,11 +104,13 @@ public class Skill{
 	/// default constructor
 	/// </summary>
 	public Skill(){
+		Owner = null;
 		Name = string.Empty;
 		Cooldown = 0.0f;
 		CastTime = 0.0f;
 		Interruptable = true;
 		Range = 0.5f;
+		Delay = 0.0f;
 	}
 
 	/// <summary>
@@ -90,16 +118,22 @@ public class Skill{
 	/// </summary>
 	/// <param name="name">the skill name</param>
 	/// <param name="cooldown">cooldown duration</param>
-	public Skill(string name, float cooldown, bool interruptable, float castTime, float range){
+	public Skill(GameObject owner, string name, float cooldown, bool interruptable, float castTime, float range, float delay){
+		Owner = owner;
 		Name = name;
 		Cooldown = cooldown;
 		Interruptable = interruptable;
 		CastTime = castTime;
 		Range = range;
+		Delay = delay;
 	}
 
+	/// <summary>
+	/// Skill coroutine.
+	/// </summary>
 	public IEnumerator SkillCoroutine(){
 		Debug.Log ("Using " + Name);
-		yield return null;
+		float time = Time.time;
+		yield return new WaitForSeconds(Delay - time);
 	}
 }

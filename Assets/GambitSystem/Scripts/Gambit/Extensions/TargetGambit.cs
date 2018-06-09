@@ -89,9 +89,10 @@ public class TargetGambit : Gambit{
 	/// </summary>
 	public override IEnumerator GambitCoroutine(){
 		while (true) {
-			if (Target == null)
-				Target = FindTarget ();
-			if (Target != null) {
+			Target = FindTarget ();
+			if (Target == null) { // no target found
+				break;
+			}else if (Target != null) {
 				IMovable movableEntity = Owner.GetComponent<IMovable> ();
 				if (movableEntity == null)
 					Debug.LogWarning ("Owner does not implement IMovable");
@@ -103,6 +104,13 @@ public class TargetGambit : Gambit{
 					}
 					
 					if (Skill.Cooldown <= GetOwnerCooldown () && (movableEntity.RemainingDistance(Target.transform.position) <= Skill.Range)) {
+						// set up skill target
+						ITargetableSkill targetableSkill = Skill as ITargetableSkill;
+						if (targetableSkill == null)
+							Debug.LogWarning ("calling a non targetable skill from a target gambit");
+						else
+							targetableSkill.Target = Target;
+
 						ResetOwnerCooldown ();
 						break;
 					}
@@ -110,7 +118,11 @@ public class TargetGambit : Gambit{
 			}
 			yield return null;
 		}
-		yield return new WaitForSeconds(Skill.CastTime);
+
+		if (Target == null) // no target, return immediately
+			yield return null;
+		else
+			yield return new WaitForSeconds(Skill.CastTime);
 	}
 		
 	/// <summary>
