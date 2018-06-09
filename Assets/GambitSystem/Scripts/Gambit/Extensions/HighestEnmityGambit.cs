@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameSystems.SkillSystem;
 
 /// <summary>
 /// extension to the target gambit class that will target the highest enmity instance on the table of percepts

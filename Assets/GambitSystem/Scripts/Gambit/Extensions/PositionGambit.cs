@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameSystems.SkillSystem;
 
 /// <summary>
 /// extension to the gambit class that will target a location on the map
