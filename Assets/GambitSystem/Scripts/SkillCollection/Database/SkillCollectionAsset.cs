@@ -17,6 +17,7 @@ namespace GameSystems.SkillSystem.Database{
 		{
 			foreach (var skill in Skills) {
 				writer.WriteStartElement ("Skill");
+				writer.SetAttr ("AssetType", skill.GetType ().Name);
 				skill.OnSaveAsset (writer);
 				writer.WriteEndElement ();
 			}
@@ -26,8 +27,11 @@ namespace GameSystems.SkillSystem.Database{
 			switch (reader.Name) {
 			case "Skill":
 				{
+					// get the skill type
+					string skillAssetType = reader.GetAttrString ("AssetType", "");
+
 					// create an instance of the skill asset
-					var asset = SkillUtility.CreateAssetOfType("default");
+					var asset = SkillUtility.CreateAssetOfType(skillAssetType);
 					if (asset != null) {
 						Skills.Add (asset);
 						// initialize the value

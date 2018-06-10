@@ -19,5 +19,12 @@ namespace GameSystems.SkillSystem{
 		#endregion
 
 		public TargetableSkill(GameObject owner, string name, float cooldown, bool interruptable, float castTime, float range, float delay):base(owner,name,cooldown,interruptable,castTime,range,delay){}
+
+		/// <summary>
+		/// constructor with skill asset as input
+		/// </summary>
+		/// <param name="skillAsset">Skill asset.</param>
+		public TargetableSkill(TargetableSkillAsset skillAsset): base(skillAsset){
+		}
 	}
 }

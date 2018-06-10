@@ -48,7 +48,5 @@ namespace GameSystems.SkillSystem{
 		}
 
 		#endregion
-
-
 	}
 }
