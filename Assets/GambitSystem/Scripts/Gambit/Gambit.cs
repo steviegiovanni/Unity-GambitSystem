@@ -67,6 +67,12 @@ public class Gambit{
 		Skill = skill;
 	}
 
+	public Gambit(GambitAsset asset){
+		Owner = null;
+		Priority = asset.Priority;
+		Skill = asset.Skill.CreateInstance ();
+	}
+
 	/// <summary>
 	/// Coroutine associated to this gambit when it's active
 	/// </summary>

@@ -29,5 +29,50 @@ namespace GameSystems.SkillSystem{
 				return _skillDict;
 			}
 		}
+
+		public void SetupCollection(){
+			var collection = SkillSystemDatabase.SkillCollections.Get (SkillCollectionId);
+			if (collection != null) {
+				SetupCollection (collection);	
+			}
+		}
+
+		public void SetupCollection(SkillCollectionAsset collectionAsset){
+			SkillDict.Clear ();
+
+			// add all skills to the collection
+			foreach (var skillAsset in collectionAsset.Skills) {
+				Debug.Log ("adding skill " + skillAsset.Name);
+				if (!SkillDict.ContainsKey (skillAsset.Name)) {
+					SkillDict.Add (skillAsset.Name, skillAsset.CreateInstance());
+				} else {
+					Debug.Log ("attempted to add a skill with the same name...");
+				}
+			}
+		}
+			
+		public bool ContainSkill(string skillName){
+			return SkillDict.ContainsKey (skillName);
+		}
+
+		public Skill GetSkill(string skillName){
+			if (ContainSkill (skillName)) {
+				return SkillDict [skillName];
+			}
+			return null;
+		}
+
+		public T GetSkill<T>(string skillName) where T: Skill{
+			return GetSkill (skillName) as T;
+		}
+
+		public bool TryGetSkill<T>(string skillName, out T skill) where T: Skill{
+			skill = GetSkill<T> (skillName);
+			return skill != null;
+		}
+
+		public void Awake(){
+			SetupCollection ();
+		}
 	}
 }

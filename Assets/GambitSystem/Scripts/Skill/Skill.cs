@@ -159,6 +159,10 @@ namespace GameSystems.SkillSystem{
 			CastTime = skillAsset.CastTime;
 			Range = skillAsset.Range;
 			Delay = skillAsset.Delay;
+
+			foreach (var effect in skillAsset.Effects) {
+				this.Effects.Add (effect.CreateInstance ());
+			}
 		}
 
 		/// <summary>
