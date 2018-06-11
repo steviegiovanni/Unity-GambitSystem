@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetableSkillEffect : SkillEffect, ITargetableEffect {
-	/// <summary>
-	/// the target of the effect
-	/// </summary>
-	private GameObject _target;
+namespace GameSystems.SkillSystem{
+	public class TargetableSkillEffect : SkillEffect, ITargetableEffect {
+		/// <summary>
+		/// the target of the effect
+		/// </summary>
+		private GameObject _target;
 
-	#region ITargetableEffect implementation
+		#region ITargetableEffect implementation
 
-	public GameObject Target {
-		get {return _target;}
-		set {_target = value;}
+		public GameObject Target {
+			get {return _target;}
+			set {_target = value;}
+		}
+
+		#endregion
+
+		public TargetableSkillEffect():base(){}
+
+		public TargetableSkillEffect(float delay):base(delay){}
+
+		public TargetableSkillEffect(SkillEffectAsset asset):base(asset){}
 	}
-
-	#endregion
 }

@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameSystems.SkillSystem{
-	// a skill should have a list of SkillEffectEntry 
-	public class SkillEffectEntry{
-		private SkillEffect _effect;
-		public SkillEffect Effect{get { return _effect;} set{ _effect = value;}}
-		private float _delay;
-		public float Delay{get{ return _delay;}set{ _delay = value;}}
-		public SkillEffectEntry(SkillEffect effect, float delay){
-			Effect = effect;
-			Delay = delay;
-		}
-	}
-
 	/// <summary>
 	/// base class for Skill
 	/// </summary>
@@ -116,16 +104,16 @@ namespace GameSystems.SkillSystem{
 		/// <summary>
 		/// The effects.
 		/// </summary>
-		private List<SkillEffectEntry> _effects;
+		private List<SkillEffect> _effects;
 
 		/// <summary>
 		/// Gets the effects.
 		/// </summary>
 		/// <value>The effects.</value>
-		public List<SkillEffectEntry> Effects{
+		public List<SkillEffect> Effects{
 			get{ 
 				if (_effects == null)
-					_effects = new List<SkillEffectEntry> ();
+					_effects = new List<SkillEffect> ();
 				return _effects;
 			}
 		}
@@ -156,7 +144,7 @@ namespace GameSystems.SkillSystem{
 			CastTime = castTime;
 			Range = range;
 			Delay = delay;
-			_effects = new List<SkillEffectEntry> ();
+			_effects = new List<SkillEffect> ();
 		}
 
 		/// <summary>
@@ -182,7 +170,7 @@ namespace GameSystems.SkillSystem{
 			float curDelay = 0.0f;
 			for (int i = 0; i < Effects.Count; i++) {
 				yield return new WaitForSeconds (Effects [i].Delay - curDelay);
-				Effects [i].Effect.ApplyEffect ();
+				Effects [i].ApplyEffect ();
 				curDelay = Effects[i].Delay;
 			}
 

@@ -1,5 +1,7 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GameSystems.SkillSystem{
 	public class SkillAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
@@ -9,6 +11,7 @@ namespace GameSystems.SkillSystem{
 		public float Range{ get; set;}
 		public float Delay{ get; set;}
 		public bool Interruptable{ get; set;}
+		public List<SkillEffectAsset> Effects{ get; private set;}
 
 		public virtual Skill CreateInstance(){
 			return new Skill (this);
@@ -30,6 +33,26 @@ namespace GameSystems.SkillSystem{
 					Interruptable = reader.GetBoolAttribute ("Interruptable",false);
 				}
 				break;
+			case "SkillEffect":
+				{
+					// get the skill effect type
+					string skillEffectAssetType = reader.GetAttrString ("AssetType", "");
+
+					// create an instance of the skill asset
+					var asset = SkillEffectUtility.CreateAssetOfType(skillEffectAssetType);
+					if (asset != null) {
+						Effects.Add (asset);
+						// initialize the value
+						Effects[Effects.Count-1].OnLoadAsset(reader);
+					}
+				}
+				break;
+			default:
+				{
+					if (Effects.Count > 0)
+						Effects [Effects.Count - 1].OnLoadAsset (reader);
+				}
+				break;
 			}
 		}
 
@@ -45,8 +68,16 @@ namespace GameSystems.SkillSystem{
 			writer.SetAttr ("Range", Range);
 			writer.SetAttr ("Delay", Delay);
 			writer.SetAttr ("Interruptable", Interruptable);
+			foreach(var effect in Effects){
+				writer.WriteStartElement ("SkillEffect");
+				writer.SetAttr ("AssetType", effect.GetType ().Name);
+				effect.OnSaveAsset (writer);
+				writer.WriteEndElement ();
+			}
 		}
 
 		#endregion
+
+		public SkillAsset():base(){Effects = new List<SkillEffectAsset> ();}
 	}
 }
