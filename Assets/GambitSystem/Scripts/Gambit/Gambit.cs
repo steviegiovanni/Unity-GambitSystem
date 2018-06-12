@@ -38,6 +38,13 @@ public class Gambit{
 		set{ _skill = value;}
 	}
 
+	private string _skillId;
+
+	public string SkillId{
+		get{ return _skillId;}
+		set{ _skillId = value;}
+	}
+
 	/// <summary>
 	/// Gets or sets the owner.
 	/// </summary>
@@ -53,6 +60,7 @@ public class Gambit{
 	public Gambit(){
 		Priority = 0;
 		Skill = new Skill();
+		SkillId = "";
 		Owner = null;
 	}
 
@@ -65,12 +73,14 @@ public class Gambit{
 		Owner = owner;
 		Priority = priority;
 		Skill = skill;
+		SkillId = "";
 	}
 
 	public Gambit(GambitAsset asset){
 		Owner = null;
 		Priority = asset.Priority;
-		Skill = asset.Skill.CreateInstance ();
+		//Skill = asset.Skill.CreateInstance ();
+		SkillId = asset.SkillId;
 	}
 
 	/// <summary>

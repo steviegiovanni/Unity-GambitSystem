@@ -49,25 +49,11 @@ public class TargetGambit : Gambit{
 	}
 
 	/// <summary>
-	/// The perception
-	/// </summary>
-	private Perception _perception;
-
-	/// <summary>
-	/// Gets or sets the perception.
-	/// </summary>
-	public Perception Perception{
-		get{ return _perception;}
-		set{ _perception = value;}
-	}
-
-	/// <summary>
 	/// Initializes a new instance of the <see cref="TargetGambit"/> class.
 	/// </summary>
 	public TargetGambit():base(){
-		TargetType = 0;
+		TargetType = 2;
 		Target = null;
-		Perception = null;
 		IncludeSelf = true;
 	}
 
@@ -78,12 +64,13 @@ public class TargetGambit : Gambit{
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public TargetGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf, Perception perception):base(owner, priority,skill){
+	public TargetGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf):base(owner, priority,skill){
 		TargetType = targetType;
 		Target = null;
-		Perception = perception;
 		IncludeSelf = includeSelf;
 	}
+
+	public TargetGambit(GambitAsset asset):base(asset){TargetType = 2;}
 
 	/// <summary>
 	/// override coroutine of this gambit
@@ -92,7 +79,7 @@ public class TargetGambit : Gambit{
 		while (true) {
 			Target = FindTarget ();
 			if (Target == null) { // no target found
-				break;
+				Debug.Log("no target found");
 			}else if (Target != null) {
 				IMovable movableEntity = Owner.GetComponent<IMovable> ();
 				if (movableEntity == null)
@@ -111,7 +98,6 @@ public class TargetGambit : Gambit{
 							Debug.LogWarning ("calling a non targetable skill from a target gambit");
 						else
 							targetableSkill.Target = Target;
-
 						ResetOwnerCooldown ();
 						break;
 					}
@@ -132,15 +118,17 @@ public class TargetGambit : Gambit{
 	/// <returns>The target.</returns>
 	public virtual GameObject FindTarget ()
 	{
-		if (Perception == null)
+		if (Owner.GetComponent<IHasPerception>() == null)
 			return null;
 
+		Perception perception = Owner.GetComponent<IHasPerception> ().Perception;
+
 		GameObject target = null;
-		foreach (var key in Perception.Percepts.Keys) {
-			if ((Perception.Percepts [key].Entity != null) 
-				&& ((IncludeSelf && (Perception.Percepts[key].Entity == Owner)) || (Perception.Percepts[key].Entity != Owner))
-				&& ((Perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)) {
-				target = Perception.Percepts [key].Entity;
+		foreach (var key in perception.Percepts.Keys) {
+			if ((perception.Percepts [key].Entity != null) 
+				&& ((IncludeSelf && (perception.Percepts[key].Entity == Owner)) || (perception.Percepts[key].Entity != Owner))
+				&& ((perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)) {
+				target = perception.Percepts [key].Entity;
 				break;
 			}
 		}

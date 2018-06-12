@@ -65,7 +65,7 @@ namespace GameSystems.SkillSystem.Editor{
 		#endregion
 
 		private void DisplaySkillSelectionContent(SkillCollectionAsset asset){
-			GUILayout.BeginVertical (GUILayout.Width (200));
+			GUILayout.BeginVertical (GUILayout.Width (skillSelectionWidth));
 
 			// Scroll view for the listed assets
 			skillSelectionScroll = GUILayout.BeginScrollView(skillSelectionScroll,false,true);

@@ -3,11 +3,86 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using GameSystems.SkillSystem;
+using GameSystems.SkillSystem.Database;
 
 /// <summary>
 /// monobehaviour that contains the list of gambits
 /// </summary>
 public class GambitCollection : MonoBehaviour {
+	[SerializeField]
+	private int _gambitCollectionId = -1;
+	public int GambitCollectionId {
+		get { return _gambitCollectionId;}
+		set{ _gambitCollectionId = value;}
+	}
+
+	[SerializeField]
+	private int _skillCollectionId = -1;
+	public int SkillCollectionId {
+		get { return _skillCollectionId;}
+		set{ _skillCollectionId = value;}
+	}
+
+	[SerializeField]
+	private SkillCollection _skillCollection;
+	public SkillCollection SkillCollection{
+		get{ 
+			if (_skillCollection == null)
+				_skillCollection = GetComponent<SkillCollection> ();
+			if (_skillCollection == null) {
+				Debug.LogWarning ("No skill collection component found! Adding a temporary collection...");
+				_skillCollection = this.gameObject.AddComponent<SkillCollection> ();
+				_skillCollection.SkillCollectionId = SkillCollectionId;
+			}
+			return _skillCollection;
+		}
+	}
+
+	private bool _isCollectionSetup = false;
+	public bool IsCollectionSetup{
+		get { return _isCollectionSetup;}
+		set{ _isCollectionSetup = value;}
+	}
+
+	public void SetupCollection(){
+		if (SkillCollectionId != SkillCollection.SkillCollectionId) {
+			SkillCollection.SkillCollectionId = SkillCollectionId;
+			SkillCollection.IsCollectionSetup = false;
+		}
+			
+		if (!SkillCollection.IsCollectionSetup)
+			SkillCollection.SetupCollection ();
+
+		if (SkillCollection.IsCollectionSetup) {
+			var collection = SkillSystemDatabase.GambitCollections.Get (GambitCollectionId);
+			if (collection != null) {
+				SetupCollection (collection);	
+			}
+		}
+	}
+
+	public void SetupCollection(GambitCollectionAsset collectionAsset){
+		IsCollectionSetup = true;
+
+		if (collectionAsset != null) {
+			Gambits.Clear ();
+			foreach (var gambitAsset in collectionAsset.Gambits) {
+				Gambits.Add (gambitAsset.CreateInstance ());
+				Gambits [Gambits.Count - 1].Owner = this.gameObject;
+			}
+		}
+
+		// add all skills to the collection
+		/*foreach (var skillAsset in collectionAsset.Skills) {
+			Debug.Log ("adding skill " + skillAsset.Name);
+			if (!SkillDict.ContainsKey (skillAsset.Name)) {
+				SkillDict.Add (skillAsset.Name, skillAsset.CreateInstance());
+			} else {
+				Debug.Log ("attempted to add a skill with the same name...");
+			}
+		}*/
+	}
+
 	/// <summary>
 	/// the collection of gambits
 	/// </summary>
@@ -68,12 +143,13 @@ public class GambitCollection : MonoBehaviour {
 		Skill skill2 = new TargetableSkill (this.gameObject, "skill 2", 10.0f, true, 2.0f, 2.0f, 5.0f);
 		skill2.Effects.Add (new SkillEffect(2.0f));
 		skill2.Effects.Add (new SkillEffect(4.0f));
-		Gambits.Add (new HighestEnmityGambit (this.gameObject, 0, skill2,(int)GambitTags.Enemy,false,Perception));
+		Gambits.Add (new HighestEnmityGambit (this.gameObject, 0, skill2,(int)GambitTags.Enemy,false));
 	}
 
 	// Use this for initialization
 	void Start () {
-		ConfigureGambits ();
+		//ConfigureGambits ();
+		SetupCollection();
 	}
 	
 	// Update is called once per frame
@@ -100,7 +176,9 @@ public class GambitCollection : MonoBehaviour {
 	public IEnumerator RunGambit(int gambitId){
 		while (true) {
 			yield return StartCoroutine (Gambits [ActiveGambitId].GambitCoroutine ());
-			yield return StartCoroutine (Gambits [ActiveGambitId].Skill.SkillCoroutine ());
+			Skill skillToExecute = SkillCollection.GetSkill<Skill> (Gambits [ActiveGambitId].SkillId);
+			if(skillToExecute != null)
+				yield return StartCoroutine (skillToExecute.SkillCoroutine ());
 			yield return null;
 		}
 	}

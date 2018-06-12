@@ -144,6 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee2350f51e3bb5344a7569e41aaa28a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gambitCollectionId: 1
+  _skillCollectionId: 1
+  _skillCollection: {fileID: 0}
 --- !u!4 &333431485
 Transform:
   m_ObjectHideFlags: 0

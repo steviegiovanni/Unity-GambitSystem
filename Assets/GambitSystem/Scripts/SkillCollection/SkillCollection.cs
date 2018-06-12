@@ -38,15 +38,19 @@ namespace GameSystems.SkillSystem{
 		}
 
 		public void SetupCollection(SkillCollectionAsset collectionAsset){
-			SkillDict.Clear ();
+			IsCollectionSetup = true;
 
-			// add all skills to the collection
-			foreach (var skillAsset in collectionAsset.Skills) {
-				Debug.Log ("adding skill " + skillAsset.Name);
-				if (!SkillDict.ContainsKey (skillAsset.Name)) {
-					SkillDict.Add (skillAsset.Name, skillAsset.CreateInstance());
-				} else {
-					Debug.Log ("attempted to add a skill with the same name...");
+			if (collectionAsset != null) {
+				SkillDict.Clear ();
+
+				// add all skills to the collection
+				foreach (var skillAsset in collectionAsset.Skills) {
+					Debug.Log ("adding skill " + skillAsset.Name);
+					if (!SkillDict.ContainsKey (skillAsset.Name)) {
+						SkillDict.Add (skillAsset.Name, skillAsset.CreateInstance ());
+					} else {
+						Debug.Log ("attempted to add a skill with the same name...");
+					}
 				}
 			}
 		}

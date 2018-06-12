@@ -4,7 +4,24 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [System.Serializable]
-public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable {
+public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable, IHasPerception {
+	[SerializeField]
+	private Perception _perception;
+
+	#region IHasPerception implementation
+
+	public Perception Perception{
+		get{
+			if (_perception == null)
+				_perception = GetComponent<Perception> ();
+			if (_perception == null)
+				_perception = this.gameObject.AddComponent<Perception> ();
+			return _perception;
+		}
+	}
+
+	#endregion
+
 	[SerializeField]
 	private GambitTags _tag;
 
@@ -76,17 +93,7 @@ public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable {
 			return _gambitCollection;
 		}
 	}
-
-	[SerializeField]
-	private Perception _perception;
-
-	public Perception Perception{
-		get{
-			if (_perception == null)
-				_perception = GetComponent<Perception> ();
-			return _perception;
-		}
-	}
+		
 
 	// Use this for initialization
 	void Start () {

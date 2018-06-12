@@ -15,7 +15,9 @@ public class HighestEnmityGambit : TargetGambit {
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public HighestEnmityGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf, Perception perception):base(owner, priority,skill,targetType,includeSelf, perception){}
+	public HighestEnmityGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf):base(owner, priority,skill,targetType,includeSelf){}
+
+	public HighestEnmityGambit(GambitAsset asset):base(asset){}
 
 	/// <summary>
 	/// Finds the target.
@@ -23,20 +25,24 @@ public class HighestEnmityGambit : TargetGambit {
 	/// <returns>The target.</returns>
 	public override GameObject FindTarget ()
 	{		
+		Debug.Log ("lalalala");
 		if (Owner == null)
 			return null;
-		if (Perception == null)
+		if (Owner.GetComponent<IHasPerception>() == null)
 			return null;
+		Debug.Log ("1233242342");
+
+		Perception perception = Owner.GetComponent<IHasPerception> ().Perception;
 
 		GameObject target = null;
 		int highestEnmity = 0;
-		foreach (var key in Perception.Percepts.Keys) {
-			if ((Perception.Percepts [key].Entity != null) 
-				&& (Perception.Percepts[key].Enmity >= highestEnmity) 
-				&& ((IncludeSelf && (Perception.Percepts[key].Entity == Owner)) || (Perception.Percepts[key].Entity != Owner))
-				&& ((Perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)){
-				highestEnmity = Perception.Percepts [key].Enmity;
-				target = Perception.Percepts [key].Entity;
+		foreach (var key in perception.Percepts.Keys) {
+			if ((perception.Percepts [key].Entity != null) 
+				&& (perception.Percepts[key].Enmity >= highestEnmity) 
+				&& ((IncludeSelf && (perception.Percepts[key].Entity == Owner)) || (perception.Percepts[key].Entity != Owner))
+				&& ((perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)){
+				highestEnmity = perception.Percepts [key].Enmity;
+				target = perception.Percepts [key].Entity;
 				break;
 			}
 		}
