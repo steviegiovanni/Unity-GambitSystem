@@ -13,11 +13,6 @@ public class Gambit{
 	private int _priority;
 
 	/// <summary>
-	/// The skill associated with this gambit
-	/// </summary>
-	private Skill _skill;
-
-	/// <summary>
 	/// The owner.
 	/// </summary>
 	private GameObject _owner;
@@ -28,14 +23,6 @@ public class Gambit{
 	public int Priority{
 		get{ return _priority;}
 		set{ _priority = value;}
-	}
-
-	/// <summary>
-	/// Gets or sets the skill
-	/// </summary>
-	public Skill Skill{
-		get{ return _skill;}
-		set{ _skill = value;}
 	}
 
 	private string _skillId;
@@ -59,7 +46,6 @@ public class Gambit{
 	/// </summary>
 	public Gambit(){
 		Priority = 0;
-		Skill = new Skill();
 		SkillId = "";
 		Owner = null;
 	}
@@ -69,10 +55,9 @@ public class Gambit{
 	/// </summary>
 	/// <param name="priority">Priority.</param>
 	/// <param name="skill">Skill.</param>
-	public Gambit(GameObject owner, int priority, Skill skill){
+	public Gambit(GameObject owner, int priority){
 		Owner = owner;
 		Priority = priority;
-		Skill = skill;
 		SkillId = "";
 	}
 
@@ -87,8 +72,9 @@ public class Gambit{
 	/// Coroutine associated to this gambit when it's active
 	/// </summary>
 	public virtual IEnumerator GambitCoroutine(){
+		Skill skill = Owner.GetComponent<SkillCollection> ().GetSkill<Skill> (SkillId);
 		while (true) {
-			if (Skill.Cooldown <= GetOwnerCooldown()) {
+			if (skill.Cooldown <= GetOwnerCooldown()) {
 				ResetOwnerCooldown ();
 				break;
 			}
@@ -96,7 +82,7 @@ public class Gambit{
 			yield return null;
 		}
 
-		yield return new WaitForSeconds(Skill.CastTime);
+		yield return new WaitForSeconds(skill.CastTime);
 	}
 
 	/// <summary>

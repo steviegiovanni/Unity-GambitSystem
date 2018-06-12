@@ -15,7 +15,7 @@ public class HighestEnmityGambit : TargetGambit {
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public HighestEnmityGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf):base(owner, priority,skill,targetType,includeSelf){}
+	public HighestEnmityGambit(GameObject owner, int priority, int targetType, bool includeSelf):base(owner, priority,targetType,includeSelf){}
 
 	public HighestEnmityGambit(GambitAsset asset):base(asset){}
 
@@ -25,12 +25,10 @@ public class HighestEnmityGambit : TargetGambit {
 	/// <returns>The target.</returns>
 	public override GameObject FindTarget ()
 	{		
-		Debug.Log ("lalalala");
 		if (Owner == null)
 			return null;
 		if (Owner.GetComponent<IHasPerception>() == null)
 			return null;
-		Debug.Log ("1233242342");
 
 		Perception perception = Owner.GetComponent<IHasPerception> ().Perception;
 

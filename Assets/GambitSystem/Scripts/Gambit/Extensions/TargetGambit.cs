@@ -64,7 +64,7 @@ public class TargetGambit : Gambit{
 	/// <param name="skill">Skill.</param>
 	/// <param name="target">Target.</param>
 	/// <param name="perception">Perception.</param>
-	public TargetGambit(GameObject owner, int priority, Skill skill, int targetType, bool includeSelf):base(owner, priority,skill){
+	public TargetGambit(GameObject owner, int priority, int targetType, bool includeSelf):base(owner, priority){
 		TargetType = targetType;
 		Target = null;
 		IncludeSelf = includeSelf;
@@ -76,6 +76,7 @@ public class TargetGambit : Gambit{
 	/// override coroutine of this gambit
 	/// </summary>
 	public override IEnumerator GambitCoroutine(){
+		Skill skill = Owner.GetComponent<SkillCollection> ().GetSkill(SkillId);
 		while (true) {
 			Target = FindTarget ();
 			if (Target == null) { // no target found
@@ -85,15 +86,15 @@ public class TargetGambit : Gambit{
 				if (movableEntity == null)
 					Debug.LogWarning ("Owner does not implement IMovable");
 				else {
-					if (movableEntity.RemainingDistance (Target.transform.position) <= Skill.Range) {
+					if (movableEntity.RemainingDistance (Target.transform.position) <= skill.Range) {
 						movableEntity.StopMove ();
 					}else {
 						movableEntity.MoveTo (Target.transform.position);
 					}
 					
-					if (Skill.Cooldown <= GetOwnerCooldown () && (movableEntity.RemainingDistance(Target.transform.position) <= Skill.Range)) {
+					if (skill.Cooldown <= GetOwnerCooldown () && (movableEntity.RemainingDistance(Target.transform.position) <= skill.Range)) {
 						// set up skill target
-						ITargetableSkill targetableSkill = Skill as ITargetableSkill;
+						ITargetableSkill targetableSkill = skill as ITargetableSkill;
 						if (targetableSkill == null)
 							Debug.LogWarning ("calling a non targetable skill from a target gambit");
 						else
@@ -109,7 +110,7 @@ public class TargetGambit : Gambit{
 		if (Target == null) // no target, return immediately
 			yield return null;
 		else
-			yield return new WaitForSeconds(Skill.CastTime);
+			yield return new WaitForSeconds(skill.CastTime);
 	}
 		
 	/// <summary>

@@ -18,6 +18,6 @@ public class PositionGambit : Gambit {
 	/// </summary>
 	/// <param name="priority">Priority.</param>
 	/// <param name="skill">Skill.</param>
-	public PositionGambit(GameObject owner, int priority, Skill skill):base(owner, priority, skill){
+	public PositionGambit(GameObject owner, int priority):base(owner, priority){
 	}
 }
