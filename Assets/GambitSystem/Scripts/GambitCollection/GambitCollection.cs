@@ -38,6 +38,12 @@ public class GambitCollection : MonoBehaviour {
 		}
 	}
 
+	private bool _isGambitRunning = false;
+	public bool IsGambitRunning{
+		get{ return _isGambitRunning;}
+		set{_isGambitRunning = value; }
+	}
+
 	private bool _isCollectionSetup = false;
 	public bool IsCollectionSetup{
 		get { return _isCollectionSetup;}
@@ -71,16 +77,6 @@ public class GambitCollection : MonoBehaviour {
 				Gambits [Gambits.Count - 1].Owner = this.gameObject;
 			}
 		}
-
-		// add all skills to the collection
-		/*foreach (var skillAsset in collectionAsset.Skills) {
-			Debug.Log ("adding skill " + skillAsset.Name);
-			if (!SkillDict.ContainsKey (skillAsset.Name)) {
-				SkillDict.Add (skillAsset.Name, skillAsset.CreateInstance());
-			} else {
-				Debug.Log ("attempted to add a skill with the same name...");
-			}
-		}*/
 	}
 
 	/// <summary>
@@ -134,32 +130,24 @@ public class GambitCollection : MonoBehaviour {
 		}
 	}
 
-	/// <summary>
-	/// Configures the gambits
-	/// </summary>
-	public void ConfigureGambits(){
-		Gambits.Add (new Gambit (this.gameObject, 0));
-		Gambits.Add (new HighestEnmityGambit (this.gameObject, 0,(int)GambitTags.Enemy,false));
-	}
-
 	// Use this for initialization
 	void Start () {
 		//ConfigureGambits ();
 		SetupCollection();
 	}
-	
+		
 	// Update is called once per frame
 	public virtual void Update () {
 		int potentialGambit = FindPotentialGambit ();
 
-		if (potentialGambit == -1) { // no runnable gambit
+		if ((potentialGambit == -1) && !IsGambitRunning) { // no runnable gambit
 			StopAllCoroutines();
 			ActiveGambitId = -1;
 			return;
 		}
 
 		// if runnable gambit has higher priority than active gambit, and not locked, switch active gambit
-		if (ActiveGambitId != potentialGambit) {
+		if ((ActiveGambitId != potentialGambit) && !IsGambitRunning) {
 			StopAllCoroutines();
 			ActiveGambitId = potentialGambit;
 			StartCoroutine(RunGambit(ActiveGambitId));
@@ -171,10 +159,14 @@ public class GambitCollection : MonoBehaviour {
 	/// </summary>
 	public IEnumerator RunGambit(int gambitId){
 		while (true) {
+			IsGambitRunning = true;
 			yield return StartCoroutine (Gambits [ActiveGambitId].GambitCoroutine ());
 			Skill skillToExecute = SkillCollection.GetSkill<Skill> (Gambits [ActiveGambitId].SkillId);
-			if(skillToExecute != null)
+			if (skillToExecute != null) {
+				skillToExecute.CurrentCooldown = 0.0f;
 				yield return StartCoroutine (skillToExecute.SkillCoroutine ());
+			}
+			IsGambitRunning = false;
 			yield return null;
 		}
 	}
@@ -188,12 +180,15 @@ public class GambitCollection : MonoBehaviour {
 		int highestPriority = 0;
 		int highestIndex = -1; // case where there's no runnable gambit
 		for (int i = 0; i < Gambits.Count; i++) {
-			if (Gambits [i].Priority >= highestPriority) {
+			Skill gambitSkill = SkillCollection.GetSkill<Skill> (Gambits [i].SkillId);
+			if ((Gambits [i].Priority >= highestPriority)
+				&& (gambitSkill != null)
+				&&(gambitSkill.Cooldown <= gambitSkill.CurrentCooldown)) {
 				highestIndex = i;
 				highestPriority = Gambits [i].Priority;
 			}
 		}
-
+		//Debug.Log ("Highest Index: "+highestIndex);
 		return highestIndex;
 	}
 

@@ -46,6 +46,12 @@ namespace GameSystems.SkillSystem{
 			set{ _cooldown = value; }
 		}
 
+		private float _currentCooldown;
+		public float CurrentCooldown{
+			get{ return _currentCooldown;}
+			set{ _currentCooldown = value;}
+		}
+
 		/// <summary>
 		/// The cast time for using the skill
 		/// </summary>
@@ -129,6 +135,7 @@ namespace GameSystems.SkillSystem{
 			Interruptable = true;
 			Range = 0.5f;
 			Delay = 0.0f;
+			CurrentCooldown = Cooldown;
 		}
 
 		/// <summary>
@@ -144,6 +151,7 @@ namespace GameSystems.SkillSystem{
 			CastTime = castTime;
 			Range = range;
 			Delay = delay;
+			CurrentCooldown = Cooldown;
 			_effects = new List<SkillEffect> ();
 		}
 
@@ -159,6 +167,7 @@ namespace GameSystems.SkillSystem{
 			CastTime = skillAsset.CastTime;
 			Range = skillAsset.Range;
 			Delay = skillAsset.Delay;
+			CurrentCooldown = Cooldown;
 
 			foreach (var effect in skillAsset.Effects) {
 				this.Effects.Add (effect.CreateInstance ());

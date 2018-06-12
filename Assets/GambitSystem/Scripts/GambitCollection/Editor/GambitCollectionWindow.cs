@@ -83,7 +83,16 @@ namespace GameSystems.SkillSystem.Editor{
 					}
 
 					gambitAsset.Priority = EditorGUILayout.IntField (gambitAsset.Priority,GUILayout.Width (100));
-					GUILayout.Label (gambitAsset.GetType ().Name,GUILayout.Width (200));
+
+					bool clicked = GUILayout.Toggle (i == SelectedGambitIndex, gambitAsset.GetType ().Name, ToggleButtonStyle, GUILayout.Width(200));
+					if (clicked != (i == SelectedGambitIndex)) {
+						if (clicked) {
+							SelectedGambitIndex = i;
+							GUI.FocusControl (null);
+						} else {
+							SelectedGambitIndex = -1;
+						}
+					}
 
 					if (skillCollectionAsset == null) {
 						GUI.enabled = false;
@@ -104,6 +113,14 @@ namespace GameSystems.SkillSystem.Editor{
 					GUI.enabled = true;
 
 					GUILayout.EndHorizontal ();
+
+					if (SelectedGambitIndex == i) {
+
+						foreach (var editorExtension in GambitEditorUtility.GetExtensions()) {
+							if (editorExtension.CanHandleType (gambitAsset.GetType()))
+								editorExtension.OnGUI (gambitAsset);
+						}
+					}
 				}
 
 				GUILayout.FlexibleSpace ();
@@ -118,16 +135,6 @@ namespace GameSystems.SkillSystem.Editor{
 				}
 
 				GUILayout.EndVertical ();
-
-				/*selectedCollection.Name = EditorGUILayout.TextField (selectedCollection.Name);
-				GUILayout.EndHorizontal ();
-
-				GUILayout.BeginHorizontal ();
-				DisplaySkillSelectionContent (selectedCollection);
-
-				if (SelectedSkillIndex >= 0 && SelectedSkillIndex < selectedCollection.Skills.Count) {
-					DisplaySelectedSkillContent (selectedCollection.Skills [SelectedSkillIndex]);
-				}*/
 			}
 
 			GUILayout.EndVertical ();

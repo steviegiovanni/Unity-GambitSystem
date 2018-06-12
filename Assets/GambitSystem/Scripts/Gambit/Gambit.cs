@@ -8,14 +8,23 @@ using GameSystems.SkillSystem;
 /// </summary>
 public class Gambit{
 	/// <summary>
-	/// Execution priority of gambit
-	/// </summary>
-	private int _priority;
-
-	/// <summary>
 	/// The owner.
 	/// </summary>
 	private GameObject _owner;
+
+	/// <summary>
+	/// Gets or sets the owner.
+	/// </summary>
+	/// <value>The owner.</value>
+	public GameObject Owner{
+		get{ return _owner;}
+		set{ _owner = value;}
+	}
+
+	/// <summary>
+	/// Execution priority of gambit
+	/// </summary>
+	private int _priority;
 
 	/// <summary>
 	/// Gets or sets the priority
@@ -30,15 +39,6 @@ public class Gambit{
 	public string SkillId{
 		get{ return _skillId;}
 		set{ _skillId = value;}
-	}
-
-	/// <summary>
-	/// Gets or sets the owner.
-	/// </summary>
-	/// <value>The owner.</value>
-	public GameObject Owner{
-		get{ return _owner;}
-		set{ _owner = value;}
 	}
 
 	/// <summary>
@@ -74,35 +74,11 @@ public class Gambit{
 	public virtual IEnumerator GambitCoroutine(){
 		Skill skill = Owner.GetComponent<SkillCollection> ().GetSkill<Skill> (SkillId);
 		while (true) {
-			if (skill.Cooldown <= GetOwnerCooldown()) {
-				ResetOwnerCooldown ();
-				break;
-			}
+			break;
 				
 			yield return null;
 		}
 
 		yield return new WaitForSeconds(skill.CastTime);
-	}
-
-	/// <summary>
-	/// Gets the owner cooldown.
-	/// </summary>
-	/// <returns>The owner cooldown.</returns>
-	public float GetOwnerCooldown(){
-		IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
-		if (cooldownOwner == null)
-			Debug.LogError ("Owner doesn't implement IUseCooldown interface...");
-		return cooldownOwner.Cooldown;
-	}
-
-	/// <summary>
-	/// Resets the owner cooldown.
-	/// </summary>
-	public void ResetOwnerCooldown(){
-		IUseCooldown cooldownOwner = Owner.GetComponent<IUseCooldown> ();
-		if (cooldownOwner == null)
-			Debug.LogError ("Owner doesn't implement IUseCooldown interface...");
-		cooldownOwner.ResetCooldown ();
 	}
 }

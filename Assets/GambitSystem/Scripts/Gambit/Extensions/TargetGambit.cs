@@ -70,7 +70,10 @@ public class TargetGambit : Gambit{
 		IncludeSelf = includeSelf;
 	}
 
-	public TargetGambit(GambitAsset asset):base(asset){TargetType = 2;}
+	public TargetGambit(TargetGambitAsset asset):base(asset){
+		IncludeSelf = asset.IncludeSelf;
+		TargetType = asset.TargetType;
+	}
 
 	/// <summary>
 	/// override coroutine of this gambit
@@ -91,15 +94,15 @@ public class TargetGambit : Gambit{
 					}else {
 						movableEntity.MoveTo (Target.transform.position);
 					}
-					
-					if (skill.Cooldown <= GetOwnerCooldown () && (movableEntity.RemainingDistance(Target.transform.position) <= skill.Range)) {
+					//if (skill.Cooldown <= GetOwnerCooldown () && (movableEntity.RemainingDistance(Target.transform.position) <= skill.Range)) {
+					if (movableEntity.RemainingDistance(Target.transform.position) <= skill.Range) {
 						// set up skill target
 						ITargetableSkill targetableSkill = skill as ITargetableSkill;
 						if (targetableSkill == null)
 							Debug.LogWarning ("calling a non targetable skill from a target gambit");
 						else
 							targetableSkill.Target = Target;
-						ResetOwnerCooldown ();
+						//ResetOwnerCooldown ();
 						break;
 					}
 				}

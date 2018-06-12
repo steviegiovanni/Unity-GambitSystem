@@ -17,7 +17,7 @@ public class HighestEnmityGambit : TargetGambit {
 	/// <param name="perception">Perception.</param>
 	public HighestEnmityGambit(GameObject owner, int priority, int targetType, bool includeSelf):base(owner, priority,targetType,includeSelf){}
 
-	public HighestEnmityGambit(GambitAsset asset):base(asset){}
+	public HighestEnmityGambit(HighestEnmityGambitAsset asset):base(asset){}
 
 	/// <summary>
 	/// Finds the target.

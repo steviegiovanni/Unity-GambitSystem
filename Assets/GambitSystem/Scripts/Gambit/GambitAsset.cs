@@ -15,7 +15,7 @@ namespace GameSystems.SkillSystem{
 
 		#region IXmlOnLoadAsset implementation
 
-		public void OnLoadAsset (XmlReader reader)
+		public virtual void OnLoadAsset (XmlReader reader)
 		{
 			switch (reader.Name) {
 			case "Gambit":
@@ -34,7 +34,7 @@ namespace GameSystems.SkillSystem{
 		#endregion
 
 		#region IXmlOnSaveAsset implementation
-		public void OnSaveAsset (XmlWriter writer)
+		public virtual void OnSaveAsset (XmlWriter writer)
 		{
 			writer.SetAttr ("Priority", Priority);
 			writer.SetAttr ("Skill", SkillId);

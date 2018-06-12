@@ -78,5 +78,11 @@ namespace GameSystems.SkillSystem{
 		public void Awake(){
 			SetupCollection ();
 		}
+
+		void Update(){
+			foreach (var key in SkillDict.Keys) {
+				SkillDict [key].CurrentCooldown = Mathf.Clamp (SkillDict [key].CurrentCooldown + Time.deltaTime, 0.0f, SkillDict [key].Cooldown);
+			}
+		}
 	}
 }

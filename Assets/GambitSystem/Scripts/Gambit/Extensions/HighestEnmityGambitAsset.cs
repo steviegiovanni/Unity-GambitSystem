@@ -2,7 +2,7 @@
 using UtilitySystems.XmlDatabase;
 
 namespace GameSystems.SkillSystem{
-	public class HighestEnmityGambitAsset : GambitAsset {
+	public class HighestEnmityGambitAsset : TargetGambitAsset {
 		public override Gambit CreateInstance(){
 			return new HighestEnmityGambit (this);
 		}

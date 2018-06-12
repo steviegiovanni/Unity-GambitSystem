@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [System.Serializable]
-public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable, IHasPerception {
+public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception {
 	[SerializeField]
 	private Perception _perception;
 
@@ -30,23 +30,6 @@ public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable, IHasP
 		get{ return (int)_tag;}
 		set{ _tag = (GambitTags)value;}
 	}
-	#endregion
-
-	[SerializeField]
-	private float _cooldown = 10.0f;
-
-	#region IUseCooldown implementation
-
-	public float Cooldown {
-		get {return _cooldown;}
-		set {_cooldown = value;}
-	}
-
-	public void ResetCooldown ()
-	{
-		Cooldown = 0.0f;
-	}
-
 	#endregion
 
 	[SerializeField]
@@ -106,7 +89,6 @@ public class Entity : MonoBehaviour, IPerceivable, IUseCooldown, IMovable, IHasP
 	// Update is called once per frame
 	void Update () {
 		PerceptionEVManager.TriggerEvent ("PERCEPTION", new Hashtable (){ { "OBJECT",this.gameObject } });
-		Cooldown += Time.deltaTime;
 	}
 
 	void OnAlerted(){
