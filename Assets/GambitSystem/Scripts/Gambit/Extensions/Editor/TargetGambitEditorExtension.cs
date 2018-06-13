@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using GameSystems.SkillSystem.Database;
+using GameSystems.Perception;
 using UtilitySystems.XmlDatabase.Editor;
 
 namespace GameSystems.SkillSystem.Editor{
@@ -18,7 +19,7 @@ namespace GameSystems.SkillSystem.Editor{
 			TargetGambitAsset gambitAsset = asset as TargetGambitAsset;
 			GUILayout.BeginHorizontal ();
 			gambitAsset.IncludeSelf = GUILayout.Toggle (gambitAsset.IncludeSelf, "Include self ", GUILayout.Width (150));
-			gambitAsset.TargetType = (int)(GambitTags)(EditorGUILayout.EnumFlagsField("Target Type ", (GambitTags)gambitAsset.TargetType));
+			gambitAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField("Target Type ", (PerceptionTags)gambitAsset.TargetType));
 			GUILayout.EndHorizontal ();
 		}
 

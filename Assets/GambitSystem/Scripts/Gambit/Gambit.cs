@@ -76,7 +76,7 @@ public class Gambit{
 		while (true) {
 			break;
 				
-			yield return null;
+			//yield return null;
 		}
 
 		yield return new WaitForSeconds(skill.CastTime);

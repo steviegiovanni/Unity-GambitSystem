@@ -35,12 +35,12 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception {
 	/// the tag of the entity (e.g. none, ally, or enemy)
 	/// </summary>
 	[SerializeField]
-	private GambitTags _tag;
+	private PerceptionTags _tag;
 
 	#region ITargetable implementation
 	public int Tag {
 		get{ return (int)_tag;}
-		set{ _tag = (GambitTags)value;}
+		set{ _tag = (PerceptionTags)value;}
 	}
 	#endregion
 
