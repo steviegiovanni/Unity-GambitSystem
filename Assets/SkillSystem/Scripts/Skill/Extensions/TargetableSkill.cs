@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameSystems.SkillSystem{
+	/// <summary>
+	/// a skill that has a target associated to it
+	/// </summary>
 	public class TargetableSkill : Skill, ITargetableSkill {
 		/// <summary>
 		/// the target of the skill
@@ -23,7 +26,6 @@ namespace GameSystems.SkillSystem{
 		/// <summary>
 		/// constructor with skill asset as input
 		/// </summary>
-		/// <param name="skillAsset">Skill asset.</param>
 		public TargetableSkill(TargetableSkillAsset skillAsset): base(skillAsset){
 		}
 	}

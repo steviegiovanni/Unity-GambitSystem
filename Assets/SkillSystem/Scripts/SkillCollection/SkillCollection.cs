@@ -8,6 +8,9 @@ namespace GameSystems.SkillSystem{
 	/// the base class used to define a collection of skills
 	/// </summary>
 	public class SkillCollection : MonoBehaviour {
+		/// <summary>
+		/// the collection id
+		/// </summary>
 		[SerializeField]
 		private int _skillCollectionId = -1;
 		public int SkillCollectionId {
@@ -15,12 +18,18 @@ namespace GameSystems.SkillSystem{
 			set{ _skillCollectionId = value;}
 		}
 
+		/// <summary>
+		/// status whether the collection is setup
+		/// </summary>
 		private bool _isCollectionSetup = false;
 		public bool IsCollectionSetup{
 			get { return _isCollectionSetup;}
 			set{ _isCollectionSetup = value;}
 		}
 
+		/// <summary>
+		/// the skill dictionary. key is skill name
+		/// </summary>
 		private Dictionary<string, Skill> _skillDict;
 		public Dictionary<string, Skill> SkillDict{
 			get{ 
@@ -30,6 +39,9 @@ namespace GameSystems.SkillSystem{
 			}
 		}
 
+		/// <summary>
+		/// Setups the collection
+		/// </summary>
 		public void SetupCollection(){
 			var collection = SkillSystemDatabase.SkillCollections.Get (SkillCollectionId);
 			if (collection != null) {
@@ -54,11 +66,17 @@ namespace GameSystems.SkillSystem{
 				}
 			}
 		}
-			
+
+		/// <summary>
+		/// Check whether the dictionary contains the specified skill
+		/// </summary>
 		public bool ContainSkill(string skillName){
 			return SkillDict.ContainsKey (skillName);
 		}
 
+		/// <summary>
+		/// Gets the skill form the skill dictionary
+		/// </summary>
 		public Skill GetSkill(string skillName){
 			if (ContainSkill (skillName)) {
 				return SkillDict [skillName];
@@ -66,6 +84,9 @@ namespace GameSystems.SkillSystem{
 			return null;
 		}
 
+		/// <summary>
+		/// generic version of getskill
+		/// </summary>
 		public T GetSkill<T>(string skillName) where T: Skill{
 			return GetSkill (skillName) as T;
 		}
@@ -79,6 +100,9 @@ namespace GameSystems.SkillSystem{
 			SetupCollection ();
 		}
 
+		/// <summary>
+		/// every update the skill collection updates the current cooldown of each skill
+		/// </summary>
 		void Update(){
 			foreach (var key in SkillDict.Keys) {
 				SkillDict [key].CurrentCooldown = Mathf.Clamp (SkillDict [key].CurrentCooldown + Time.deltaTime, 0.0f, SkillDict [key].Cooldown);

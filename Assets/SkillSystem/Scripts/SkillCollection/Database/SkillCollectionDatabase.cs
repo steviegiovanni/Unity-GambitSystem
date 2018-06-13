@@ -4,6 +4,9 @@ using UnityEngine;
 using UtilitySystems.XmlDatabase;
 
 namespace GameSystems.SkillSystem.Database{
+	/// <summary>
+	/// Skill collection database
+	/// </summary>
 	public class SkillCollectionDatabase : AbstractXmlDatabase<SkillCollectionAsset> {
 		static private SkillCollectionDatabase _instance = null;
 		static public SkillCollectionDatabase Instance{

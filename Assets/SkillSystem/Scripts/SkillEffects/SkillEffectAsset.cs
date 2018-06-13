@@ -2,6 +2,9 @@
 using UtilitySystems.XmlDatabase;
 
 namespace GameSystems.SkillSystem{
+	/// <summary>
+	/// Skill effect asset. Represents an xml entry on the skill collection database
+	/// </summary>
 	public class SkillEffectAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
 		public float Delay{ get; set;}
 

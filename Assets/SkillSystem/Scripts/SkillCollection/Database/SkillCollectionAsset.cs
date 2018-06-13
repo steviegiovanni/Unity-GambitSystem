@@ -6,6 +6,10 @@ using System;
 using UtilitySystems.XmlDatabase;
 
 namespace GameSystems.SkillSystem.Database{
+	/// <summary>
+	/// Skill collection asset entry in the database. contains the list of skill assets
+	/// associated with a collection.
+	/// </summary>
 	public class SkillCollectionAsset : XmlDatabaseAsset {
 		public List<SkillAsset> Skills{ get; private set;}
 

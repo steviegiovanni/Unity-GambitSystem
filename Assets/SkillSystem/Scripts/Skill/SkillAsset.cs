@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace GameSystems.SkillSystem{
+	/// <summary>
+	/// base class for skill asset entry in a skill collection asset
+	/// </summary>
 	public class SkillAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
 		public string Name { get; set;}
 		public float Cooldown{ get; set;}
@@ -16,7 +19,6 @@ namespace GameSystems.SkillSystem{
 		public virtual Skill CreateInstance(){
 			return new Skill (this);
 		}
-
 
 		#region IXmlOnLoadAsset implementation
 

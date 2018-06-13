@@ -9,7 +9,7 @@ using GameSystems.SkillSystem.Database;
 namespace GameSystems.SkillSystem.Editor{
 	public class GambitCollectionWindow : XmlDatabaseWindowComplex<GambitCollectionAsset> {
 		private Vector2 gambitSelectionScroll = Vector2.zero;
-		private float gambitSelectionWidth = 400;
+		//private float gambitSelectionWidth = 400;
 
 		private int _selectedGambitIndex = -1;
 		public int SelectedGambitIndex{

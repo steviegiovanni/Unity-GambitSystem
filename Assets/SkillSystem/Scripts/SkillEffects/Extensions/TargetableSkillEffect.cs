@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameSystems.SkillSystem{
+	/// <summary>
+	/// Targetable skill effect
+	/// </summary>
 	public class TargetableSkillEffect : SkillEffect, ITargetableEffect {
 		/// <summary>
 		/// the target of the effect
@@ -19,9 +22,7 @@ namespace GameSystems.SkillSystem{
 		#endregion
 
 		public TargetableSkillEffect():base(){}
-
 		public TargetableSkillEffect(float delay):base(delay){}
-
-		public TargetableSkillEffect(SkillEffectAsset asset):base(asset){}
+		public TargetableSkillEffect(TargetableSkillEffectAsset asset):base(asset){}
 	}
 }

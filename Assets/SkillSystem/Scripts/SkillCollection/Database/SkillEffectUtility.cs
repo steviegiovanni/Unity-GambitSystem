@@ -2,6 +2,9 @@
 using UnityEngine;
 
 namespace GameSystems.SkillSystem{
+	/// <summary>
+	/// Utility class. Instantiate a
+	/// </summary>
 	static public class SkillEffectUtility{
 		static public SkillEffectAsset CreateAssetOfType(string skillEffectAssetType){
 			if (typeof(SkillEffectAsset).Name == skillEffectAssetType) {
