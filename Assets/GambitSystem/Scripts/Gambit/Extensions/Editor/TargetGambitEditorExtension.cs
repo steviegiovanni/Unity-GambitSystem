@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using GameSystems.SkillSystem.Database;
-using GameSystems.Perception;
+using GameSystems.PerceptionSystem;
 using UtilitySystems.XmlDatabase.Editor;
 
 namespace GameSystems.SkillSystem.Editor{

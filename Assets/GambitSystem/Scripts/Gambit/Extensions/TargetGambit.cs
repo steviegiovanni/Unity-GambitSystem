@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameSystems.SkillSystem;
-using GameSystems.Perception;
+using GameSystems.PerceptionSystem;
 
 /// <summary>
 /// gambit that looks for a target

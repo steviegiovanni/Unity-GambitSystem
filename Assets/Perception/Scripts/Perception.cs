@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Linq;
 
-namespace GameSystems.Perception{
+namespace GameSystems.PerceptionSystem{
 	/// <summary>
 	/// the perception component. holds a list of percepts.
 	/// listens to perception events

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.Perception{
+namespace GameSystems.PerceptionSystem{
 	/// <summary>
 	/// an entity implementing this interface should have 
 	/// a function that returns the tag of the entity (none, ally, or enemy)

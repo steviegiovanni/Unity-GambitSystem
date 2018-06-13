@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.Perception{
+namespace GameSystems.PerceptionSystem{
 	public enum PerceptionTags{
 		None = 0,
 		Ally = 1,

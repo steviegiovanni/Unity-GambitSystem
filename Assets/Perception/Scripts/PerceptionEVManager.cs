@@ -9,7 +9,7 @@ using UtilitySystems;
 /// </summary>
 public class HashtableEvent : UnityEvent <Hashtable> {}
 
-namespace GameSystems.Perception{
+namespace GameSystems.PerceptionSystem{
 	/// <summary>
 	/// singleton event manager to process all perception event
 	/// </summary>
