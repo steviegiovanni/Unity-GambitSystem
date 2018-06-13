@@ -1,6 +1,9 @@
 ﻿using UtilitySystems;
 
 namespace GameSystems.SkillSystem.Database{
+	/// <summary>
+	/// main singleton database that will load the skill collection and the gambit collection
+	/// </summary>
 	public class SkillSystemDatabase : Singleton<SkillSystemDatabase> {
 		private SkillCollectionDatabase _skillCollections;
 		private GambitCollectionDatabase _gambitCollections;

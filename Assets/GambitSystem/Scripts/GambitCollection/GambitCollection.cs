@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using GameSystems.SkillSystem;
 using GameSystems.SkillSystem.Database;
+using GameSystems.Perception;
 
 /// <summary>
 /// monobehaviour that contains the list of gambits
