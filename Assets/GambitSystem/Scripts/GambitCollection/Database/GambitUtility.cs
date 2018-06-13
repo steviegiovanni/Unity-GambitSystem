@@ -1,7 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem.Database{
+namespace GameSystems.GambitSystem.Database{
+	/// <summary>
+	/// utility class to instantiate the corresponding gambit asset when needed
+	/// </summary>
 	static public class GambitUtility{
 		static public GambitAsset CreateAssetOfType(string gambitAssetType){
 			if (typeof(GambitAsset).Name == gambitAssetType) {

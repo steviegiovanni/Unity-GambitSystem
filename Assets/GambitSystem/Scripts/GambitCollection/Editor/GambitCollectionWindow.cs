@@ -5,8 +5,9 @@ using UtilitySystems.XmlDatabase;
 using UtilitySystems.XmlDatabase.Editor;
 using System.Linq;
 using GameSystems.SkillSystem.Database;
+using GameSystems.GambitSystem.Database;
 
-namespace GameSystems.SkillSystem.Editor{
+namespace GameSystems.GambitSystem.Editor{
 	public class GambitCollectionWindow : XmlDatabaseWindowComplex<GambitCollectionAsset> {
 		private Vector2 gambitSelectionScroll = Vector2.zero;
 		//private float gambitSelectionWidth = 400;
@@ -99,7 +100,19 @@ namespace GameSystems.SkillSystem.Editor{
 						GUILayout.Button ("None", EditorStyles.toolbarButton,GUILayout.Width (150));
 					}else {
 						GUI.enabled = true;
-						if (GUILayout.Button (gambitAsset.SkillId == ""? "Assign Skill" : gambitAsset.SkillId,EditorStyles.toolbarButton,GUILayout.Width(150))) {
+
+						bool skillFound = false;
+						int iterator = 0;
+						while (!skillFound && (iterator < skillCollectionAsset.Skills.Count)) {
+							if (skillCollectionAsset.Skills [iterator].Name == gambitAsset.SkillId) {
+								skillFound = true;
+								break;
+							} else
+								i++;
+						}
+						string skillLabel = skillFound?gambitAsset.SkillId:"Missing";
+
+						if (GUILayout.Button (gambitAsset.SkillId == ""? "Assign Skill" : skillLabel,EditorStyles.toolbarButton,GUILayout.Width(150))) {
 							string [] skillNames = new string[skillCollectionAsset.Skills.Count];
 							for (int j = 0; j < skillNames.Length; j++) {
 								skillNames [j] = skillCollectionAsset.Skills [j].Name;

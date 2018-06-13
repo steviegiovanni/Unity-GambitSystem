@@ -3,10 +3,12 @@ using UtilitySystems.XmlDatabase;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems.GambitSystem{
+	/// <summary>
+	/// base class for gambit asset. an entry to a gambit collection asset.
+	/// </summary>
 	public class GambitAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
 		public int Priority { get; set;}
-		public SkillAsset Skill{ get; set;}
 		public string SkillId{ get; set;}
 
 		public virtual Gambit CreateInstance(){

@@ -5,7 +5,10 @@ using System.Xml;
 using System;
 using UtilitySystems.XmlDatabase;
 
-namespace GameSystems.SkillSystem.Database{
+namespace GameSystems.GambitSystem.Database{
+	/// <summary>
+	/// Gambit collection asset for entry on the collection database
+	/// </summary>
 	public class GambitCollectionAsset : XmlDatabaseAsset {
 		public int SkillCollectionId { get; set;}
 		public List<GambitAsset> Gambits{ get; private set;}

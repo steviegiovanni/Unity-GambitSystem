@@ -57,7 +57,8 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.Label ("Skills");
 			foreach (var skill in collection.SkillDict.Values) {
 				Rect r = EditorGUILayout.BeginVertical (GUILayout.Height(20));
-				EditorGUI.ProgressBar (r, skill.Cooldown > 0.0f ? (skill.CurrentCooldown / skill.Cooldown) : 1.0f, skill.Name);
+				float progress = skill.Cooldown > 0.0f ? (skill.CurrentCooldown / skill.Cooldown) : 1.0f;
+				EditorGUI.ProgressBar (r, progress, skill.Name);
 				GUILayout.FlexibleSpace ();
 				EditorGUILayout.EndVertical ();
 				GUILayout.Space (4);

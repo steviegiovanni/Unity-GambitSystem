@@ -5,7 +5,7 @@ using GameSystems.SkillSystem.Database;
 using GameSystems.PerceptionSystem;
 using UtilitySystems.XmlDatabase.Editor;
 
-namespace GameSystems.SkillSystem.Editor{
+namespace GameSystems.GambitSystem.Editor{
 	public class TargetGambitEditorExtension : EditorExtension {
 		#region implemented abstract members of EditorExtension
 

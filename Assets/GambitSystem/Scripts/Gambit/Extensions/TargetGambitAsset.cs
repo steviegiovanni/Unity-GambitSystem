@@ -1,7 +1,10 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems.GambitSystem{
+	/// <summary>
+	/// gambit asset for gambits that requires target
+	/// </summary>
 	public class TargetGambitAsset : GambitAsset {
 		public int TargetType { get; set;}
 		public bool IncludeSelf { get; set;}

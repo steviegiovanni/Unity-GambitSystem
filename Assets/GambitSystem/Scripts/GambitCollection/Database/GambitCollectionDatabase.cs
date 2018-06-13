@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UtilitySystems.XmlDatabase;
 
-namespace GameSystems.SkillSystem.Database{
+namespace GameSystems.GambitSystem.Database{
+	/// <summary>
+	/// Gambit collection database
+	/// </summary>
 	public class GambitCollectionDatabase :  AbstractXmlDatabase<GambitCollectionAsset>{
 		static private GambitCollectionDatabase _instance = null;
 		static public GambitCollectionDatabase Instance{

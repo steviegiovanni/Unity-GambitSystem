@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using GameSystems.SkillSystem;
 using GameSystems.SkillSystem.Database;
+using GameSystems.GambitSystem.Database;
 using GameSystems.PerceptionSystem;
 
 namespace GameSystems.GambitSystem{
@@ -100,6 +101,7 @@ namespace GameSystems.GambitSystem{
 				foreach (var gambitAsset in collectionAsset.Gambits) {
 					Gambits.Add (gambitAsset.CreateInstance ());
 					Gambits [Gambits.Count - 1].Owner = this.gameObject;
+					Gambits [Gambits.Count - 1].Initialize ();
 				}
 			}
 		}
@@ -172,8 +174,8 @@ namespace GameSystems.GambitSystem{
 			while (true) {
 				IsGambitRunning = true;
 				yield return StartCoroutine (Gambits [ActiveGambitId].GambitCoroutine ());
-				Skill skillToExecute = SkillCollection.GetSkill<Skill> (Gambits [ActiveGambitId].SkillId);
-				if (skillToExecute != null) {
+				Skill skillToExecute = Gambits [ActiveGambitId].Skill;
+				if (Gambits [ActiveGambitId].Skill != null) {
 					skillToExecute.CurrentCooldown = 0.0f;
 					yield return StartCoroutine (skillToExecute.SkillCoroutine ());
 				}
@@ -185,7 +187,6 @@ namespace GameSystems.GambitSystem{
 		/// <summary>
 		/// Finds the potential gambit.
 		/// </summary>
-		/// <returns>The potential gambit.</returns>
 		public int FindPotentialGambit(){
 			// find the highest priority runnable gambit
 			int highestPriority = 0;
@@ -194,7 +195,7 @@ namespace GameSystems.GambitSystem{
 				Skill gambitSkill = SkillCollection.GetSkill<Skill> (Gambits [i].SkillId);
 				if ((Gambits [i].Priority >= highestPriority)
 					&& (gambitSkill != null)
-					&&(gambitSkill.Cooldown <= gambitSkill.CurrentCooldown)) {
+					&& (gambitSkill.Cooldown <= gambitSkill.CurrentCooldown)) {
 					highestIndex = i;
 					highestPriority = Gambits [i].Priority;
 				}
@@ -203,10 +204,19 @@ namespace GameSystems.GambitSystem{
 			return highestIndex;
 		}
 
+		/// <summary>
+		/// when the gambit collection is disabled, make sure to stop all running coroutine
+		/// also IsGambitRunning should be set back to false
+		/// </summary>
 		void OnDisable(){
 			StopAllCoroutines ();
+			IsGambitRunning = false;
 		}
 
+		/// <summary>
+		/// when the gambit is reenabled, refind potential gambit
+		/// runs anything that is possible
+		/// </summary>
 		void OnEnable(){
 			ActiveGambitId = FindPotentialGambit ();
 			if(ActiveGambitId != -1)

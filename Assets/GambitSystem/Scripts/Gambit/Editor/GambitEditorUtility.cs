@@ -10,7 +10,7 @@
 /// 3) If there is an editor extension related add it to the GetExtensions.
 /// Order of extension effects in which order the extensions are displayed.
 /// </summary>
-namespace GameSystems.SkillSystem.Editor{
+namespace GameSystems.GambitSystem.Editor{
 	static public class GambitEditorUtility{
 		/// <summary>
 		/// Gets an array containing all extension that can apply to a gambit
