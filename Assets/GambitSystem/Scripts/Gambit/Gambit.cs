@@ -46,6 +46,15 @@ namespace GameSystems.GambitSystem{
 		}
 
 		/// <summary>
+		/// whether the gambit is ready
+		/// </summary>
+		private bool _isReady = false;
+		public bool IsReady{
+			get{ return _isReady;}
+			set{ _isReady = value;}
+		}
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Gambit"/> class.
 		/// </summary>
 		public Gambit(){
@@ -97,6 +106,23 @@ namespace GameSystems.GambitSystem{
 			} else {
 				Debug.LogError ("No skill collection attached to the owner of this gambit!");
 			}
+		}
+			
+		/// <summary>
+		/// Checks the conditions of the gambit. updates IsReady
+		/// </summary>
+		public void CheckConditions(){
+			if (Skill == null) {
+				IsReady = false;
+				return;
+			}
+
+			if (Skill.CurrentCooldown < Skill.Cooldown) {
+				IsReady = false;
+				return;
+			}
+
+			IsReady = true;
 		}
 	}
 }

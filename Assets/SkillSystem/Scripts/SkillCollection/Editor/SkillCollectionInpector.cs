@@ -8,7 +8,7 @@ using System;
 
 namespace GameSystems.SkillSystem.Editor{
 	[CustomEditor(typeof(SkillCollection))]
-	public class SkillCollectionEditor : UnityEditor.Editor {
+	public class SkillCollectionInpector : UnityEditor.Editor {
 		public override bool RequiresConstantRepaint ()
 		{
 			return true;

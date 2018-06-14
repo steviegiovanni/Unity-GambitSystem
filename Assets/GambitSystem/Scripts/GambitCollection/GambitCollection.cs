@@ -192,10 +192,9 @@ namespace GameSystems.GambitSystem{
 			int highestPriority = 0;
 			int highestIndex = -1; // case where there's no runnable gambit
 			for (int i = 0; i < Gambits.Count; i++) {
-				Skill gambitSkill = SkillCollection.GetSkill<Skill> (Gambits [i].SkillId);
+				Gambits [i].CheckConditions ();
 				if ((Gambits [i].Priority >= highestPriority)
-					&& (gambitSkill != null)
-					&& (gambitSkill.Cooldown <= gambitSkill.CurrentCooldown)) {
+					&& Gambits[i].IsReady) {
 					highestIndex = i;
 					highestPriority = Gambits [i].Priority;
 				}
