@@ -99,7 +99,8 @@ namespace GameSystems.GambitSystem.Editor{
 				EditorGUI.ProgressBar (r, progress, skill.Name);
 				GUILayout.FlexibleSpace ();
 				EditorGUILayout.EndVertical ();*/
-				GUILayout.Label (collection.Gambits[i].Priority.ToString(),EditorStyles.toolbarButton,GUILayout.Width(100));
+				GUILayout.Label (collection.Gambits[i].Priority.ToString(),EditorStyles.toolbarButton,GUILayout.Width(50));
+				GUILayout.Label ("Use: "+collection.Gambits[i].UsageNumber.ToString()+"/"+((collection.Gambits[i].MaxUse==-1)?".INF":collection.Gambits[i].MaxUse.ToString()),EditorStyles.toolbarButton,GUILayout.Width(100));
 				GUILayout.Label (collection.Gambits[i].GetType().Name,EditorStyles.toolbarButton,GUILayout.Width(200));
 				GUILayout.Label (collection.Gambits[i].SkillId,EditorStyles.toolbarButton,GUILayout.Width(200));
 				//GUILayout.Space (4);

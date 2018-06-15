@@ -122,10 +122,10 @@ GameObject:
   m_Component:
   - component: {fileID: 333431485}
   - component: {fileID: 333431484}
+  - component: {fileID: 333431489}
   - component: {fileID: 333431486}
   - component: {fileID: 333431487}
   - component: {fileID: 333431488}
-  - component: {fileID: 333431489}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -171,11 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07016205f59e8a4439013e70ff3f7923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perception: {fileID: 0}
   _tag: 1
-  _cooldown: 10
   _movementComp: {fileID: 0}
   _gambitCollection: {fileID: 0}
-  _perception: {fileID: 0}
 --- !u!114 &333431487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,11 +480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07016205f59e8a4439013e70ff3f7923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perception: {fileID: 0}
   _tag: 2
-  _cooldown: 10
   _movementComp: {fileID: 0}
   _gambitCollection: {fileID: 0}
-  _perception: {fileID: 0}
 --- !u!4 &1428455374
 Transform:
   m_ObjectHideFlags: 0

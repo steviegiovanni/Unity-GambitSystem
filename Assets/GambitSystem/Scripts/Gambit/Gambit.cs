@@ -55,12 +55,33 @@ namespace GameSystems.GambitSystem{
 		}
 
 		/// <summary>
+		/// number of possible use of this gambit
+		/// -1 means no limitation
+		/// </summary>
+		private int _maxUse = -1;
+		public int MaxUse{
+			get{ return _maxUse;}
+			set{ _maxUse = value;}
+		}
+
+		/// <summary>
+		/// number of usage of this gambit
+		/// </summary>
+		private int _usageNumber;
+		public int UsageNumber{
+			get{ return _usageNumber;}
+			set{ _usageNumber = value;}
+		}
+
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Gambit"/> class.
 		/// </summary>
 		public Gambit(){
 			Priority = 0;
 			SkillId = "";
 			Owner = null;
+			UsageNumber = 0;
 		}
 
 		/// <summary>
@@ -70,6 +91,7 @@ namespace GameSystems.GambitSystem{
 			Owner = owner;
 			Priority = priority;
 			SkillId = "";
+			UsageNumber = 0;
 		}
 
 		/// <summary>
@@ -79,6 +101,8 @@ namespace GameSystems.GambitSystem{
 			Owner = null;
 			Priority = asset.Priority;
 			SkillId = asset.SkillId;
+			MaxUse = asset.MaxUse;
+			UsageNumber = 0;
 		}
 
 		/// <summary>
@@ -112,6 +136,11 @@ namespace GameSystems.GambitSystem{
 		/// Checks the conditions of the gambit. updates IsReady
 		/// </summary>
 		public void CheckConditions(){
+			if ((MaxUse != -1) && (UsageNumber >= MaxUse)) {
+				IsReady = false;
+				return;
+			}
+
 			if (Skill == null) {
 				IsReady = false;
 				return;

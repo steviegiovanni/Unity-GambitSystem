@@ -70,6 +70,7 @@ namespace GameSystems.GambitSystem.Editor{
 				GUILayout.Label ("Priority",EditorStyles.boldLabel,GUILayout.Width (100));
 				GUILayout.Label ("Type",EditorStyles.boldLabel,GUILayout.Width (200));
 				GUILayout.Label ("Skill",EditorStyles.boldLabel,GUILayout.Width (150));
+				GUILayout.Label ("Use",EditorStyles.boldLabel,GUILayout.Width (100));
 				GUILayout.EndHorizontal ();
 
 				gambitSelectionScroll = GUILayout.BeginScrollView (gambitSelectionScroll, false,true);
@@ -108,7 +109,7 @@ namespace GameSystems.GambitSystem.Editor{
 								skillFound = true;
 								break;
 							} else
-								i++;
+								iterator++;
 						}
 						string skillLabel = skillFound?gambitAsset.SkillId:"Missing";
 
@@ -124,6 +125,8 @@ namespace GameSystems.GambitSystem.Editor{
 					}
 
 					GUI.enabled = true;
+
+					gambitAsset.MaxUse = EditorGUILayout.IntField (gambitAsset.MaxUse);
 
 					GUILayout.EndHorizontal ();
 

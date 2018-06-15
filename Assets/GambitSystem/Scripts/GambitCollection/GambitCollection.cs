@@ -173,12 +173,14 @@ namespace GameSystems.GambitSystem{
 		public IEnumerator RunGambit(int gambitId){
 			while (true) {
 				IsGambitRunning = true;
+				//Gambits [ActiveGambitId].UsageNumber++;
 				yield return StartCoroutine (Gambits [ActiveGambitId].GambitCoroutine ());
 				Skill skillToExecute = Gambits [ActiveGambitId].Skill;
 				if (Gambits [ActiveGambitId].Skill != null) {
 					skillToExecute.CurrentCooldown = 0.0f;
 					yield return StartCoroutine (skillToExecute.SkillCoroutine ());
 				}
+				Gambits [ActiveGambitId].UsageNumber++;
 				IsGambitRunning = false;
 				yield return null;
 			}

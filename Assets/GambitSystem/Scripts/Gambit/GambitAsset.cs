@@ -10,6 +10,7 @@ namespace GameSystems.GambitSystem{
 	public class GambitAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
 		public int Priority { get; set;}
 		public string SkillId{ get; set;}
+		public int MaxUse{ get; set;}
 
 		public virtual Gambit CreateInstance(){
 			return new Gambit (this);
@@ -24,6 +25,7 @@ namespace GameSystems.GambitSystem{
 				{
 					Priority = reader.GetAttrInt ("Priority", 0);
 					SkillId = reader.GetAttrString ("Skill", "");
+					MaxUse = reader.GetAttrInt ("MaxUse", -1);
 				}
 				break;
 			default:
@@ -40,6 +42,7 @@ namespace GameSystems.GambitSystem{
 		{
 			writer.SetAttr ("Priority", Priority);
 			writer.SetAttr ("Skill", SkillId);
+			writer.SetAttr ("MaxUse", MaxUse);
 		}
 		#endregion
 
