@@ -18,6 +18,18 @@ namespace GameSystems.GambitSystem{
 		}
 
 		/// <summary>
+		/// list of conditions for the gambit
+		/// </summary>
+		private List<GambitCondition> _conditions;
+		public List<GambitCondition> Conditions{
+			get{ 
+				if (_conditions == null)
+					_conditions = new List<GambitCondition> ();
+				return _conditions;
+			}
+		}
+
+		/// <summary>
 		/// Execution priority of gambit
 		/// </summary>
 		private int _priority;
@@ -103,6 +115,9 @@ namespace GameSystems.GambitSystem{
 			SkillId = asset.SkillId;
 			MaxUse = asset.MaxUse;
 			UsageNumber = 0;
+			foreach (var condition in asset.Conditions) {
+				Conditions.Add (condition.CreateInstance ());
+			}
 		}
 
 		/// <summary>

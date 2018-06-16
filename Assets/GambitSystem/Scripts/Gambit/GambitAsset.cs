@@ -11,6 +11,7 @@ namespace GameSystems.GambitSystem{
 		public int Priority { get; set;}
 		public string SkillId{ get; set;}
 		public int MaxUse{ get; set;}
+		public List<GambitConditionAsset> Conditions{ get; set;}
 
 		public virtual Gambit CreateInstance(){
 			return new Gambit (this);
@@ -28,6 +29,16 @@ namespace GameSystems.GambitSystem{
 					MaxUse = reader.GetAttrInt ("MaxUse", -1);
 				}
 				break;
+			case "Condition":
+				{
+					var type = reader.GetAttrString ("Type", "");
+					GambitConditionAsset gambitCondition = GambitConditionUtility.CreateAssetOfType (type);
+					if (gambitCondition != null) {
+						Conditions.Add (gambitCondition);
+						Conditions [Conditions.Count - 1].OnLoadAsset (reader);
+					}
+				}
+				break;
 			default:
 				{
 				}
@@ -43,9 +54,19 @@ namespace GameSystems.GambitSystem{
 			writer.SetAttr ("Priority", Priority);
 			writer.SetAttr ("Skill", SkillId);
 			writer.SetAttr ("MaxUse", MaxUse);
+
+			foreach (var condition in Conditions) {
+				writer.WriteStartElement ("Condition");
+				writer.SetAttr ("Type", condition.GetType().Name);
+				condition.OnSaveAsset (writer);
+				writer.WriteEndElement ();
+			}
 		}
 		#endregion
 
-		public GambitAsset():base(){SkillId = "";}
+		public GambitAsset():base(){
+			SkillId = ""; 
+			Conditions = new List<GambitConditionAsset> ();
+		}
 	}
 }
