@@ -9,6 +9,8 @@ namespace GameSystems.GambitSystem{
 		static public GambitConditionAsset CreateAssetOfType(string gambitConditionAssetType){
 			if (typeof(GambitConditionAsset).Name == gambitConditionAssetType) {
 				return new GambitConditionAsset ();
+			}else if(typeof(StatLessThanGCAsset).Name == gambitConditionAssetType){
+				return new StatLessThanGCAsset ();
 			}
 			return null;
 		}

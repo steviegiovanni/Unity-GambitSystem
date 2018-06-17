@@ -115,9 +115,9 @@ namespace GameSystems.GambitSystem{
 			SkillId = asset.SkillId;
 			MaxUse = asset.MaxUse;
 			UsageNumber = 0;
-			foreach (var condition in asset.Conditions) {
-				Conditions.Add (condition.CreateInstance ());
-			}
+			//foreach (var condition in asset.Conditions) {
+			//	Conditions.Add (condition.CreateInstance ());
+			//}
 		}
 
 		/// <summary>
@@ -167,6 +167,12 @@ namespace GameSystems.GambitSystem{
 			}
 
 			IsReady = true;
+			int i = 0;
+			while(IsReady && (i < Conditions.Count)){
+				Debug.Log ("What?! " + i);
+				IsReady = IsReady && Conditions [i].GetStatus ();
+				i++;
+			}
 		}
 	}
 }

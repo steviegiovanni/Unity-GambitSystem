@@ -6,7 +6,7 @@ namespace GameSystems.GambitSystem{
 	/// <summary>
 	/// base class for gambit condition
 	/// </summary>
-	public class GambitCondition : MonoBehaviour {
+	public class GambitCondition {
 		/// <summary>
 		/// The gambit collection.
 		/// </summary>
@@ -14,6 +14,15 @@ namespace GameSystems.GambitSystem{
 		public GambitCollection GambitCollection{
 			get{return _gambitCollection;}
 			set{_gambitCollection = value;}
+		}
+
+		private GameObject _owner;
+		public GameObject Owner{
+			get{ return _owner; }
+			set{ 
+				_owner = value; 
+				Debug.Log ("why is the value: " + value + "?");
+			}
 		}
 
 		/// <summary>

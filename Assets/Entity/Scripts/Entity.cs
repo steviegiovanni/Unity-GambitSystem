@@ -11,7 +11,35 @@ using GameSystems.GambitSystem;
 /// to be able to make use of the SkillSystem
 /// </summary>
 [System.Serializable]
-public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception {
+public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHasStats {
+	//======================================= begin test parameters
+	[SerializeField]
+	private int _health = 100;
+	public int Health{
+		get{ return _health;}
+		set{ _health = value;}
+	}
+
+	[SerializeField]
+	private int _maxHealth = 100;
+	public int MaxHealth{
+		get{ return _maxHealth;}
+		set{ _maxHealth = value;}
+	}
+
+	#region IHasStats implementation
+
+
+	public float GetStatPercentValue (string statName)
+	{
+		return (float)Health / (float)MaxHealth;
+	}
+
+
+	#endregion
+
+	//======================================== end test parameters
+
 	/// <summary>
 	/// the perception component. stores all seen entity along with their enmity
 	/// </summary>

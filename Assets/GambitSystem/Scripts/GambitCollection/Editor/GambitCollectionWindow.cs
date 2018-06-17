@@ -80,7 +80,7 @@ namespace GameSystems.GambitSystem.Editor{
 					GUILayout.BeginHorizontal (EditorStyles.toolbar);
 	
 					if (GUILayout.Button ("-", EditorStyles.toolbarButton, GUILayout.Width (30))
-						&& EditorUtility.DisplayDialog ("Remove Gambit", "Are you sure you want to delete the effect?", "Delete", "Cancel")) {
+						&& EditorUtility.DisplayDialog ("Remove Gambit", "Are you sure you want to delete the gambit?", "Delete", "Cancel")) {
 						asset.Gambits.RemoveAt (i);
 					}
 
@@ -132,6 +132,8 @@ namespace GameSystems.GambitSystem.Editor{
 
 					if (SelectedGambitIndex == i) {
 
+						DisplayGambitGUI (gambitAsset);
+
 						foreach (var editorExtension in GambitEditorUtility.GetExtensions()) {
 							if (editorExtension.CanHandleType (gambitAsset.GetType()))
 								editorExtension.OnGUI (gambitAsset);
@@ -156,5 +158,37 @@ namespace GameSystems.GambitSystem.Editor{
 			GUILayout.EndVertical ();
 		}
 		#endregion
+
+		protected void DisplayGambitGUI(GambitAsset gambitAsset){
+			GUILayout.BeginVertical ();
+			for (int i = 0; i < gambitAsset.Conditions.Count; i++) {
+				var gambitCondition = gambitAsset.Conditions [i];
+				GUILayout.BeginHorizontal ();
+
+				if (GUILayout.Button ("-", EditorStyles.toolbarButton, GUILayout.Width (30))
+					&& EditorUtility.DisplayDialog ("Remove Condition", "Are you sure you want to delete the condition?", "Delete", "Cancel")) {
+					gambitAsset.Conditions.RemoveAt (i);
+				}
+
+				GUILayout.Label(gambitCondition.GetType().Name,EditorStyles.toolbarButton, GUILayout.Width (200));
+
+				foreach (var editorExtension in GambitConditionEditorUtility.GetExtensions()) {
+					if (editorExtension.CanHandleType (gambitCondition.GetType ()))
+						editorExtension.OnGUI (gambitCondition);
+				}
+
+				GUILayout.EndHorizontal ();
+			}
+
+			if(GUILayout.Button("Add Condition", EditorStyles.toolbarButton)){
+				XmlDatabaseEditorUtility.GetGenericMenu (GambitConditionEditorUtility.GetNames (), (index) => {
+					var gambitConditionAsset = GambitConditionEditorUtility.CreateAsset (index);
+					gambitAsset.Conditions.Add (gambitConditionAsset);
+					EditorWindow.FocusWindowIfItsOpen<GambitCollectionWindow> ();
+				}).ShowAsContext ();
+			}
+
+			GUILayout.EndVertical ();
+		}
 	}
 }

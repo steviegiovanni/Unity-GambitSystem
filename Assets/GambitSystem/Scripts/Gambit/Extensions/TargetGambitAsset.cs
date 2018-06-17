@@ -37,9 +37,10 @@ namespace GameSystems.GambitSystem{
 		#region IXmlOnSaveAsset implementation
 		public override void OnSaveAsset (XmlWriter writer)
 		{
-			base.OnSaveAsset (writer);
 			writer.SetAttr ("TargetType", TargetType);
 			writer.SetAttr ("IncludeSelf", IncludeSelf);
+
+			base.OnSaveAsset (writer);
 		}
 		#endregion
 	}
