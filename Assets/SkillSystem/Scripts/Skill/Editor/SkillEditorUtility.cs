@@ -17,6 +17,7 @@ namespace GameSystems.SkillSystem.Editor{
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
+				new TargetableSkillEditorExtension()
 			};
 		}
 

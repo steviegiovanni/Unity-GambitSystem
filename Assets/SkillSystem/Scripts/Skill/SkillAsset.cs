@@ -22,7 +22,7 @@ namespace GameSystems.SkillSystem{
 
 		#region IXmlOnLoadAsset implementation
 
-		public void OnLoadAsset (XmlReader reader)
+		public virtual void OnLoadAsset (XmlReader reader)
 		{
 			switch (reader.Name) {
 			case "Skill":
@@ -62,7 +62,7 @@ namespace GameSystems.SkillSystem{
 
 		#region IXmlOnSaveAsset implementation
 
-		public void OnSaveAsset (XmlWriter writer)
+		public virtual void OnSaveAsset (XmlWriter writer)
 		{
 			writer.SetAttr ("Name", Name);
 			writer.SetAttr ("Cooldown", Cooldown);

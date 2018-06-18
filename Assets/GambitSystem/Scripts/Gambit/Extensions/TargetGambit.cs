@@ -10,24 +10,6 @@ namespace GameSystems.GambitSystem{
 	/// </summary>
 	public class TargetGambit : Gambit{
 		/// <summary>
-		/// include self when finding a target
-		/// </summary>
-		private bool _includeSelf;
-		public bool IncludeSelf{
-			get{ return _includeSelf;}
-			set{ _includeSelf = value;}
-		}
-
-		/// <summary>
-		/// The type of the target.
-		/// </summary>
-		private int _targetType;
-		public int TargetType{
-			get{ return _targetType;}
-			set{ _targetType = value;}
-		}
-
-		/// <summary>
 		/// The target
 		/// </summary>
 		private GameObject _target;
@@ -37,30 +19,9 @@ namespace GameSystems.GambitSystem{
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="TargetGambit"/> class.
-		/// </summary>
-		public TargetGambit():base(){
-			TargetType = 2;
-			Target = null;
-			IncludeSelf = true;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="TargetFirstGambit"/> class.
-		/// </summary>
-		public TargetGambit(GameObject owner, int priority, int targetType, bool includeSelf):base(owner, priority){
-			TargetType = targetType;
-			Target = null;
-			IncludeSelf = includeSelf;
-		}
-
-		/// <summary>
 		/// constructor with a targetgambitasset as an input
 		/// </summary>
-		public TargetGambit(TargetGambitAsset asset):base(asset){
-			IncludeSelf = asset.IncludeSelf;
-			TargetType = asset.TargetType;
-		}
+		public TargetGambit(GambitAsset asset):base(asset){}
 
 		/// <summary>
 		/// override coroutine of this gambit
@@ -115,14 +76,17 @@ namespace GameSystems.GambitSystem{
 		{
 			if (Owner.GetComponent<IHasPerception>() == null)
 				return null;
+			TargetableSkill skill = Skill as TargetableSkill;
+			if (skill == null)
+				return null;
 
 			Perception perception = Owner.GetComponent<IHasPerception> ().Perception;
 
 			GameObject target = null;
 			foreach (var key in perception.Percepts.Keys) {
 				if ((perception.Percepts [key].Entity != null) 
-					&& ((IncludeSelf && (perception.Percepts[key].Entity == Owner)) || (perception.Percepts[key].Entity != Owner))
-					&& ((perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & TargetType) != 0)) {
+					&& ((skill.IncludeSelf && (perception.Percepts[key].Entity == Owner)) || (perception.Percepts[key].Entity != Owner))
+					&& ((perception.Percepts[key].Entity.GetComponent<IPerceivable>().Tag & skill.TargetType) != 0)) {
 					target = perception.Percepts [key].Entity;
 					break;
 				}

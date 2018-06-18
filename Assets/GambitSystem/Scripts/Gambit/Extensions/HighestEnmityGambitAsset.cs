@@ -6,7 +6,7 @@ namespace GameSystems.GambitSystem{
 	/// target gambit asset that will create a target gambit that 
 	/// targets entity with the highest enmity 
 	/// </summary>
-	public class HighestEnmityGambitAsset : TargetGambitAsset {
+	public class HighestEnmityGambitAsset : GambitAsset {
 		public override Gambit CreateInstance(){
 			return new HighestEnmityGambit (this);
 		}

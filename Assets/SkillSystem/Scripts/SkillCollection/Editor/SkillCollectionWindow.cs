@@ -162,6 +162,11 @@ namespace GameSystems.SkillSystem.Editor{
 			skill.Interruptable = EditorGUILayout.Toggle(skill.Interruptable);
 			GUILayout.EndHorizontal ();
 
+			foreach (var extension in SkillEditorUtility.GetExtensions()) {
+				if (extension.CanHandleType (skill.GetType()))
+					extension.OnGUI (skill);
+			}
+
 			GUILayout.EndVertical ();
 
 			GUILayout.BeginVertical (EditorStyles.helpBox);
