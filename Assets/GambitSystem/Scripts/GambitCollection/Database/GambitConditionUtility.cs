@@ -11,6 +11,8 @@ namespace GameSystems.GambitSystem{
 				return new GambitConditionAsset ();
 			}else if(typeof(StatLessThanGCAsset).Name == gambitConditionAssetType){
 				return new StatLessThanGCAsset ();
+			}else if(typeof(StatGreaterThanGCAsset).Name == gambitConditionAssetType){
+				return new StatGreaterThanGCAsset ();
 			}
 			return null;
 		}

@@ -17,7 +17,8 @@ namespace GameSystems.GambitSystem.Editor{
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
-				new TargetGambitEditorExtension()
+				new TargetGambitEditorExtension(),
+				new PositionGambitEditorExtension()
 			};
 		}
 
@@ -32,6 +33,8 @@ namespace GameSystems.GambitSystem.Editor{
 				return new GambitAsset ();
 			case 1:
 				return new HighestEnmityGambitAsset ();
+			case 2:
+				return new PositionGambitAsset ();
 			default:
 				return null;
 			}
@@ -43,7 +46,8 @@ namespace GameSystems.GambitSystem.Editor{
 		static public string[] GetNames(){
 			return new string[] {
 				"Gambit",
-				"HighestEnmityGambit"
+				"HighestEnmityGambit",
+				"PositionGambit"
 			};
 		}
 	}

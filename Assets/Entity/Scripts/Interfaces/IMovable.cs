@@ -11,7 +11,7 @@ namespace GameSystems.SkillSystem{
 	/// </summary>
 	public interface IMovable {
 		void MoveTo (Vector3 targetPos);
-		void StopMove ();
+		bool Stopped{ get; set;}
 		float RemainingDistance (Vector3 targetPos);
 	}
 }

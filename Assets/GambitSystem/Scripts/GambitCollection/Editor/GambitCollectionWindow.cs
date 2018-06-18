@@ -131,13 +131,12 @@ namespace GameSystems.GambitSystem.Editor{
 					GUILayout.EndHorizontal ();
 
 					if (SelectedGambitIndex == i) {
-
-						DisplayGambitGUI (gambitAsset);
-
 						foreach (var editorExtension in GambitEditorUtility.GetExtensions()) {
 							if (editorExtension.CanHandleType (gambitAsset.GetType()))
 								editorExtension.OnGUI (gambitAsset);
 						}
+
+						DisplayGambitGUI (gambitAsset);
 					}
 				}
 
@@ -164,6 +163,7 @@ namespace GameSystems.GambitSystem.Editor{
 			for (int i = 0; i < gambitAsset.Conditions.Count; i++) {
 				var gambitCondition = gambitAsset.Conditions [i];
 				GUILayout.BeginHorizontal ();
+				GUILayout.Space (20);
 
 				if (GUILayout.Button ("-", EditorStyles.toolbarButton, GUILayout.Width (30))
 					&& EditorUtility.DisplayDialog ("Remove Condition", "Are you sure you want to delete the condition?", "Delete", "Cancel")) {
@@ -180,6 +180,8 @@ namespace GameSystems.GambitSystem.Editor{
 				GUILayout.EndHorizontal ();
 			}
 
+			GUILayout.BeginHorizontal ();
+			GUILayout.Space (20);
 			if(GUILayout.Button("Add Condition", EditorStyles.toolbarButton)){
 				XmlDatabaseEditorUtility.GetGenericMenu (GambitConditionEditorUtility.GetNames (), (index) => {
 					var gambitConditionAsset = GambitConditionEditorUtility.CreateAsset (index);
@@ -187,6 +189,7 @@ namespace GameSystems.GambitSystem.Editor{
 					EditorWindow.FocusWindowIfItsOpen<GambitCollectionWindow> ();
 				}).ShowAsContext ();
 			}
+			GUILayout.EndHorizontal ();
 
 			GUILayout.EndVertical ();
 		}

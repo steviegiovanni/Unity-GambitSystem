@@ -169,7 +169,6 @@ namespace GameSystems.GambitSystem{
 			IsReady = true;
 			int i = 0;
 			while(IsReady && (i < Conditions.Count)){
-				Debug.Log ("What?! " + i);
 				IsReady = IsReady && Conditions [i].GetStatus ();
 				i++;
 			}

@@ -17,7 +17,6 @@ namespace GameSystems.GambitSystem{
 
 		public override void OnLoadAsset (XmlReader reader)
 		{
-			Debug.LogWarning ("lalalala");
 			base.OnLoadAsset (reader);
 			switch (reader.Name) {
 			case "Condition":
@@ -39,7 +38,6 @@ namespace GameSystems.GambitSystem{
 
 		public override void OnSaveAsset (XmlWriter writer)
 		{
-			Debug.LogWarning ("lilili");
 			base.OnSaveAsset (writer);
 			writer.SetAttr ("StatName", StatName);
 			writer.SetAttr ("StatValue", StatValue);

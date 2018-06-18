@@ -72,16 +72,18 @@ namespace GameSystems.GambitSystem{
 			}
 
 			while (true) {
+				Debug.Log ("shalala");
 				Target = FindTarget ();
 				if (Target == null) { // can't find any target
 					break;
 				}else if (Target != null) {
 					IMovable movableEntity = Owner.GetComponent<IMovable> ();
+					Debug.Log ("hmmmmmm....");
 					if (movableEntity == null)
 						Debug.LogWarning ("Owner does not implement IMovable");
 					else {
 						if (movableEntity.RemainingDistance (Target.transform.position) <= Skill.Range) {
-							movableEntity.StopMove ();
+							movableEntity.Stopped = true;
 
 							// set up skill target
 							ITargetableSkill targetableSkill = Skill as ITargetableSkill;
@@ -91,6 +93,8 @@ namespace GameSystems.GambitSystem{
 								targetableSkill.Target = Target;
 							break;
 						}else {
+							Debug.Log ("target set right?");
+							movableEntity.Stopped = false;
 							movableEntity.MoveTo (Target.transform.position);
 						}
 					}

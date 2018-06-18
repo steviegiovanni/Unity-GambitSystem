@@ -9,5 +9,6 @@ namespace GameSystems.SkillSystem{
 	/// </summary>
 	public interface IHasStats {
 		float GetStatPercentValue (string statName);
+		bool TryGetStatPercentValue (string statName, out float value); // a way to return false if stat doesn't exist
 	}
 }

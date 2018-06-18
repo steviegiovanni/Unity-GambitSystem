@@ -57,7 +57,6 @@ namespace GameSystems.SkillSystem{
 
 				// add all skills to the collection
 				foreach (var skillAsset in collectionAsset.Skills) {
-					Debug.Log ("adding skill " + skillAsset.Name);
 					if (!SkillDict.ContainsKey (skillAsset.Name)) {
 						SkillDict.Add (skillAsset.Name, skillAsset.CreateInstance ());
 					} else {

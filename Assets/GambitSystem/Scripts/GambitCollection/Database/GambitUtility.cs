@@ -11,6 +11,8 @@ namespace GameSystems.GambitSystem.Database{
 				return new GambitAsset ();
 			} else if (typeof(HighestEnmityGambitAsset).Name == gambitAssetType) {
 				return new HighestEnmityGambitAsset ();
+			} else if (typeof(PositionGambitAsset).Name == gambitAssetType) {
+				return new PositionGambitAsset ();
 			}
 			return null;
 		}

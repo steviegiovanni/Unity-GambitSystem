@@ -19,10 +19,7 @@ namespace GameSystems.GambitSystem{
 		private GameObject _owner;
 		public GameObject Owner{
 			get{ return _owner; }
-			set{ 
-				_owner = value; 
-				Debug.Log ("why is the value: " + value + "?");
-			}
+			set{ _owner = value; }
 		}
 
 		/// <summary>

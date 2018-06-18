@@ -104,10 +104,8 @@ namespace GameSystems.GambitSystem{
 					Gambits [Gambits.Count - 1].Initialize ();
 
 					foreach (var gambitCondition in gambitAsset.Conditions) {
-						Debug.Log ("huh?");
 						Gambits [Gambits.Count - 1].Conditions.Add (gambitCondition.CreateInstance ());
 						Gambits [Gambits.Count - 1].Conditions [Gambits [Gambits.Count - 1].Conditions.Count - 1].Owner = this.gameObject;
-						Debug.Log ("WTF?");
 					}
 				}
 			}

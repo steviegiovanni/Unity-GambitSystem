@@ -35,6 +35,10 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 		return (float)Health / (float)MaxHealth;
 	}
 
+	public bool TryGetStatPercentValue (string statName, out float statValue){
+		statValue = (float)Health / (float)MaxHealth;
+		return true;
+	}
 
 	#endregion
 
@@ -106,13 +110,18 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 		MovementComponent.isStopped = true;
 	}
 
+	public bool Stopped{
+		get{ return MovementComponent.isStopped; }
+		set{ MovementComponent.isStopped = value;}
+	}
+
 	/// <summary>
 	/// used by a gambit in its coroutine to query whether entity is close enough 
 	/// to a target position
 	/// </summary>
 	public float RemainingDistance (Vector3 targetPos)
 	{
-		if (!MovementComponent.hasPath) 
+		if (!MovementComponent.hasPath || (MovementComponent.destination != targetPos)) 
 			return Vector3.Distance(this.transform.position,targetPos);
 
 		return MovementComponent.remainingDistance;

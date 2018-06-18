@@ -32,6 +32,8 @@ namespace GameSystems.GambitSystem.Editor{
 				return new GambitConditionAsset ();
 			case 1:
 				return new StatLessThanGCAsset ();
+			case 2:
+				return new StatGreaterThanGCAsset ();
 			default:
 				return null;
 			}
@@ -43,7 +45,8 @@ namespace GameSystems.GambitSystem.Editor{
 		static public string[] GetNames(){
 			return new string[] {
 				"GambitCondition",
-				"StatLessThan"
+				"StatLessThan",
+				"StatGreaterThan"
 			};
 		}
 	}
