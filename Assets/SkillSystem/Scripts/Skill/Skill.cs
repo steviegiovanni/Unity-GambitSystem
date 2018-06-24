@@ -115,6 +115,9 @@ namespace GameSystems.SkillSystem{
 		/// go through all skill effects and apply the effect at the appropriate time.
 		/// </summary>
 		public IEnumerator SkillCoroutine(){
+			if (!IsValid ())
+				yield return null;
+
 			Debug.Log ("Using " + Name);
 			float startTime = Time.time;
 			float curDelay = 0.0f;
@@ -125,6 +128,10 @@ namespace GameSystems.SkillSystem{
 			}
 
 			yield return new WaitForSeconds(Delay - (Time.time - startTime));
+		}
+
+		public virtual bool IsValid(){
+			return true;
 		}
 	}
 }

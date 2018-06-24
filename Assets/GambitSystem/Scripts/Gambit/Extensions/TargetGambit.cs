@@ -34,6 +34,14 @@ namespace GameSystems.GambitSystem{
 
 			while (true) {
 				Target = FindTarget ();
+
+				// set up skill target
+				TargetableSkill targetableSkill = Skill as TargetableSkill;
+				if (targetableSkill == null)
+					Debug.LogWarning ("calling a non targetable skill from a target gambit");
+				else
+					targetableSkill.Target = Target;
+
 				if (Target == null) { // can't find any target
 					break;
 				}else if (Target != null) {
@@ -43,13 +51,6 @@ namespace GameSystems.GambitSystem{
 					else {
 						if (movableEntity.RemainingDistance (Target.transform.position) <= Skill.Range) {
 							movableEntity.Stopped = true;
-
-							// set up skill target
-							ITargetableSkill targetableSkill = Skill as ITargetableSkill;
-							if (targetableSkill == null)
-								Debug.LogWarning ("calling a non targetable skill from a target gambit");
-							else
-								targetableSkill.Target = Target;
 							break;
 						}else {
 							Debug.Log ("target set right?");
