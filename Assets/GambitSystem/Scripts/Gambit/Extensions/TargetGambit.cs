@@ -33,13 +33,11 @@ namespace GameSystems.GambitSystem{
 			}
 
 			while (true) {
-				Debug.Log ("shalala");
 				Target = FindTarget ();
 				if (Target == null) { // can't find any target
 					break;
 				}else if (Target != null) {
 					IMovable movableEntity = Owner.GetComponent<IMovable> ();
-					Debug.Log ("hmmmmmm....");
 					if (movableEntity == null)
 						Debug.LogWarning ("Owner does not implement IMovable");
 					else {

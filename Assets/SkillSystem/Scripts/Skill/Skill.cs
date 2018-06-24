@@ -91,36 +91,7 @@ namespace GameSystems.SkillSystem{
 				return _effects;
 			}
 		}
-
-		/// <summary>
-		/// default constructor
-		/// </summary>
-		public Skill(){
-			Owner = null;
-			Name = string.Empty;
-			Cooldown = 0.0f;
-			CastTime = 0.0f;
-			Interruptable = true;
-			Range = 0.5f;
-			Delay = 0.0f;
-			CurrentCooldown = Cooldown;
-		}
-
-		/// <summary>
-		/// parameterized constructor
-		/// </summary>
-		public Skill(GameObject owner, string name, float cooldown, bool interruptable, float castTime, float range, float delay){
-			Owner = owner;
-			Name = name;
-			Cooldown = cooldown;
-			Interruptable = interruptable;
-			CastTime = castTime;
-			Range = range;
-			Delay = delay;
-			CurrentCooldown = Cooldown;
-			_effects = new List<SkillEffect> ();
-		}
-
+			
 		/// <summary>
 		/// constructor with skill asset as input
 		/// </summary>
