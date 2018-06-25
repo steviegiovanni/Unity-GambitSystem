@@ -11,6 +11,8 @@ namespace GameSystems.SkillSystem.Database{
 				return new SkillAsset ();
 			} else if (typeof(TargetableSkillAsset).Name == skillAssetType) {
 				return new TargetableSkillAsset ();
+			}else if (typeof(PositionSkillAsset).Name == skillAssetType) {
+				return new PositionSkillAsset ();
 			}
 			return null;
 		}

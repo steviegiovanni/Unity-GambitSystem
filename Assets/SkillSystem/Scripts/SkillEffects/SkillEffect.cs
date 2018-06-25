@@ -44,5 +44,14 @@ namespace GameSystems.SkillSystem{
 		public SkillEffect(SkillEffectAsset asset){
 			Delay = asset.Delay;
 		}
+
+		/// <summary>
+		/// source of the effect. could be skill, could be item
+		/// </summary>
+		private IHasEffects _source;
+		public IHasEffects Source{
+			get{ return _source;}
+			set{ _source = value;}
+		}
 	}
 }

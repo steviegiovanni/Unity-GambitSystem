@@ -32,6 +32,8 @@ namespace GameSystems.SkillSystem.Editor{
 				return new SkillAsset ();
 			case 1:
 				return new TargetableSkillAsset ();
+			case 2:
+				return new PositionSkillAsset ();
 			default:
 				return null;
 			}
@@ -43,7 +45,8 @@ namespace GameSystems.SkillSystem.Editor{
 		static public string[] GetNames(){
 			return new string[] {
 				"Skill",
-				"TargetableSkill"
+				"TargetableSkill",
+				"PositionSkill"
 			};
 		}
 	}

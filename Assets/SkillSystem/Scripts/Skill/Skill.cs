@@ -6,7 +6,16 @@ namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// base class for Skill
 	/// </summary>
-	public class Skill{
+	public class Skill: IHasEffects{
+		#region IHasEffects implementation
+
+		public GameObject GetOwner ()
+		{
+			return Owner;
+		}
+
+		#endregion
+
 		/// <summary>
 		/// The owner using the skill
 		/// </summary>
@@ -107,6 +116,7 @@ namespace GameSystems.SkillSystem{
 
 			foreach (var effect in skillAsset.Effects) {
 				this.Effects.Add (effect.CreateInstance ());
+				this.Effects [this.Effects.Count - 1].Source = this;
 			}
 		}
 
