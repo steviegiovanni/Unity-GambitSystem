@@ -6,7 +6,7 @@ namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// a skill that has a target associated to it
 	/// </summary>
-	public class TargetableSkill : Skill {
+	public class TargetSkill : Skill {
 		/// <summary>
 		/// include self when finding a target
 		/// </summary>
@@ -37,7 +37,7 @@ namespace GameSystems.SkillSystem{
 		/// <summary>
 		/// constructor with skill asset as input
 		/// </summary>
-		public TargetableSkill(TargetableSkillAsset skillAsset): base(skillAsset){
+		public TargetSkill(TargetSkillAsset skillAsset): base(skillAsset){
 			IncludeSelf = skillAsset.IncludeSelf;
 			TargetType = skillAsset.TargetType;
 		}

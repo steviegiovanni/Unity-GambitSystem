@@ -36,7 +36,7 @@ namespace GameSystems.GambitSystem{
 				Target = FindTarget ();
 
 				// set up skill target
-				TargetableSkill targetableSkill = Skill as TargetableSkill;
+				TargetSkill targetableSkill = Skill as TargetSkill;
 				if (targetableSkill == null)
 					Debug.LogWarning ("calling a non targetable skill from a target gambit");
 				else
@@ -53,7 +53,6 @@ namespace GameSystems.GambitSystem{
 							movableEntity.Stopped = true;
 							break;
 						}else {
-							Debug.Log ("target set right?");
 							movableEntity.Stopped = false;
 							movableEntity.MoveTo (Target.transform.position);
 						}
@@ -75,7 +74,7 @@ namespace GameSystems.GambitSystem{
 		{
 			if (Owner.GetComponent<IHasPerception>() == null)
 				return null;
-			TargetableSkill skill = Skill as TargetableSkill;
+			TargetSkill skill = Skill as TargetSkill;
 			if (skill == null)
 				return null;
 

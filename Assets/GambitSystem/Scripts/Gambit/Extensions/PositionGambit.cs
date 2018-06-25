@@ -34,6 +34,10 @@ namespace GameSystems.GambitSystem{
 				yield return null;
 			}
 
+			PositionSkill posSkill = Skill as PositionSkill;
+			if (posSkill != null)
+				posSkill.Position = TargetPosition;
+
 			while (true) {
 				IMovable movableEntity = Owner.GetComponent<IMovable> ();
 				if (movableEntity == null)

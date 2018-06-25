@@ -17,7 +17,7 @@ namespace GameSystems.SkillSystem.Editor{
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
-				new TargetableSkillEditorExtension()
+				new TargetSkillEditorExtension()
 			};
 		}
 
@@ -31,7 +31,7 @@ namespace GameSystems.SkillSystem.Editor{
 			case 0:
 				return new SkillAsset ();
 			case 1:
-				return new TargetableSkillAsset ();
+				return new TargetSkillAsset ();
 			case 2:
 				return new PositionSkillAsset ();
 			default:

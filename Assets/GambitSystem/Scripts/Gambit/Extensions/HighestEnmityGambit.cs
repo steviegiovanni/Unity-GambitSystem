@@ -23,7 +23,7 @@ namespace GameSystems.GambitSystem{
 				return null;
 			Perception perception = Owner.GetComponent<IHasPerception> ().Perception;
 
-			TargetableSkill skill = Skill as TargetableSkill;
+			TargetSkill skill = Skill as TargetSkill;
 			if (skill == null)
 				return null;
 

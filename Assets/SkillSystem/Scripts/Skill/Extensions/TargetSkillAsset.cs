@@ -5,12 +5,12 @@ namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// Targetable skill asset, derived from based skill asset
 	/// </summary>
-	public class TargetableSkillAsset : SkillAsset {
+	public class TargetSkillAsset : SkillAsset {
 		public int TargetType { get; set;}
 		public bool IncludeSelf { get; set;}
 
 		public override Skill CreateInstance(){
-			return new TargetableSkill (this);
+			return new TargetSkill (this);
 		}
 
 		#region IXmlOnLoadAsset implementation

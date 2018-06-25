@@ -9,8 +9,8 @@ namespace GameSystems.SkillSystem.Database{
 		static public SkillAsset CreateAssetOfType(string skillAssetType){
 			if (typeof(SkillAsset).Name == skillAssetType) {
 				return new SkillAsset ();
-			} else if (typeof(TargetableSkillAsset).Name == skillAssetType) {
-				return new TargetableSkillAsset ();
+			} else if (typeof(TargetSkillAsset).Name == skillAssetType) {
+				return new TargetSkillAsset ();
 			}else if (typeof(PositionSkillAsset).Name == skillAssetType) {
 				return new PositionSkillAsset ();
 			}
