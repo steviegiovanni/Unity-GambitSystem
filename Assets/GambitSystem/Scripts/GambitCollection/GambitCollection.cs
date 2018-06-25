@@ -165,7 +165,8 @@ namespace GameSystems.GambitSystem{
 			}
 
 			// if runnable gambit has higher priority than active gambit, and not locked, switch active gambit
-			if ((ActiveGambitId != potentialGambit) && !IsGambitRunning) {
+			if (((ActiveGambitId != potentialGambit) && !IsGambitRunning) 
+				|| ((ActiveGambitId < potentialGambit) && (Gambits[ActiveGambitId].Skill != null) && Gambits[ActiveGambitId].Skill.Interruptable)) {
 				StopAllCoroutines();
 				ActiveGambitId = potentialGambit;
 				StartCoroutine(RunGambit(ActiveGambitId));
