@@ -5,11 +5,11 @@ namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// Skill effect asset. Represents an xml entry on the skill collection database
 	/// </summary>
-	public class SkillEffectAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
+	public class EffectAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
 		public float Delay{ get; set;}
 
-		public virtual SkillEffect CreateInstance(){
-			return new SkillEffect (this);
+		public virtual Effect CreateInstance(){
+			return new Effect (this);
 		}
 
 		#region IXmlOnSaveAsset implementation

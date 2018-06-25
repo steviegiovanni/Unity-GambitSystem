@@ -17,6 +17,7 @@ namespace GameSystems.SkillSystem.Editor{
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
+				new StatGlobalEffectEditorExtension()
 			};
 		}
 
@@ -25,12 +26,16 @@ namespace GameSystems.SkillSystem.Editor{
 		/// relates to the position of the asset's name within the array
 		/// gotten from GetName() method
 		/// </summary>
-		static public SkillEffectAsset CreateAsset(int index){
+		static public EffectAsset CreateAsset(int index){
 			switch (index) {
 			case 0:
-				return new SkillEffectAsset ();
+				return new EffectAsset ();
 			case 1:
-				return new TargetableSkillEffectAsset ();
+				return new TargetEffectAsset ();
+			case 2:
+				return new PositionEffectAsset ();
+			case 3:
+				return new StatGlobalEffectAsset ();
 			default:
 				return null;
 			}
@@ -41,8 +46,10 @@ namespace GameSystems.SkillSystem.Editor{
 		/// </summary>
 		static public string[] GetNames(){
 			return new string[] {
-				"SkillEffect",
-				"TargetableSkillEffect"
+				"Effect",
+				"TargetEffect",
+				"PositionEffect",
+				"StatGlobalEffect"
 			};
 		}
 	}

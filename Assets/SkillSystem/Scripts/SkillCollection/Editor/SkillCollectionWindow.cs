@@ -25,6 +25,19 @@ namespace GameSystems.SkillSystem.Editor{
 			}
 		}
 
+		private int _selectedEffectIndex = -1;
+		public int SelectedEffectIndex{
+			get{ return _selectedEffectIndex;}
+			set{ 
+				if (_selectedEffectIndex != value) {
+					_selectedEffectIndex = value;
+					EditorGUI.FocusTextInControl (string.Empty);
+				}
+			}
+		}
+
+
+
 		[MenuItem("Window/Game Systems/Skills/Skill Collections")]
 		static public void ShowWindow(){
 			var wnd = GetWindow<SkillCollectionWindow> ();
@@ -177,25 +190,40 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.Label ("",EditorStyles.boldLabel,GUILayout.Width (30));
 			GUILayout.Label ("Type",EditorStyles.boldLabel,GUILayout.Width (150));
 			GUILayout.Label ("Delay",EditorStyles.boldLabel,GUILayout.Width (50));
-			GUILayout.Label ("Params",EditorStyles.boldLabel,GUILayout.Width (200));
 			GUILayout.EndHorizontal ();
 
 			for(int i = 0; i < skill.Effects.Count; i++){
 			//foreach(var effect in skill.Effects){
-				SkillEffectAsset effect = skill.Effects[i];
+				EffectAsset effect = skill.Effects[i];
 				GUILayout.BeginHorizontal (EditorStyles.toolbar);
 
 				if (GUILayout.Button ("-", EditorStyles.toolbarButton, GUILayout.Width (30))
 				   && EditorUtility.DisplayDialog ("Remove effect", "Are you sure you want to delete the effect?", "Delete", "Cancel")) {
 					skill.Effects.RemoveAt (i);
 				}
+					
+				bool clicked = GUILayout.Toggle (i == SelectedEffectIndex, effect.GetType ().Name, ToggleButtonStyle, GUILayout.Width(150));
+				if (clicked != (i == SelectedEffectIndex)) {
+					if (clicked) {
+						SelectedEffectIndex = i;
+						GUI.FocusControl (null);
+					} else {
+						SelectedEffectIndex = -1;
+					}
+				}
 
-				GUILayout.Label (effect.GetType ().Name,GUILayout.Width (150));
 				effect.Delay = EditorGUILayout.FloatField (effect.Delay,GUILayout.Width (50));
-				GUILayout.BeginVertical (GUILayout.Width (200));
-				GUILayout.FlexibleSpace ();
-				GUILayout.EndVertical ();
 				GUILayout.EndHorizontal ();
+
+
+				if (SelectedEffectIndex == i) {
+					foreach (var extension in SkillEffectEditorUtility.GetExtensions()) {
+						if (extension.CanHandleType (effect.GetType()))
+							extension.OnGUI (effect);
+					}
+				}
+					
+
 			}
 
 			GUILayout.FlexibleSpace ();

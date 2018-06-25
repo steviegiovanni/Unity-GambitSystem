@@ -7,7 +7,7 @@ namespace GameSystems.SkillSystem{
 	/// Skill effect. Every skill has a list of effects associated to it.
 	/// The effects is delayed from the moment the skill coroutine is run.
 	/// </summary>
-	public class SkillEffect {
+	public class Effect {
 		/// <summary>
 		/// the delay of the skill effect
 		/// </summary>
@@ -27,21 +27,21 @@ namespace GameSystems.SkillSystem{
 		/// <summary>
 		/// default constructor
 		/// </summary>
-		public SkillEffect(){
+		public Effect(){
 			Delay = 0.0f;
 		}
 
 		/// <summary>
 		/// constructor with specified delay
 		/// </summary>
-		public SkillEffect(float delay){
+		public Effect(float delay){
 			Delay = delay;
 		}
 
 		/// <summary>
 		/// constructor with skilleffect asset as input
 		/// </summary>
-		public SkillEffect(SkillEffectAsset asset){
+		public Effect(EffectAsset asset){
 			Delay = asset.Delay;
 		}
 

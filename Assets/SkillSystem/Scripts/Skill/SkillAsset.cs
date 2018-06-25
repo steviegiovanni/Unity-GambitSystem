@@ -14,7 +14,7 @@ namespace GameSystems.SkillSystem{
 		public float Range{ get; set;}
 		public float Delay{ get; set;}
 		public bool Interruptable{ get; set;}
-		public List<SkillEffectAsset> Effects{ get; private set;}
+		public List<EffectAsset> Effects{ get; private set;}
 
 		public virtual Skill CreateInstance(){
 			return new Skill (this);
@@ -80,6 +80,6 @@ namespace GameSystems.SkillSystem{
 
 		#endregion
 
-		public SkillAsset():base(){Effects = new List<SkillEffectAsset> ();}
+		public SkillAsset():base(){Effects = new List<EffectAsset> ();}
 	}
 }

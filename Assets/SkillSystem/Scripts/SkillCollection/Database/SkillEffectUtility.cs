@@ -6,12 +6,16 @@ namespace GameSystems.SkillSystem{
 	/// Utility class. Instantiate a
 	/// </summary>
 	static public class SkillEffectUtility{
-		static public SkillEffectAsset CreateAssetOfType(string skillEffectAssetType){
-			if (typeof(SkillEffectAsset).Name == skillEffectAssetType) {
-				return new SkillEffectAsset ();
-			} else if (typeof(TargetableSkillEffectAsset).Name == skillEffectAssetType) {
-				return new TargetableSkillEffectAsset ();
-			}
+		static public EffectAsset CreateAssetOfType(string skillEffectAssetType){
+			if (typeof(EffectAsset).Name == skillEffectAssetType) {
+				return new EffectAsset ();
+			} else if (typeof(TargetEffectAsset).Name == skillEffectAssetType) {
+				return new TargetEffectAsset ();
+			} else if (typeof(PositionEffectAsset).Name == skillEffectAssetType) {
+				return new PositionEffectAsset ();
+			} else if (typeof(StatGlobalEffectAsset).Name == skillEffectAssetType) {
+				return new StatGlobalEffectAsset ();
+			} 
 			return null;
 		}
 	}

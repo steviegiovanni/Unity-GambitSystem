@@ -92,11 +92,11 @@ namespace GameSystems.SkillSystem{
 		/// <summary>
 		/// The effects.
 		/// </summary>
-		private List<SkillEffect> _effects;
-		public List<SkillEffect> Effects{
+		private List<Effect> _effects;
+		public List<Effect> Effects{
 			get{ 
 				if (_effects == null)
-					_effects = new List<SkillEffect> ();
+					_effects = new List<Effect> ();
 				return _effects;
 			}
 		}
