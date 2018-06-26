@@ -15,6 +15,10 @@ namespace GameSystems.SkillSystem{
 				return new PositionEffectAsset ();
 			} else if (typeof(StatGlobalEffectAsset).Name == skillEffectAssetType) {
 				return new StatGlobalEffectAsset ();
+			} else if (typeof(TargetStatEffectAsset).Name == skillEffectAssetType) {
+				return new TargetStatEffectAsset ();
+			} else if (typeof(TargetAOEStatEffectAsset).Name == skillEffectAssetType) {
+				return new TargetAOEStatEffectAsset ();
 			} 
 			return null;
 		}

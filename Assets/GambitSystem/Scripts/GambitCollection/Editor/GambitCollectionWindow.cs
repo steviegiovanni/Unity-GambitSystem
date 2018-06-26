@@ -6,6 +6,9 @@ using UtilitySystems.XmlDatabase.Editor;
 using System.Linq;
 using GameSystems.SkillSystem.Database;
 using GameSystems.GambitSystem.Database;
+using GameSystems.GambitSystem;
+using GameSystems.SkillSystem;
+using System.Collections.Generic;
 
 namespace GameSystems.GambitSystem.Editor{
 	public class GambitCollectionWindow : XmlDatabaseWindowComplex<GambitCollectionAsset> {
@@ -114,10 +117,20 @@ namespace GameSystems.GambitSystem.Editor{
 						string skillLabel = skillFound?gambitAsset.SkillId:"Missing";
 
 						if (GUILayout.Button (gambitAsset.SkillId == ""? "Assign Skill" : skillLabel,EditorStyles.toolbarButton,GUILayout.Width(150))) {
-							string [] skillNames = new string[skillCollectionAsset.Skills.Count];
-							for (int j = 0; j < skillNames.Length; j++) {
-								skillNames [j] = skillCollectionAsset.Skills [j].Name;
+							List<string> skillList = new List<string> ();
+							if (typeof(PositionGambitAsset).IsAssignableFrom (gambitAsset.GetType ())) {
+								for (int j = 0; j < skillCollectionAsset.Skills.Count; j++) {
+									if (typeof(PositionSkillAsset).IsAssignableFrom (skillCollectionAsset.Skills [j].GetType ()))
+										skillList.Add (skillCollectionAsset.Skills [j].Name);
+								}
+							} else {
+								for (int j = 0; j < skillCollectionAsset.Skills.Count; j++) {
+									if (typeof(TargetSkillAsset).IsAssignableFrom (skillCollectionAsset.Skills [j].GetType ()))
+										skillList.Add (skillCollectionAsset.Skills [j].Name);
+								}
 							}
+
+							string [] skillNames = skillList.ToArray();
 							XmlDatabaseEditorUtility.GetGenericMenu(skillNames,(index)=>{
 								gambitAsset.SkillId = skillNames[index];
 							}).ShowAsContext ();

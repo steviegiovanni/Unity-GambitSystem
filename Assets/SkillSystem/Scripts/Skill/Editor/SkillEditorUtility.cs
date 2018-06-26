@@ -45,7 +45,7 @@ namespace GameSystems.SkillSystem.Editor{
 		static public string[] GetNames(){
 			return new string[] {
 				"Skill",
-				"TargetableSkill",
+				"TargetSkill",
 				"PositionSkill"
 			};
 		}
