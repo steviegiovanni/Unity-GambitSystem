@@ -17,7 +17,9 @@ namespace GameSystems.SkillSystem.Editor{
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
-				new StatGlobalEffectEditorExtension()
+				new StatGlobalEffectEditorExtension(),
+				new PositionPrefabEffectEditorExtension(),
+				new TargetPrefabEffectEditorExtension()
 			};
 		}
 
@@ -52,6 +54,8 @@ namespace GameSystems.SkillSystem.Editor{
 				return new StatGlobalEffectAsset ();
 			case 3:
 				return new PositionAOEStatEffectAsset ();
+			case 4:
+				return new PositionPrefabEffectAsset ();
 			default:
 				return null;
 			}
@@ -74,6 +78,8 @@ namespace GameSystems.SkillSystem.Editor{
 				return new TargetStatEffectAsset ();
 			case 4:
 				return new TargetAOEStatEffectAsset ();
+			case 5:
+				return new TargetPrefabEffectAsset ();
 			default:
 				return null;
 			}
@@ -97,7 +103,8 @@ namespace GameSystems.SkillSystem.Editor{
 				"Effect",
 				"PositionEffect",
 				"StatGlobalEffect",
-				"PositionAOEStatEffect"
+				"PositionAOEStatEffect",
+				"PositionPrefabEffect"
 			};
 		}
 
@@ -110,7 +117,8 @@ namespace GameSystems.SkillSystem.Editor{
 				"TargetEffect",
 				"StatGlobalEffect",
 				"TargetStatEffect",
-				"TargetAOEStatEffect"
+				"TargetAOEStatEffect",
+				"TargetPrefabEffect"
 			};
 		}
 	}

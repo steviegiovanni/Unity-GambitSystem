@@ -19,6 +19,10 @@ namespace GameSystems.SkillSystem{
 				return new TargetStatEffectAsset ();
 			} else if (typeof(TargetAOEStatEffectAsset).Name == skillEffectAssetType) {
 				return new TargetAOEStatEffectAsset ();
+			} else if (typeof(TargetPrefabEffectAsset).Name == skillEffectAssetType) {
+				return new TargetPrefabEffectAsset ();
+			} else if (typeof(PositionPrefabEffectAsset).Name == skillEffectAssetType) {
+				return new PositionPrefabEffectAsset ();
 			} 
 			return null;
 		}

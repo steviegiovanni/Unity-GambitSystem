@@ -14,7 +14,7 @@ namespace GameSystems.SkillSystem{
 
 		#region IXmlOnSaveAsset implementation
 
-		public void OnSaveAsset (XmlWriter writer)
+		public virtual void OnSaveAsset (XmlWriter writer)
 		{
 			writer.SetAttr ("Delay", Delay);
 		}
@@ -23,10 +23,10 @@ namespace GameSystems.SkillSystem{
 
 		#region IXmlOnLoadAsset implementation
 
-		public void OnLoadAsset (XmlReader reader)
+		public virtual void OnLoadAsset (XmlReader reader)
 		{
 			switch (reader.Name) {
-			case "SkillEffect":
+			case "Effect":
 				{
 					Delay = reader.GetAttrFloat ("Delay", 0.0f);
 				}

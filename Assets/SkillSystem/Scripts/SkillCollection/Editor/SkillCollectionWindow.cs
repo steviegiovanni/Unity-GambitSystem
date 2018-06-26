@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System;
 using UtilitySystems.XmlDatabase;
 using UtilitySystems.XmlDatabase.Editor;
 using System.Linq;
@@ -226,6 +225,10 @@ namespace GameSystems.SkillSystem.Editor{
 					
 
 			}
+			//Object source = null;
+			//source = EditorGUILayout.ObjectField(source, typeof(Object), true);
+			//AssetDatabase.GetAssetPath (source);
+
 
 			GUILayout.FlexibleSpace ();
 			GUILayout.EndScrollView();

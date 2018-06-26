@@ -35,7 +35,7 @@ namespace GameSystems.SkillSystem{
 					Interruptable = reader.GetBoolAttribute ("Interruptable",false);
 				}
 				break;
-			case "SkillEffect":
+			case "Effect":
 				{
 					// get the skill effect type
 					string skillEffectAssetType = reader.GetAttrString ("AssetType", "");
@@ -71,7 +71,7 @@ namespace GameSystems.SkillSystem{
 			writer.SetAttr ("Delay", Delay);
 			writer.SetAttr ("Interruptable", Interruptable);
 			foreach(var effect in Effects){
-				writer.WriteStartElement ("SkillEffect");
+				writer.WriteStartElement ("Effect");
 				writer.SetAttr ("AssetType", effect.GetType ().Name);
 				effect.OnSaveAsset (writer);
 				writer.WriteEndElement ();
