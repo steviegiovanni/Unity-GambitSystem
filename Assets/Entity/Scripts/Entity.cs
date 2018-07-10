@@ -70,7 +70,7 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	[SerializeField]
 	private PerceptionTags _tag;
 
-	#region ITargetable implementation
+	#region IPerceivable implementation
 	public int Tag {
 		get{ return (int)_tag;}
 		set{ _tag = (PerceptionTags)value;}
