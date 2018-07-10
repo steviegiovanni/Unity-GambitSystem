@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
 	/// Targetable effect
 	/// </summary>
@@ -25,10 +25,10 @@ namespace GameSystems.SkillSystem{
 		public override void ApplyEffect(){
 			Debug.Log ("apply target prefab effect");
 			if (Prefab != null) {
-				TargetSkill targetSkill = Source as TargetSkill;
-				if (targetSkill != null) {
-					if(targetSkill.Target != null)
-						GameObject.Instantiate (Prefab,targetSkill.Target.transform.position,Quaternion.identity);
+				IHasTargetEffects targetSource = Source as IHasTargetEffects;
+				if (targetSource != null) {
+					if(targetSource.GetTarget() != null)
+						GameObject.Instantiate (Prefab,targetSource.GetTarget().transform.position,Quaternion.identity);
 				}
 			}
 		}

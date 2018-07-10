@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
 	/// Positional effect
 	/// </summary>
@@ -25,9 +25,9 @@ namespace GameSystems.SkillSystem{
 		public override void ApplyEffect(){
 			Debug.Log ("apply position prefab effect");
 			if (Prefab != null) {
-				PositionSkill posSkill = Source as PositionSkill;
-				if (posSkill != null) {
-					GameObject.Instantiate (Prefab,posSkill.Position,Quaternion.identity);
+				IHasPositionEffects posSource = Source as IHasPositionEffects;
+				if (posSource != null) {
+					GameObject.Instantiate (Prefab,posSource.GetPosition(),Quaternion.identity);
 				}
 			}
 		}

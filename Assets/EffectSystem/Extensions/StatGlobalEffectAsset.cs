@@ -1,17 +1,16 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
-	/// positional effect asset.
+	/// effect asset that affects stats of entities room wide
 	/// </summary>
-	public class PositionAOEStatEffectAsset : PositionEffectAsset {
+	public class StatGlobalEffectAsset : EffectAsset {
 		public int TargetType { get; set;}
 		public bool IncludeSelf { get; set;}
-		public float Radius{get; set;}
 
 		public override Effect CreateInstance(){
-			return new PositionAOEStatEffect (this);
+			return new StatGlobalEffect (this);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
 	/// positional effect asset.
 	/// </summary>

@@ -3,7 +3,7 @@ using UtilitySystems.XmlDatabase;
 using UnityEngine;
 using UnityEditor;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
 	/// Targetable effect asset.
 	/// </summary>

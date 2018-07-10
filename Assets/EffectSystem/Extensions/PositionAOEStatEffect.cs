@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
-	/// effect that modifies stat of units area wide 
+	/// Positional effect
 	/// </summary>
-	public class StatGlobalEffect : Effect{
+	public class PositionAOEStatEffect : PositionEffect{
 		/// <summary>
 		/// include self when finding a target
 		/// </summary>
@@ -25,16 +25,26 @@ namespace GameSystems.SkillSystem{
 			set{ _targetType = value;}
 		}
 
-		public StatGlobalEffect():base(){}
-		public StatGlobalEffect(float delay):base(delay){}
-		public StatGlobalEffect(StatGlobalEffectAsset asset):base(asset){
-			TargetType = asset.TargetType;
+		/// <summary>
+		/// radius of AOE
+		/// </summary>
+		private float _radius;
+		public float Radius{
+			get{ return _radius;}
+			set{ _radius = value;}
+		}
+
+		public PositionAOEStatEffect():base(){}
+		public PositionAOEStatEffect(float delay):base(delay){}
+		public PositionAOEStatEffect(PositionAOEStatEffectAsset asset):base(asset){
 			IncludeSelf = asset.IncludeSelf;
+			TargetType = asset.TargetType;
+			Radius = asset.Radius;
 		}
 
 		public override void ApplyEffect ()
 		{
-			Debug.Log ("applying room wide stat effect");
+			Debug.Log ("applying AOE stat effect on position");
 		}
 	}
 }

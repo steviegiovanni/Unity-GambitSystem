@@ -6,7 +6,16 @@ namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// a skill that has a target associated to it
 	/// </summary>
-	public class TargetSkill : Skill {
+	public class TargetSkill : Skill, IHasTargetEffects {
+		#region IHasTargetEffects implementation
+
+		public GameObject GetTarget ()
+		{
+			return Target;
+		}
+
+		#endregion
+
 		/// <summary>
 		/// include self when finding a target
 		/// </summary>

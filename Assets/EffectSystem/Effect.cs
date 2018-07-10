@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
 	/// Skill effect. Every skill has a list of effects associated to it.
 	/// The effects is delayed from the moment the skill coroutine is run.
