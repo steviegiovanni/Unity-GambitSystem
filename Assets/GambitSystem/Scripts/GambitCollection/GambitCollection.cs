@@ -218,6 +218,9 @@ namespace GameSystems.GambitSystem{
 		void OnDisable(){
 			StopAllCoroutines ();
 			IsGambitRunning = false;
+			IMovable owner = GetComponent<IMovable> ();
+			if (owner != null)
+				owner.Stopped = true;
 		}
 
 		/// <summary>
