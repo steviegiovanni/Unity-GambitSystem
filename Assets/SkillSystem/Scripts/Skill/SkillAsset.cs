@@ -14,6 +14,7 @@ namespace GameSystems.SkillSystem{
 		public float Range{ get; set;}
 		public float Delay{ get; set;}
 		public bool Interruptable{ get; set;}
+		public int RequiredLevel{ get; set;}
 		public List<EffectAsset> Effects{ get; private set;}
 
 		public virtual Skill CreateInstance(){
@@ -33,6 +34,7 @@ namespace GameSystems.SkillSystem{
 					Range = reader.GetAttrFloat ("Range",0.0f);
 					Delay = reader.GetAttrFloat ("Delay",0.0f);
 					Interruptable = reader.GetBoolAttribute ("Interruptable",false);
+					RequiredLevel = reader.GetAttrInt ("Level", 0);
 				}
 				break;
 			case "Effect":
@@ -70,6 +72,7 @@ namespace GameSystems.SkillSystem{
 			writer.SetAttr ("Range", Range);
 			writer.SetAttr ("Delay", Delay);
 			writer.SetAttr ("Interruptable", Interruptable);
+			writer.SetAttr ("Level", RequiredLevel);
 			foreach(var effect in Effects){
 				writer.WriteStartElement ("Effect");
 				writer.SetAttr ("AssetType", effect.GetType ().Name);

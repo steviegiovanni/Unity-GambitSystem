@@ -11,7 +11,7 @@ using GameSystems.GambitSystem;
 /// to be able to make use of the SkillSystem
 /// </summary>
 [System.Serializable]
-public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHasStats {
+public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHasStats, IHasLevel {
 	//======================================= begin test parameters
 	[SerializeField]
 	private int _health = 100;
@@ -43,6 +43,30 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	#endregion
 
 	//======================================== end test parameters
+
+	/// <summary>
+	/// level of this entity
+	/// </summary>
+	private RPGEntityLevel _rpgEntityLevel;
+	public RPGEntityLevel EntityLevel{
+		get{
+			if (_rpgEntityLevel == null) 
+				_rpgEntityLevel = GetComponent<RPGEntityLevel> ();
+			return _rpgEntityLevel;
+		}
+	}
+
+	#region IHasLevel implementation
+
+	public int GetLevel ()
+	{
+		if (EntityLevel == null)
+			return 1000;
+		else
+			return EntityLevel.Level;
+	}
+
+	#endregion
 
 	/// <summary>
 	/// the perception component. stores all seen entity along with their enmity
@@ -156,6 +180,12 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	void Update () {
 		// make every entity broadcasts an event to the other entities every frame
 		PerceptionEVManager.TriggerEvent ("PERCEPTION", new Hashtable (){ { "OBJECT",this.gameObject } });
+
+		// test levelling
+		if (Input.GetKeyUp (KeyCode.Space)) {
+			if (EntityLevel != null)
+				EntityLevel.ModifyExp (50);
+		}
 	}
 
 	/// <summary>

@@ -175,6 +175,11 @@ namespace GameSystems.SkillSystem.Editor{
 			skill.Interruptable = EditorGUILayout.Toggle(skill.Interruptable);
 			GUILayout.EndHorizontal ();
 
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("Required Level", GUILayout.Width (100));
+			skill.RequiredLevel = EditorGUILayout.IntField(skill.RequiredLevel);
+			GUILayout.EndHorizontal ();
+
 			foreach (var extension in SkillEditorUtility.GetExtensions()) {
 				if (extension.CanHandleType (skill.GetType()))
 					extension.OnGUI (skill);

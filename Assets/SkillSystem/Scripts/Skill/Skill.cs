@@ -90,6 +90,15 @@ namespace GameSystems.SkillSystem{
 		}
 
 		/// <summary>
+		/// the level required to unlock this skill
+		/// </summary>
+		private int _requiredLevel = 0;
+		public int RequiredLevel{
+			get{ return _requiredLevel;}
+			set{ _requiredLevel = value;}
+		}
+
+		/// <summary>
 		/// The effects.
 		/// </summary>
 		private List<Effect> _effects;
@@ -113,6 +122,7 @@ namespace GameSystems.SkillSystem{
 			Range = skillAsset.Range;
 			Delay = skillAsset.Delay;
 			CurrentCooldown = Cooldown;
+			RequiredLevel = skillAsset.RequiredLevel;
 
 			foreach (var effect in skillAsset.Effects) {
 				this.Effects.Add (effect.CreateInstance ());

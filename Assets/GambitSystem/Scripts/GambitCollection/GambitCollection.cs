@@ -69,7 +69,7 @@ namespace GameSystems.GambitSystem{
 		}
 
 		/// <summary>
-		/// setup the collection, will check thether the skill collection id is
+		/// setup the collection, will check whether the skill collection id is
 		/// the same as it is assigned in the skill collection component
 		/// if not, reassign skill collection id and setup skill collection
 		/// </summary>
