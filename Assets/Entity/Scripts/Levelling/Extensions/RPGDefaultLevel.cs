@@ -14,7 +14,8 @@ public class RPGDefaultLevel : RPGEntityLevel {
 	/// <param name="level">Level.</param>
 	public override int GetExpRequiredForLevel (int level)
 	{
-		return (int)(Mathf.Pow (Level-1, 2f) * 100);
+		//return (int)(Mathf.Pow (Level-1, 2f) * 100);
+		return ((level * level) + level * 3) * 4;
 	}
 	#endregion
 }
