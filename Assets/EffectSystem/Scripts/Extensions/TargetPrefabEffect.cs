@@ -16,7 +16,23 @@ namespace GameSystems{
 		public TargetPrefabEffect():base(){}
 		public TargetPrefabEffect(float delay):base(delay){}
 		public TargetPrefabEffect(TargetPrefabEffectAsset asset):base(asset){
-			Prefab = asset.Prefab;
+			//Prefab = asset.Prefab;
+			//Prefab = AssetBundle.LoadFromFile(Application.streamingAssetsPath+"/assetbundles/effects").LoadAsset(asset.PrefabName);
+
+			AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
+			int i = 0;
+			bool found = false;
+			while (i < bundles.Length && !found) {
+				if (bundles [i].name == "effects") {
+					found = true;
+				} else
+					i++;
+			}
+
+			if (found)
+				Prefab = bundles [i].LoadAsset (asset.PrefabName);
+			else
+				Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (asset.PrefabName);
 		}
 
 		/// <summary>

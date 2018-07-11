@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 
 namespace GameSystems{
 	/// <summary>
@@ -9,6 +9,7 @@ namespace GameSystems{
 	/// </summary>
 	public class TargetPrefabEffectAsset : TargetEffectAsset {
 		public Object Prefab { get; set;}
+		public string PrefabName{get;set;}
 
 		public override Effect CreateInstance(){
 			return new TargetPrefabEffect (this);
@@ -20,9 +21,7 @@ namespace GameSystems{
 		{
 			base.OnSaveAsset (writer);
 
-			if (Prefab != null) {
-				writer.SetAttr ("Path", AssetDatabase.GetAssetPath (Prefab));
-			}
+			writer.SetAttr ("PrefabName", PrefabName);
 		}
 
 		#endregion
@@ -35,7 +34,22 @@ namespace GameSystems{
 			switch (reader.Name) {
 			case "Effect":
 				{
-					Prefab = AssetDatabase.LoadAssetAtPath<Object> (reader.GetAttrString ("Path", ""));
+					PrefabName = reader.GetAttrString ("PrefabName","");
+					AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
+					int i = 0;
+					bool found = false;
+					while (i < bundles.Length && !found) {
+						if (bundles [i].name == "effects") {
+							found = true;
+						} else
+							i++;
+					}
+
+					if (found)
+						Prefab = bundles [i].LoadAsset (PrefabName);
+					else
+						Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (PrefabName);
+					//Prefab = AssetDatabase.LoadAssetAtPath<Object> (reader.GetAttrString ("Path", ""));
 				}
 				break;
 			}
