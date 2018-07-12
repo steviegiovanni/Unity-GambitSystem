@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement;
 
 namespace GameSystems{
 	/// <summary>
@@ -19,7 +21,7 @@ namespace GameSystems{
 			//Prefab = asset.Prefab;
 			//Prefab = AssetBundle.LoadFromFile(Application.streamingAssetsPath+"/assetbundles/effects").LoadAsset(asset.PrefabName);
 
-			AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
+			/*AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
 			int i = 0;
 			bool found = false;
 			while (i < bundles.Length && !found) {
@@ -32,7 +34,10 @@ namespace GameSystems{
 			if (found)
 				Prefab = bundles [i].LoadAsset (asset.PrefabName);
 			else
-				Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (asset.PrefabName);
+				Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (asset.PrefabName);*/
+		}
+
+		void Temp(IAsyncOperation<IList<IResourceLocation>> op){
 		}
 
 		/// <summary>
@@ -40,13 +45,16 @@ namespace GameSystems{
 		/// </summary>
 		public override void ApplyEffect(){
 			Debug.Log ("apply target prefab effect");
-			if (Prefab != null) {
+			//if (Prefab != null) {
 				IHasTargetEffects targetSource = Source as IHasTargetEffects;
 				if (targetSource != null) {
-					if(targetSource.GetTarget() != null)
-						GameObject.Instantiate (Prefab,targetSource.GetTarget().transform.position,Quaternion.identity);
+					if (targetSource.GetTarget () != null) {
+						//Addressables.LoadAssets<IResourceLocation> ("Meteor", null).Completed += Temp;
+						Addressables.Instantiate<GameObject> ("Meteor.prefab",targetSource.GetTarget ().transform.position,Quaternion.identity);
+						//GameObject.Instantiate (Prefab, targetSource.GetTarget ().transform.position, Quaternion.identity);
+					}
 				}
-			}
+			//}
 		}
 	}
 }

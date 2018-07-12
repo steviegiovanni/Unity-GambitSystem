@@ -19,8 +19,8 @@ namespace GameSystems.SkillSystem.Editor{
 			TargetPrefabEffectAsset effectAsset = asset as TargetPrefabEffectAsset;
 			GUILayout.BeginHorizontal();
 			GUILayout.Space (20);
-			effectAsset.Prefab = EditorGUILayout.ObjectField("Prefab ",effectAsset.Prefab, typeof(UnityEngine.Object),false);
-			effectAsset.PrefabName = effectAsset.Prefab.name+".prefab";
+			//effectAsset.Prefab = EditorGUILayout.ObjectField("Prefab ",effectAsset.Prefab, typeof(UnityEngine.Object),false);
+			//effectAsset.PrefabName = effectAsset.Prefab.name+".prefab";
 			GUILayout.EndHorizontal ();
 		}
 

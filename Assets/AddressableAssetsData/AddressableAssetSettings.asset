@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
+  m_Name: AddressableAssetSettings
+  m_EditorClassIdentifier: 
+  pathForAsset: Assets/AddressableAssetsData/AddressableAssetSettings.asset
+  m_groups:
+  - name: Built In Data
+    guid: dce27bfbe6ec95940b2499bec6ac2f4c
+    m_serializeEntries:
+    - m_guid: Resources
+      m_address: Resources
+      m_readOnly: 1
+      m_serializedLabels: []
+    - m_guid: EditorSceneList
+      m_address: EditorSceneList
+      m_readOnly: 1
+      m_serializedLabels: []
+    processor: {fileID: 11400000, guid: dce27bfbe6ec95940b2499bec6ac2f4c, type: 2}
+    isDefault: 0
+    readOnly: 1
+  - name: Default Local Group
+    guid: 1d69ed3b5c1e11d4cbe8dffd524b9b71
+    m_serializeEntries:
+    - m_guid: 33587b18aae619343bb85921445cc3af
+      m_address: Meteor.prefab
+      m_readOnly: 0
+      m_serializedLabels: []
+    processor: {fileID: 11400000, guid: 1d69ed3b5c1e11d4cbe8dffd524b9b71, type: 2}
+    isDefault: 1
+    readOnly: 0
+  - name: Remote Packed Content Group
+    guid: 38bfb664acc23624e876ab4fa030817a
+    m_serializeEntries: []
+    processor: {fileID: 11400000, guid: 38bfb664acc23624e876ab4fa030817a, type: 2}
+    isDefault: 0
+    readOnly: 0
+  m_buildSettings:
+    m_compression:
+      compression: 3
+      level: 5
+      blockSize: 131072
+    m_compileScriptsInVirtualMode: 0
+    m_bundleBuildPath: Temp/AddressableAssetsBundles
+  m_profileSettings:
+    m_profiles:
+    - m_inheritedParent: 
+      m_id: e5c856405b8dcd54498fc65a65668b63
+      m_profileName: Default
+      m_values:
+      - m_id: c36a9a0236585f84c871b444387fe2a8
+        m_value: Assets/StreamingAssets
+      - m_id: d3cc69454ef6d8740b86f4258ac21e5b
+        m_value: '{UnityEngine.Application.streamingAssetsPath}'
+      - m_id: db64f08139b6f9b49a98bb59cfee77f5
+        m_value: ServerData/[UnityEditor.EditorUserBuildSettings.activeBuildTarget]
+      - m_id: 331d3e2d0fe6e0049bda24c122fac0a8
+        m_value: http://localhost/[UnityEditor.EditorUserBuildSettings.activeBuildTarget]
+      - m_id: 5eb7cad2da7bdc341bc3028c21ee4639
+        m_value: 1
+      - m_id: 3b9faa433b6a17748836fd51d28e358a
+        m_value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+    m_profileEntryNames:
+    - id: 42ee96265918b4547a969f8853c3d196
+      name: <custom>
+      inlineUsage: 1
+    - id: c36a9a0236585f84c871b444387fe2a8
+      name: LocalBuildPath
+      inlineUsage: 0
+    - id: d3cc69454ef6d8740b86f4258ac21e5b
+      name: LocalLoadPrefix
+      inlineUsage: 0
+    - id: db64f08139b6f9b49a98bb59cfee77f5
+      name: RemoteBuildPath
+      inlineUsage: 0
+    - id: 331d3e2d0fe6e0049bda24c122fac0a8
+      name: RemoteLoadPrefix
+      inlineUsage: 0
+    - id: 5eb7cad2da7bdc341bc3028c21ee4639
+      name: ContentVersion
+      inlineUsage: 0
+    - id: 3b9faa433b6a17748836fd51d28e358a
+      name: BuildTarget
+      inlineUsage: 0
+  m_labelTable:
+    m_labelNames:
+    - default
+    - Meteor
+  m_activeProfileId: e5c856405b8dcd54498fc65a65668b63
