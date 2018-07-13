@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using GameSystems;
 using GameSystems.SkillSystem;
 using GameSystems.PerceptionSystem;
 using GameSystems.GambitSystem;
@@ -38,6 +39,14 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	public bool TryGetStatPercentValue (string statName, out float statValue){
 		statValue = (float)Health / (float)MaxHealth;
 		return true;
+	}
+
+	public void ModifyStat(string statName,float modifier, int flatValue, int baseValue){
+		Health += (int)(modifier * baseValue + (float)flatValue); 
+	}
+
+	public int GetStatValue(string statName){
+		return Health;
 	}
 
 	#endregion

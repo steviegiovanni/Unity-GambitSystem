@@ -19,7 +19,10 @@ namespace GameSystems.SkillSystem.Editor{
 			return new IEditorExtension[] {
 				new StatGlobalEffectEditorExtension(),
 				new PositionPrefabEffectEditorExtension(),
-				new TargetPrefabEffectEditorExtension()
+				new TargetPrefabEffectEditorExtension(),
+				new TargetStatEffectEditorExtension(),
+				new TargetAOEStatEffectEditorExtension(),
+				new PositionAOEStatEffectEditorExtension()
 			};
 		}
 

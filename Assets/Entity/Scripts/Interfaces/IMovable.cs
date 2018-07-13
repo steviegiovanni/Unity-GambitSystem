@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems{
 	/// <summary>
 	/// an entity implementing this interface should have the following
 	/// - a function that moves the entity to a certain position

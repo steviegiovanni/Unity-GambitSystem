@@ -34,12 +34,41 @@ namespace GameSystems{
 			set{ _radius = value;}
 		}
 
+		private float _modifier;
+		public float Modifier{
+			get{ return _modifier;}
+			set{ _modifier = value;}
+		}
+
+		public string _statBase;
+		public string StatBase{
+			get{ return _statBase;}
+			set{ _statBase = value;}
+		}
+
+		private int _flatValue;
+		public int FlatValue{
+			get{ return _flatValue;}
+			set{ _flatValue = value;}
+		}
+
+		public string _targetStat;
+		public string TargetStat{
+			get{ return _targetStat;}
+			set{ _targetStat = value;}
+		}
+
 		public PositionAOEStatEffect():base(){}
 		public PositionAOEStatEffect(float delay):base(delay){}
 		public PositionAOEStatEffect(PositionAOEStatEffectAsset asset):base(asset){
 			IncludeSelf = asset.IncludeSelf;
 			TargetType = asset.TargetType;
 			Radius = asset.Radius;
+
+			Modifier = asset.Modifier;
+			StatBase = asset.StatBase;
+			FlatValue = asset.FlatValue;
+			TargetStat = asset.TargetStat;
 		}
 
 		public override void ApplyEffect ()
