@@ -35,7 +35,7 @@ namespace GameSystems{
 			case "Effect":
 				{
 					PrefabName = reader.GetAttrString ("PrefabName","");
-					/*AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
+					AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
 					int i = 0;
 					bool found = false;
 					while (i < bundles.Length && !found) {
@@ -48,7 +48,7 @@ namespace GameSystems{
 					if (found)
 						Prefab = bundles [i].LoadAsset (PrefabName);
 					else
-						Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (PrefabName);*/
+						Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (PrefabName);
 					//Prefab = AssetDatabase.LoadAssetAtPath <Object>(reader.GetAttrString ("Path", ""));
 				}
 				break;

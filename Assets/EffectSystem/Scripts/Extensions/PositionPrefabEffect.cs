@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement;
+//using UnityEngine.AddressableAssets;
+//using UnityEngine.ResourceManagement;
 
 namespace GameSystems{
 	/// <summary>
@@ -21,7 +21,7 @@ namespace GameSystems{
 			//Prefab = asset.Prefab;
 			//Prefab = AssetBundle.LoadFromFile(Application.streamingAssetsPath+"/assetbundles/effects").LoadAsset(asset.PrefabName);
 
-			/*AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
+			AssetBundle [] bundles = Resources.FindObjectsOfTypeAll<AssetBundle> ();
 			int i = 0;
 			bool found = false;
 			while (i < bundles.Length && !found) {
@@ -36,12 +36,12 @@ namespace GameSystems{
 			else {
 				Debug.Log ("not found");
 				Prefab = AssetBundle.LoadFromFile (Application.streamingAssetsPath + "/assetbundles/effects").LoadAsset (asset.PrefabName);
-			}*/
+			}
 		}
 
-		void Temp(IAsyncOperation<IList<IResourceLocation>> op){
-			Debug.Log ("SHALALALALALALA");
-		}
+		//void Temp(IAsyncOperation<IList<IResourceLocation>> op){
+		//	Debug.Log ("SHALALALALALALA");
+		//}
 
 		/// <summary>
 		/// apply the effect. override this for other extensions.
@@ -53,8 +53,8 @@ namespace GameSystems{
 				if (posSource != null) {
 					//Debug.Log ("WHAT THE FUCK");
 					//Addressables.LoadAssets<IResourceLocation> ("Meteor", null).Completed += Temp;
-					Addressables.Instantiate<GameObject> ("Meteor.prefab",posSource.GetPosition(),Quaternion.identity);
-					//GameObject.Instantiate (Prefab,posSource.GetPosition(),Quaternion.identity);
+					//Addressables.Instantiate<GameObject> ("Meteor.prefab",posSource.GetPosition(),Quaternion.identity);
+					GameObject.Instantiate (Prefab,posSource.GetPosition(),Quaternion.identity);
 				}
 			//}
 		}
