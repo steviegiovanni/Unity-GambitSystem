@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameSystems.PerceptionSystem;
 
 namespace GameSystems{
 	/// <summary>
@@ -74,6 +75,40 @@ namespace GameSystems{
 		public override void ApplyEffect ()
 		{
 			Debug.Log ("applying AOE stat effect on position");
+
+			int baseValue;
+			if (StatBase == "") {
+				baseValue = 1;
+			} else {
+				IHasStats owner = Source.GetOwner ().GetComponent<IHasStats>();
+				if (owner != null) {
+					baseValue = owner.GetStatValue (StatBase);
+				} else {
+					baseValue = 1;
+				}
+			}
+
+			// get source as a targettable source
+			IHasPositionEffects positionSource = Source as IHasPositionEffects;
+			if (positionSource == null)
+				return;
+
+			// get source owner
+			IHasPerception perceptionOwner = Source.GetOwner().GetComponent<IHasPerception>();
+			if (perceptionOwner == null)
+				return;		
+
+			foreach (var percept in perceptionOwner.Perception.Percepts.Values) {
+				IPerceivable perceivable = percept.Entity.GetComponent<IPerceivable>();
+				if (perceivable != null && ((perceivable.Tag & TargetType) != 0) && (Vector3.Magnitude (percept.Entity.transform.position - positionSource.GetPosition ()) <= Radius)) {
+					if (percept.Entity != Source.GetOwner () || IncludeSelf) {
+						IHasStats target = percept.Entity.GetComponent<IHasStats> ();
+						if (target != null) {
+							target.ModifyStat (TargetStat, Modifier, FlatValue, baseValue);
+						}
+					}
+				}
+			}
 		}
 	}
 }
