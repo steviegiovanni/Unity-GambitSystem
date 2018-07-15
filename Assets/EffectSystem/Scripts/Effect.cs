@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace GameSystems{
 	/// <summary>
-	/// Skill effect. Every skill has a list of effects associated to it.
-	/// The effects is delayed from the moment the skill coroutine is run.
+	/// Effect. Skill or item has a list of effects associated to it.
+	/// The effects is delayed from the moment the skill or item is used.
 	/// </summary>
 	public class Effect {
 		/// <summary>
-		/// the delay of the skill effect
+		/// the delay of the effect
 		/// </summary>
 		private float _delay;
 		public float Delay{
@@ -18,28 +18,12 @@ namespace GameSystems{
 		}
 
 		/// <summary>
-		/// apply the effect. override this for other extensions.
+		/// apply the effect. override this for other extensions. the base effect does nothing
 		/// </summary>
-		public virtual void ApplyEffect(){
-			Debug.Log ("apply skill effect");
-		}
+		public virtual void ApplyEffect(){}
 
 		/// <summary>
-		/// default constructor
-		/// </summary>
-		public Effect(){
-			Delay = 0.0f;
-		}
-
-		/// <summary>
-		/// constructor with specified delay
-		/// </summary>
-		public Effect(float delay){
-			Delay = delay;
-		}
-
-		/// <summary>
-		/// constructor with skilleffect asset as input
+		/// constructor with effect asset as input
 		/// </summary>
 		public Effect(EffectAsset asset){
 			Delay = asset.Delay;

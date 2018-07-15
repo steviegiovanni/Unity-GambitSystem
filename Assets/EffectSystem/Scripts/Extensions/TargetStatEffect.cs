@@ -30,9 +30,7 @@ namespace GameSystems{
 			get{ return _targetStat;}
 			set{ _targetStat = value;}
 		}
-
-		public TargetStatEffect():base(){}
-		public TargetStatEffect(float delay):base(delay){}
+			
 		public TargetStatEffect(TargetStatEffectAsset asset):base(asset){
 			Modifier = asset.Modifier;
 			StatBase = asset.StatBase;

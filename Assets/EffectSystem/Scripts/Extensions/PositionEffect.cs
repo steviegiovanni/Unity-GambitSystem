@@ -7,8 +7,6 @@ namespace GameSystems{
 	/// Positional effect
 	/// </summary>
 	public class PositionEffect : Effect{
-		public PositionEffect():base(){}
-		public PositionEffect(float delay):base(delay){}
 		public PositionEffect(PositionEffectAsset asset):base(asset){}
 	}
 }

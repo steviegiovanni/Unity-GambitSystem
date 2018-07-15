@@ -3,7 +3,7 @@ using UtilitySystems.XmlDatabase;
 
 namespace GameSystems{
 	/// <summary>
-	/// Skill effect asset. Represents an xml entry on the skill collection database
+	/// effect asset. Represents an xml entry with the detail of the effect
 	/// </summary>
 	public class EffectAsset : IXmlOnSaveAsset, IXmlOnLoadAsset {
 		public float Delay{ get; set;}

@@ -34,9 +34,7 @@ namespace GameSystems{
 			get{ return _radius;}
 			set{ _radius = value;}
 		}
-
-		public TargetAOEStatEffect():base(){}
-		public TargetAOEStatEffect(float delay):base(delay){}
+			
 		public TargetAOEStatEffect(TargetAOEStatEffectAsset asset):base(asset){
 			IncludeTarget = asset.IncludeTarget;
 			TargetType = asset.TargetType;

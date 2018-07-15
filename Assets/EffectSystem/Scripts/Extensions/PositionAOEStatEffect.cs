@@ -58,9 +58,7 @@ namespace GameSystems{
 			get{ return _targetStat;}
 			set{ _targetStat = value;}
 		}
-
-		public PositionAOEStatEffect():base(){}
-		public PositionAOEStatEffect(float delay):base(delay){}
+			
 		public PositionAOEStatEffect(PositionAOEStatEffectAsset asset):base(asset){
 			IncludeSelf = asset.IncludeSelf;
 			TargetType = asset.TargetType;

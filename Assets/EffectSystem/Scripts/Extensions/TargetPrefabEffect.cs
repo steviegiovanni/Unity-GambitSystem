@@ -14,9 +14,7 @@ namespace GameSystems{
 			get{ return _prefab;}
 			set{ _prefab = value;}
 		}
-
-		public TargetPrefabEffect():base(){}
-		public TargetPrefabEffect(float delay):base(delay){}
+			
 		public TargetPrefabEffect(TargetPrefabEffectAsset asset):base(asset){
 			//Prefab = asset.Prefab;
 			//Prefab = AssetBundle.LoadFromFile(Application.streamingAssetsPath+"/assetbundles/effects").LoadAsset(asset.PrefabName);

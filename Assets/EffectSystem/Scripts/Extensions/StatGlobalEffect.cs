@@ -26,32 +26,45 @@ namespace GameSystems{
 			set{ _targetType = value;}
 		}
 
+		/// <summary>
+		/// modifier of the effect
+		/// </summary>
 		private float _modifier;
 		public float Modifier{
 			get{ return _modifier;}
 			set{ _modifier = value;}
 		}
 
+		/// <summary>
+		/// the base stat of the owner that will be multiplied by the modifier
+		/// </summary>
 		public string _statBase;
 		public string StatBase{
 			get{ return _statBase;}
 			set{ _statBase = value;}
 		}
 
+		/// <summary>
+		/// The flat value of the stat effect
+		/// </summary>
 		private int _flatValue;
 		public int FlatValue{
 			get{ return _flatValue;}
 			set{ _flatValue = value;}
 		}
 
+		/// <summary>
+		/// the target stat
+		/// </summary>
 		public string _targetStat;
 		public string TargetStat{
 			get{ return _targetStat;}
 			set{ _targetStat = value;}
 		}
 
-		public StatGlobalEffect():base(){}
-		public StatGlobalEffect(float delay):base(delay){}
+		/// <summary>
+		/// constructor taking an effect asset
+		/// </summary>
 		public StatGlobalEffect(StatGlobalEffectAsset asset):base(asset){
 			TargetType = asset.TargetType;
 			IncludeSelf = asset.IncludeSelf;
@@ -66,28 +79,27 @@ namespace GameSystems{
 		{
 			Debug.Log ("applying room wide stat effect");
 
-			int baseValue;
-			if (StatBase == "") {
-				baseValue = 1;
-			} else {
+			// get the base stat value of the user of this effect
+			int baseValue = 0;
+			if (StatBase != "") { // prevents people forgetting to give a stat base name
 				IHasStats owner = Source.GetOwner ().GetComponent<IHasStats>();
 				if (owner != null) {
-					baseValue = owner.GetStatValue (StatBase);
-				} else {
-					baseValue = 1;
-				}
+					owner.TryGetStatValue (StatBase, out baseValue); // prevents the case where the statname doesn't exist
+				} 
 			}
 
-			// get source owner
+			// if the owner doesn't have a perception component, it sees nothing basically, nothing can be affected
 			IHasPerception perceptionOwner = Source.GetOwner().GetComponent<IHasPerception>();
 			if (perceptionOwner == null)
 				return;		
 
+			// for each found percept, if the tag is inside the target type mask, process
 			foreach (var percept in perceptionOwner.Perception.Percepts.Values) {
 				IPerceivable perceivable = percept.Entity.GetComponent<IPerceivable>();
 				if (perceivable != null && ((perceivable.Tag & TargetType) != 0)) {
 					if (percept.Entity != Source.GetOwner () || IncludeSelf) {
-						IHasStats target = percept.Entity.GetComponent<IHasStats> ();
+						// this effect should only apply to perceivable that has stats component
+						IHasStats target = percept.Entity.GetComponent<IHasStats> (); 
 						if (target != null) {
 							target.ModifyStat (TargetStat, Modifier, FlatValue, baseValue);
 						}
