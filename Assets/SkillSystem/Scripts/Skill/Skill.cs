@@ -141,6 +141,7 @@ namespace GameSystems.SkillSystem{
 				this.Effects.Add (effect.CreateInstance ());
 				this.Effects [this.Effects.Count - 1].Source = this;
 			}
+			Effects.Sort ((e1, e2) => e1.Delay.CompareTo (e2.Delay));
 		}
 
 		/// <summary>

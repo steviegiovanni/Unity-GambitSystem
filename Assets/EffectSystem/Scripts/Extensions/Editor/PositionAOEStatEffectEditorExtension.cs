@@ -17,20 +17,6 @@ namespace GameSystems.SkillSystem.Editor{
 		public override void OnGUI (object asset)
 		{
 			PositionAOEStatEffectAsset effectAsset = asset as PositionAOEStatEffectAsset;
-			GUILayout.BeginHorizontal ();
-			GUILayout.Space (20);
-			effectAsset.IncludeSelf = GUILayout.Toggle (effectAsset.IncludeSelf, "Include self ", GUILayout.Width (150));
-			GUILayout.EndHorizontal ();
-
-			GUILayout.BeginHorizontal ();
-			GUILayout.Space (20);
-			effectAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField("Target Type ", (PerceptionTags)effectAsset.TargetType));
-			GUILayout.EndHorizontal ();
-
-			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Radius", GUILayout.Width (100));
-			effectAsset.Radius= EditorGUILayout.FloatField (effectAsset.Radius);
-			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label ("Stat Base", GUILayout.Width (100));
@@ -50,6 +36,21 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label ("Modifier", GUILayout.Width (100));
 			effectAsset.Modifier= EditorGUILayout.FloatField (effectAsset.Modifier);
+			GUILayout.EndHorizontal ();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Space (20);
+			effectAsset.IncludeSelf = GUILayout.Toggle (effectAsset.IncludeSelf, "Include self ", GUILayout.Width (150));
+			GUILayout.EndHorizontal ();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Space (20);
+			effectAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField("Target Type ", (PerceptionTags)effectAsset.TargetType));
+			GUILayout.EndHorizontal ();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("Radius", GUILayout.Width (100));
+			effectAsset.Radius= EditorGUILayout.FloatField (effectAsset.Radius);
 			GUILayout.EndHorizontal ();
 		}
 
