@@ -16,6 +16,7 @@ namespace GameSystems.SkillSystem{
 		public bool Interruptable{ get; set;}
 		public int RequiredLevel{ get; set;}
 		public List<EffectAsset> Effects{ get; private set;}
+		public List<SkillPrerequisiteAsset> Prerequisites{ get; private set;}
 
 		public virtual Skill CreateInstance(){
 			return new Skill (this);
@@ -51,6 +52,13 @@ namespace GameSystems.SkillSystem{
 					}
 				}
 				break;
+			case "Prerequisite":
+				{
+					var asset = new SkillPrerequisiteAsset ();
+					Prerequisites.Add (asset);
+					Prerequisites [Prerequisites.Count - 1].OnLoadAsset (reader);
+				}
+				break;
 			default:
 				{
 					if (Effects.Count > 0)
@@ -73,6 +81,11 @@ namespace GameSystems.SkillSystem{
 			writer.SetAttr ("Delay", Delay);
 			writer.SetAttr ("Interruptable", Interruptable);
 			writer.SetAttr ("Level", RequiredLevel);
+			foreach (var prerequisite in Prerequisites) {
+				writer.WriteStartElement ("Prerequisite");
+				prerequisite.OnSaveAsset (writer);
+				writer.WriteEndElement ();
+			}
 			foreach(var effect in Effects){
 				writer.WriteStartElement ("Effect");
 				writer.SetAttr ("AssetType", effect.GetType ().Name);
@@ -83,6 +96,9 @@ namespace GameSystems.SkillSystem{
 
 		#endregion
 
-		public SkillAsset():base(){Effects = new List<EffectAsset> ();}
+		public SkillAsset():base(){
+			Effects = new List<EffectAsset> ();
+			Prerequisites = new List<SkillPrerequisiteAsset> ();
+		}
 	}
 }

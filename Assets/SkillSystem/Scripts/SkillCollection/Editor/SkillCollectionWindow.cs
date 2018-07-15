@@ -122,7 +122,7 @@ namespace GameSystems.SkillSystem.Editor{
 					}).ShowAsContext ();
 				}
 				if (GUILayout.Button ("-", EditorStyles.toolbarButton)
-				   && EditorUtility.DisplayDialog ("Delete Skill", "Are you sure you want to delete the " + "selected stat?", "Delete", "Cancel")) {
+				   && EditorUtility.DisplayDialog ("Delete Skill", "Are you sure you want to delete the selected skill?", "Delete", "Cancel")) {
 					if (SelectedSkillIndex >= 0 && SelectedSkillIndex < selectedCollection.Skills.Count) {
 						selectedCollection.Skills.RemoveAt (SelectedSkillIndex--);
 						if (SelectedSkillIndex == -1 && selectedCollection.Skills.Count > 0) {
@@ -183,6 +183,25 @@ namespace GameSystems.SkillSystem.Editor{
 			foreach (var extension in SkillEditorUtility.GetExtensions()) {
 				if (extension.CanHandleType (skill.GetType()))
 					extension.OnGUI (skill);
+			}
+
+			for (int i = 0; i < skill.Prerequisites.Count; i++) {
+				SkillPrerequisiteAsset prerequisite = skill.Prerequisites [i];
+				GUILayout.BeginHorizontal (EditorStyles.toolbar);
+				if (GUILayout.Button ("-", EditorStyles.toolbarButton, GUILayout.Width (30))
+					&& EditorUtility.DisplayDialog ("Remove prerequisite", "Are you sure you want to delete the prerequisite?", "Delete", "Cancel")) {
+					skill.Prerequisites.RemoveAt (i);
+				}
+				GUILayout.Label ("StatName", GUILayout.Width (100));
+				prerequisite.StatName = EditorGUILayout.TextField (prerequisite.StatName);
+				GUILayout.Label ("StatValue", GUILayout.Width (100));
+				prerequisite.StatValue = EditorGUILayout.IntField (prerequisite.StatValue);
+				GUILayout.EndHorizontal ();
+			}
+
+			if(GUILayout.Button("Add Prerequisite", EditorStyles.toolbarButton)){
+				var newPrerequisite = new SkillPrerequisiteAsset ();
+				skill.Prerequisites.Add (newPrerequisite);
 			}
 
 			GUILayout.EndVertical ();

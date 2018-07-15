@@ -39,16 +39,17 @@ namespace UtilitySystems.XmlDatabase.Editor {
                     GUILayout.EndHorizontal();
                 }
             }
+				
+			EditorGUILayout.BeginHorizontal ();
+			EditorGUILayout.BeginVertical (GUILayout.Width (selectorWidth));
+			DisplaySelector ();
+			EditorGUILayout.EndVertical ();
+			EditorGUILayout.BeginVertical ();
+			DisplayContent ();
+			EditorGUILayout.EndVertical ();
+			EditorGUILayout.EndHorizontal ();
 
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.BeginVertical(GUILayout.Width(selectorWidth));
-            DisplaySelector();
-            EditorGUILayout.EndVertical();
-            EditorGUILayout.BeginVertical();
-            DisplayContent();
-            EditorGUILayout.EndVertical();
-            EditorGUILayout.EndHorizontal();
-            DisplayFooter();
+			DisplayFooter ();
 
             InvokeActionQueue();
         }

@@ -11,6 +11,8 @@ namespace GameSystems{
 		float GetStatPercentValue (string statName);
 		bool TryGetStatPercentValue (string statName, out float value); // a way to return false if stat doesn't exist
 		void ModifyStat(string statName,float modifier, int flatValue, int baseValue);
+		void ModifyStat (string statName, int value);
 		int GetStatValue (string statName);
+		bool TryGetStatValue (string statName, out int value);
 	}
 }

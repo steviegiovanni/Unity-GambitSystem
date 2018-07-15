@@ -109,6 +109,15 @@ namespace GameSystems.SkillSystem{
 				return _effects;
 			}
 		}
+
+		private List<SkillPrerequisite> _prerequisites;
+		public List<SkillPrerequisite> Prerequisites{
+			get{
+				if (_prerequisites == null)
+					_prerequisites = new List<SkillPrerequisite> ();
+				return _prerequisites;
+			}
+		}
 			
 		/// <summary>
 		/// constructor with skill asset as input
@@ -124,6 +133,10 @@ namespace GameSystems.SkillSystem{
 			CurrentCooldown = Cooldown;
 			RequiredLevel = skillAsset.RequiredLevel;
 
+			foreach (var prerequisite in skillAsset.Prerequisites) {
+				this.Prerequisites.Add (prerequisite.CreateInstance ());
+			}
+
 			foreach (var effect in skillAsset.Effects) {
 				this.Effects.Add (effect.CreateInstance ());
 				this.Effects [this.Effects.Count - 1].Source = this;
@@ -137,6 +150,14 @@ namespace GameSystems.SkillSystem{
 		public IEnumerator SkillCoroutine(){
 			if (!IsValid ())
 				yield return null;
+
+
+			IHasStats statOwner = Owner.GetComponent<IHasStats> ();
+			if (statOwner == null)
+				yield return null;
+			for (int i = 0; i < Prerequisites.Count; i++) {
+				Prerequisites [i].ApplyPrerequisite (statOwner);
+			}
 
 			Debug.Log ("Using " + Name);
 			float startTime = Time.time;
@@ -152,6 +173,21 @@ namespace GameSystems.SkillSystem{
 
 		public virtual bool IsValid(){
 			return true;
+		}
+
+		public bool IsPrerequisitesMet(){
+			IHasStats statOwner = Owner.GetComponent<IHasStats> ();
+			if (statOwner == null)
+				return false;
+
+			bool retval = true;
+			foreach (var prereq in Prerequisites) {
+				retval = retval && prereq.CheckPrerequisite (statOwner);
+				if (!retval)
+					break;
+			}
+
+			return retval;
 		}
 	}
 }

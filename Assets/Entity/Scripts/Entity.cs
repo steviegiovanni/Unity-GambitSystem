@@ -45,8 +45,17 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 		Health += (int)(modifier * baseValue + (float)flatValue); 
 	}
 
+	public void ModifyStat(string statName,int value){
+		Health += value; 
+	}
+
 	public int GetStatValue(string statName){
 		return Health;
+	}
+
+	public bool TryGetStatValue(string statName, out int value){
+		value = Health;
+		return true;
 	}
 
 	#endregion

@@ -160,6 +160,11 @@ namespace GameSystems.GambitSystem{
 				IsReady = false;
 				return;
 			}
+
+			if (!Skill.IsPrerequisitesMet ()) {
+				IsReady = false;
+				return;
+			}
 				
 			IHasLevel levelledOwner = Owner.GetComponent<IHasLevel>();
 			if (levelledOwner == null) {
