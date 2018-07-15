@@ -51,6 +51,9 @@ namespace GameSystems.SkillSystem{
 			TargetType = skillAsset.TargetType;
 		}
 
+		/// <summary>
+		/// override is valid (check if a target is assigned to this targettable skill)
+		/// </summary>
 		public override bool IsValid(){
 			return Target == null;
 		}

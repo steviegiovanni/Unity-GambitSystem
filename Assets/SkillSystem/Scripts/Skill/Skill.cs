@@ -110,6 +110,9 @@ namespace GameSystems.SkillSystem{
 			}
 		}
 
+		/// <summary>
+		/// list of prerequisites to be able to use the skill
+		/// </summary>
 		private List<SkillPrerequisite> _prerequisites;
 		public List<SkillPrerequisite> Prerequisites{
 			get{
@@ -152,7 +155,7 @@ namespace GameSystems.SkillSystem{
 			if (!IsValid ())
 				yield return null;
 
-
+			// apply all prerequisites
 			IHasStats statOwner = Owner.GetComponent<IHasStats> ();
 			if (statOwner == null)
 				yield return null;
@@ -161,6 +164,7 @@ namespace GameSystems.SkillSystem{
 			}
 
 			Debug.Log ("Using " + Name);
+			// apply all effects
 			float startTime = Time.time;
 			float curDelay = 0.0f;
 			for (int i = 0; i < Effects.Count; i++) {
@@ -172,10 +176,16 @@ namespace GameSystems.SkillSystem{
 			yield return new WaitForSeconds(Delay - (Time.time - startTime));
 		}
 
+		/// <summary>
+		/// check whether skill is valid or not (has target, etc.) override this function for each skill extension
+		/// </summary>
 		public virtual bool IsValid(){
 			return true;
 		}
 
+		/// <summary>
+		/// check if all prerequisites to use the skill is met
+		/// </summary>
 		public bool IsPrerequisitesMet(){
 			IHasStats statOwner = Owner.GetComponent<IHasStats> ();
 			if (statOwner == null)

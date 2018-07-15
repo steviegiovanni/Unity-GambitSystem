@@ -23,10 +23,6 @@ namespace GameSystems.SkillSystem{
 					StatName = reader.GetAttrString ("StatName", "");
 				}
 				break;
-			default:
-				{
-				}
-				break;
 			}
 		}
 

@@ -40,14 +40,10 @@ namespace GameSystems.SkillSystem{
 				break;
 			case "Effect":
 				{
-					// get the skill effect type
 					string skillEffectAssetType = reader.GetAttrString ("AssetType", "");
-
-					// create an instance of the skill asset
 					var asset = SkillEffectUtility.CreateAssetOfType(skillEffectAssetType);
 					if (asset != null) {
 						Effects.Add (asset);
-						// initialize the value
 						Effects[Effects.Count-1].OnLoadAsset(reader);
 					}
 				}

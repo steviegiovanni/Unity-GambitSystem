@@ -25,10 +25,6 @@ namespace GameSystems.SkillSystem{
 					IncludeSelf = reader.GetBoolAttribute("IncludeSelf", false);
 				}
 				break;
-			default:
-				{
-				}
-				break;
 			}
 		}
 
