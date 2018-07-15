@@ -5,7 +5,7 @@ using GameSystems.SkillSystem.Database;
 using GameSystems.PerceptionSystem;
 using UtilitySystems.XmlDatabase.Editor;
 
-namespace GameSystems.SkillSystem.Editor{
+namespace GameSystems.Editor{
 	public class TargetAOEStatEffectEditorExtension : EditorExtension {
 		#region implemented abstract members of EditorExtension
 
@@ -18,18 +18,19 @@ namespace GameSystems.SkillSystem.Editor{
 		{
 			TargetAOEStatEffectAsset effectAsset = asset as TargetAOEStatEffectAsset;
 
+			GUILayout.Space (10);
+
 			GUILayout.BeginHorizontal ();
-			GUILayout.Space (20);
 			effectAsset.IncludeTarget = GUILayout.Toggle (effectAsset.IncludeTarget, "Include Target ", GUILayout.Width (150));
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Space (20);
+			GUILayout.Label ("Target Type", GUILayout.Width (150));
 			effectAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField("Target Type ", (PerceptionTags)effectAsset.TargetType));
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Radius", GUILayout.Width (100));
+			GUILayout.Label ("Radius", GUILayout.Width (150));
 			effectAsset.Radius= EditorGUILayout.FloatField (effectAsset.Radius);
 			GUILayout.EndHorizontal ();
 		}

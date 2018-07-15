@@ -1,7 +1,6 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
 using UnityEngine;
-//using UnityEditor;
 
 namespace GameSystems{
 	/// <summary>

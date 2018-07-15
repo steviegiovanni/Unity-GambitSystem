@@ -5,6 +5,7 @@ using UtilitySystems.XmlDatabase.Editor;
 using System.Linq;
 using GameSystems.SkillSystem.Database;
 using GameSystems.SkillSystem;
+using GameSystems.Editor;
 
 namespace GameSystems.SkillSystem.Editor{
 	public class SkillCollectionWindow : XmlDatabaseWindowComplex<SkillCollectionAsset> {
@@ -241,14 +242,15 @@ namespace GameSystems.SkillSystem.Editor{
 
 
 				if (SelectedEffectIndex == i) {
-					foreach (var extension in SkillEffectEditorUtility.GetExtensions()) {
+					GUILayout.BeginVertical (EditorStyles.helpBox);
+					foreach (var extension in EffectEditorUtility.GetExtensions()) {
 						if (extension.CanHandleType (effect.GetType()))
 							extension.OnGUI (effect);
 					}
+					GUILayout.EndVertical ();
 				}
-					
-
 			}
+
 			//Object source = null;
 			//source = EditorGUILayout.ObjectField(source, typeof(Object), true);
 			//AssetDatabase.GetAssetPath (source);
@@ -259,20 +261,20 @@ namespace GameSystems.SkillSystem.Editor{
 
 			if(GUILayout.Button("Add Effect", EditorStyles.toolbarButton)){
 				if (typeof(PositionSkillAsset).IsAssignableFrom (skill.GetType ())) {
-					XmlDatabaseEditorUtility.GetGenericMenu (SkillEffectEditorUtility.GetPositionEffectNames (), (index) => {
-						var skillEffectAsset = SkillEffectEditorUtility.CreatePositionEffectAsset (index);
+					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetPositionEffectNames (), (index) => {
+						var skillEffectAsset = EffectEditorUtility.CreatePositionEffectAsset (index);
 						skill.Effects.Add (skillEffectAsset);
 						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
 					}).ShowAsContext ();
 				} else if (typeof(TargetSkillAsset).IsAssignableFrom (skill.GetType ())) {
-					XmlDatabaseEditorUtility.GetGenericMenu (SkillEffectEditorUtility.GetTargetEffectNames (), (index) => {
-						var skillEffectAsset = SkillEffectEditorUtility.CreateTargetEffectAsset (index);
+					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetTargetEffectNames (), (index) => {
+						var skillEffectAsset = EffectEditorUtility.CreateTargetEffectAsset (index);
 						skill.Effects.Add (skillEffectAsset);
 						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
 					}).ShowAsContext ();
 				} else {
-					XmlDatabaseEditorUtility.GetGenericMenu (SkillEffectEditorUtility.GetNames (), (index) => {
-						var skillEffectAsset = SkillEffectEditorUtility.CreateAsset (index);
+					XmlDatabaseEditorUtility.GetGenericMenu (EffectEditorUtility.GetNames (), (index) => {
+						var skillEffectAsset = EffectEditorUtility.CreateAsset (index);
 						skill.Effects.Add (skillEffectAsset);
 						EditorWindow.FocusWindowIfItsOpen<SkillCollectionWindow> ();
 					}).ShowAsContext ();

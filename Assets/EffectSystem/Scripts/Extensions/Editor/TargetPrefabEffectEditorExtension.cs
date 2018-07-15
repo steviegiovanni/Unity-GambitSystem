@@ -5,7 +5,7 @@ using GameSystems.SkillSystem.Database;
 using GameSystems.PerceptionSystem;
 using UtilitySystems.XmlDatabase.Editor;
 
-namespace GameSystems.SkillSystem.Editor{
+namespace GameSystems.Editor{
 	public class TargetPrefabEffectEditorExtension : EditorExtension {
 		#region implemented abstract members of EditorExtension
 
@@ -18,8 +18,8 @@ namespace GameSystems.SkillSystem.Editor{
 		{
 			TargetPrefabEffectAsset effectAsset = asset as TargetPrefabEffectAsset;
 			GUILayout.BeginHorizontal();
-			GUILayout.Space (20);
-			effectAsset.Prefab = EditorGUILayout.ObjectField("Prefab ",effectAsset.Prefab, typeof(UnityEngine.Object),false);
+			GUILayout.Label ("Prefab", GUILayout.Width(150));
+			effectAsset.Prefab = EditorGUILayout.ObjectField(effectAsset.Prefab, typeof(UnityEngine.Object),false);
 			effectAsset.PrefabName = (effectAsset.Prefab != null)?(effectAsset.Prefab.name+".prefab"):"";
 			GUILayout.EndHorizontal ();
 		}

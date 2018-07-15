@@ -6,15 +6,21 @@ using UnityEngine;
 
 namespace GameSystems{
 	/// <summary>
-	/// Targetable effect
+	/// Targetable effect that pops a prefab
 	/// </summary>
 	public class TargetPrefabEffect : TargetEffect{
+		/// <summary>
+		/// The prefab
+		/// </summary>
 		private Object _prefab;
 		public Object Prefab{
 			get{ return _prefab;}
 			set{ _prefab = value;}
 		}
 			
+		/// <summary>
+		/// constructor
+		/// </summary>
 		public TargetPrefabEffect(TargetPrefabEffectAsset asset):base(asset){
 			//Prefab = asset.Prefab;
 			//Prefab = AssetBundle.LoadFromFile(Application.streamingAssetsPath+"/assetbundles/effects").LoadAsset(asset.PrefabName);

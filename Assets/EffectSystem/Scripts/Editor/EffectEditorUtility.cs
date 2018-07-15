@@ -1,19 +1,19 @@
 ﻿using UtilitySystems.XmlDatabase.Editor;
 
 /// <summary>
-/// Helpful methods used for editor scripts that work with SkillEffect
+/// Helpful methods used for editor scripts that work with Effect
 /// 
-/// When adding a new Skill Effect extension follow these steps:
-/// 1) Add the Display name of the new Skill Effect to the GetNames method.
-/// 2) Add a CreateInstance call in CreateAsset for the new Skill Effect, the
+/// When adding a new Effect extension follow these steps:
+/// 1) Add the Display name of the new Effect to the GetNames method.
+/// 2) Add a CreateInstance call in CreateAsset for the new Effect, the
 /// case number should be the index of the new Display name in GetNames.
 /// 3) Id there is an editor extension related add it to the GetExtensions.
 /// Order of extension effects in which order the extensions are displayed.
 /// </summary>
-namespace GameSystems.SkillSystem.Editor{
-	static public class SkillEffectEditorUtility{
+namespace GameSystems.Editor{
+	static public class EffectEditorUtility{
 		/// <summary>
-		/// Gets an array containing all extension that can apply to a skill
+		/// Gets an array containing all extension that can apply to a 
 		/// </summary>
 		static public IEditorExtension[] GetExtensions(){
 			return new IEditorExtension[] {
@@ -27,7 +27,7 @@ namespace GameSystems.SkillSystem.Editor{
 		}
 
 		/// <summary>
-		/// creates an instance of the Skill Asset. the index
+		/// creates an instance of the Asset. the index
 		/// relates to the position of the asset's name within the array
 		/// gotten from GetName() method
 		/// </summary>
@@ -43,7 +43,7 @@ namespace GameSystems.SkillSystem.Editor{
 		}
 
 		/// <summary>
-		/// creates an instance of the Skill Asset. the index
+		/// creates an instance of the Asset. the index
 		/// relates to the position of the asset's name within the array
 		/// gotten from GetName() method
 		/// </summary>
@@ -65,7 +65,7 @@ namespace GameSystems.SkillSystem.Editor{
 		}
 
 		/// <summary>
-		/// creates an instance of the Skill Asset. the index
+		/// creates an instance of the Asset. the index
 		/// relates to the position of the asset's name within the array
 		/// gotten from GetName() method
 		/// </summary>
@@ -89,7 +89,7 @@ namespace GameSystems.SkillSystem.Editor{
 		}
 
 		/// <summary>
-		/// Gets an array of all the names of each Skill type
+		/// Gets an array of all the names of each type
 		/// </summary>
 		static public string[] GetNames(){
 			return new string[] {
@@ -99,7 +99,7 @@ namespace GameSystems.SkillSystem.Editor{
 		}
 
 		/// <summary>
-		/// Gets an array of all the names of each Skill type
+		/// Gets an array of all the names of each type
 		/// </summary>
 		static public string[] GetPositionEffectNames(){
 			return new string[] {
@@ -112,7 +112,7 @@ namespace GameSystems.SkillSystem.Editor{
 		}
 
 		/// <summary>
-		/// Gets an array of all the names of each Skill type
+		/// Gets an array of all the names of each type
 		/// </summary>
 		static public string[] GetTargetEffectNames(){
 			return new string[] {

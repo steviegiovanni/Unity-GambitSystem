@@ -6,15 +6,21 @@ using UnityEngine;
 
 namespace GameSystems{
 	/// <summary>
-	/// Positional effect
+	/// Positional effect that pops a prefab
 	/// </summary>
 	public class PositionPrefabEffect : PositionEffect{
+		/// <summary>
+		/// The prefab
+		/// </summary>
 		private Object _prefab;
 		public Object Prefab{
 			get{ return _prefab;}
 			set{ _prefab = value;}
 		}
 			
+		/// <summary>
+		/// constructor
+		/// </summary>
 		public PositionPrefabEffect(PositionPrefabEffectAsset asset):base(asset){
 			//Prefab = asset.Prefab;
 			//Prefab = AssetBundle.LoadFromFile(Application.streamingAssetsPath+"/assetbundles/effects").LoadAsset(asset.PrefabName);
@@ -49,7 +55,6 @@ namespace GameSystems{
 			//if (Prefab != null) {
 				IHasPositionEffects posSource = Source as IHasPositionEffects;
 				if (posSource != null) {
-					//Debug.Log ("WHAT THE FUCK");
 					//Addressables.LoadAssets<IResourceLocation> ("Meteor", null).Completed += Temp;
 					//Addressables.Instantiate<GameObject> ("Meteor.prefab",posSource.GetPosition(),Quaternion.identity);
 					GameObject.Instantiate (Prefab,posSource.GetPosition(),Quaternion.identity);

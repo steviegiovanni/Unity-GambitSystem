@@ -5,7 +5,7 @@ using GameSystems.SkillSystem.Database;
 using GameSystems.PerceptionSystem;
 using UtilitySystems.XmlDatabase.Editor;
 
-namespace GameSystems.SkillSystem.Editor{
+namespace GameSystems.Editor{
 	public class StatGlobalEffectEditorExtension : EditorExtension {
 		#region implemented abstract members of EditorExtension
 
@@ -19,37 +19,35 @@ namespace GameSystems.SkillSystem.Editor{
 			StatGlobalEffectAsset effectAsset = asset as StatGlobalEffectAsset;
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Stat Base", GUILayout.Width (100));
+			GUILayout.Label ("Source Stat Name", GUILayout.Width (150));
 			effectAsset.StatBase= EditorGUILayout.TextField (effectAsset.StatBase);
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Target Stat", GUILayout.Width (100));
+			GUILayout.Label ("Target Stat Name", GUILayout.Width (150));
 			effectAsset.TargetStat= EditorGUILayout.TextField (effectAsset.TargetStat);
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Flat Value", GUILayout.Width (100));
+			GUILayout.Label ("Base Value", GUILayout.Width (150));
 			effectAsset.FlatValue= EditorGUILayout.IntField (effectAsset.FlatValue);
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Modifier", GUILayout.Width (100));
+			GUILayout.Label ("Modifier", GUILayout.Width (150));
 			effectAsset.Modifier= EditorGUILayout.FloatField (effectAsset.Modifier);
 			GUILayout.EndHorizontal ();
 
-			GUILayout.BeginVertical ();
+			GUILayout.Space (10);
+
 			GUILayout.BeginHorizontal ();
-			GUILayout.Space (20);
 			effectAsset.IncludeSelf = GUILayout.Toggle (effectAsset.IncludeSelf, "Include self ", GUILayout.Width (150));
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Space (20);
-			effectAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField("Target Type ", (PerceptionTags)effectAsset.TargetType));
+			GUILayout.Label ("Target Type", GUILayout.Width (150));
+			effectAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField((PerceptionTags)effectAsset.TargetType));
 			GUILayout.EndHorizontal ();
-
-			GUILayout.EndVertical ();
 
 
 		}
