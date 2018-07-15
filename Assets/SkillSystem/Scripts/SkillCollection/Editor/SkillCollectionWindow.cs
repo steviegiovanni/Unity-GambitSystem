@@ -11,6 +11,7 @@ namespace GameSystems.SkillSystem.Editor{
 	public class SkillCollectionWindow : XmlDatabaseWindowComplex<SkillCollectionAsset> {
 		private Vector2 skillSelectionScroll = Vector2.zero;
 		private Vector2 skillEffectScroll = Vector2.zero;
+		private Vector2 skillPrerequisiteScroll = Vector2.zero;
 		private float skillSelectionWidth = 200;
 
 		private int _selectedSkillIndex = -1;
@@ -147,7 +148,7 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.Label ("Parameters",EditorStyles.boldLabel);
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Name", GUILayout.Width (100));
+			GUILayout.Label ("Skill Name", GUILayout.Width (100));
 			skill.Name = EditorGUILayout.TextField (skill.Name);
 			GUILayout.EndHorizontal ();
 
@@ -157,7 +158,7 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("CastTime", GUILayout.Width (100));
+			GUILayout.Label ("Cast Time", GUILayout.Width (100));
 			skill.CastTime = EditorGUILayout.FloatField (skill.CastTime);
 			GUILayout.EndHorizontal ();
 
@@ -167,7 +168,7 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Delay", GUILayout.Width (100));
+			GUILayout.Label ("Duration", GUILayout.Width (100));
 			skill.Delay = EditorGUILayout.FloatField (skill.Delay);
 			GUILayout.EndHorizontal ();
 
@@ -177,7 +178,7 @@ namespace GameSystems.SkillSystem.Editor{
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Required Level", GUILayout.Width (100));
+			GUILayout.Label ("Unlocked Level", GUILayout.Width (100));
 			skill.RequiredLevel = EditorGUILayout.IntField(skill.RequiredLevel);
 			GUILayout.EndHorizontal ();
 
@@ -185,6 +186,12 @@ namespace GameSystems.SkillSystem.Editor{
 				if (extension.CanHandleType (skill.GetType()))
 					extension.OnGUI (skill);
 			}
+			GUILayout.EndVertical ();
+
+			GUILayout.BeginVertical (EditorStyles.helpBox,GUILayout.Height(200));
+			GUILayout.Label ("Prerequisites",EditorStyles.boldLabel);
+
+			skillPrerequisiteScroll = GUILayout.BeginScrollView (skillPrerequisiteScroll, false,true);
 
 			for (int i = 0; i < skill.Prerequisites.Count; i++) {
 				SkillPrerequisiteAsset prerequisite = skill.Prerequisites [i];
@@ -199,6 +206,9 @@ namespace GameSystems.SkillSystem.Editor{
 				prerequisite.StatValue = EditorGUILayout.IntField (prerequisite.StatValue);
 				GUILayout.EndHorizontal ();
 			}
+
+			GUILayout.FlexibleSpace ();
+			GUILayout.EndScrollView();
 
 			if(GUILayout.Button("Add Prerequisite", EditorStyles.toolbarButton)){
 				var newPrerequisite = new SkillPrerequisiteAsset ();

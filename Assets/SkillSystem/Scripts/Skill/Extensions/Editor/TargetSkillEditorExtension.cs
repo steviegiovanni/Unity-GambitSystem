@@ -17,9 +17,15 @@ namespace GameSystems.SkillSystem.Editor{
 		public override void OnGUI (object asset)
 		{
 			TargetSkillAsset skillAsset = asset as TargetSkillAsset;
+			GUILayout.Space (10);
+
 			GUILayout.BeginHorizontal ();
 			skillAsset.IncludeSelf = GUILayout.Toggle (skillAsset.IncludeSelf, "Include self ", GUILayout.Width (150));
-			skillAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField("Target Type ", (PerceptionTags)skillAsset.TargetType));
+			GUILayout.EndHorizontal ();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("Target Type", GUILayout.Width (100));
+			skillAsset.TargetType = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField((PerceptionTags)skillAsset.TargetType));
 			GUILayout.EndHorizontal ();
 		}
 
