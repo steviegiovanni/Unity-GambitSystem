@@ -175,7 +175,6 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	/// </summary>
 	[SerializeField]
 	private GambitCollection _gambitCollection;
-
 	public GambitCollection GambitCollection{
 		get{ 
 			if(_gambitCollection == null)
@@ -220,5 +219,35 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	void OnUnalerted(){
 		if(GambitCollection != null)
 			GambitCollection.enabled = false;
+	}
+
+	/// <summary>
+	/// entity id
+	/// </summary>
+	[SerializeField]
+	private int _entityId = -1;
+	public int EntityId {
+		get { return _entityId;}
+		set{ _entityId = value;}
+	}
+
+	/// <summary>
+	/// gambit collection id
+	/// </summary>
+	[SerializeField]
+	private int _gambitCollectionId = -1;
+	public int GambitCollectionId {
+		get { return _gambitCollectionId;}
+		set{ _gambitCollectionId = value;}
+	}
+
+	/// <summary>
+	/// skill collection id
+	/// </summary>
+	[SerializeField]
+	private int _skillCollectionId = -1;
+	public int SkillCollectionId {
+		get { return _skillCollectionId;}
+		set{ _skillCollectionId = value;}
 	}
 }

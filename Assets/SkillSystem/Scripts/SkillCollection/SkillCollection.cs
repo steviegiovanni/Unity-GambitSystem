@@ -43,7 +43,7 @@ namespace GameSystems.SkillSystem{
 		/// Setups the collection
 		/// </summary>
 		public void SetupCollection(){
-			var collection = SkillSystemDatabase.SkillCollections.Get (SkillCollectionId);
+			var collection = SystemDatabase.SkillCollections.Get (SkillCollectionId);
 			if (collection != null) {
 				SetupCollection (collection);	
 			}

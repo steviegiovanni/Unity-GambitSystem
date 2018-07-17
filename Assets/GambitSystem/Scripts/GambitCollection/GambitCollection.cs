@@ -23,16 +23,6 @@ namespace GameSystems.GambitSystem{
 		}
 
 		/// <summary>
-		/// skill collection id
-		/// </summary>
-		[SerializeField]
-		private int _skillCollectionId = -1;
-		public int SkillCollectionId {
-			get { return _skillCollectionId;}
-			set{ _skillCollectionId = value;}
-		}
-
-		/// <summary>
 		/// skill collection monobehaviour
 		/// </summary>
 		[SerializeField]
@@ -42,9 +32,7 @@ namespace GameSystems.GambitSystem{
 				if (_skillCollection == null)
 					_skillCollection = GetComponent<SkillCollection> ();
 				if (_skillCollection == null) {
-					Debug.LogWarning ("No skill collection component found! Adding a temporary collection...");
-					_skillCollection = this.gameObject.AddComponent<SkillCollection> ();
-					_skillCollection.SkillCollectionId = SkillCollectionId;
+					Debug.LogError ("No skill collection component found!");
 				}
 				return _skillCollection;
 			}
@@ -74,19 +62,12 @@ namespace GameSystems.GambitSystem{
 		/// if not, reassign skill collection id and setup skill collection
 		/// </summary>
 		public void SetupCollection(){
-			if (SkillCollectionId != SkillCollection.SkillCollectionId) {
-				SkillCollection.SkillCollectionId = SkillCollectionId;
-				SkillCollection.IsCollectionSetup = false;
-			}
-				
-			if (!SkillCollection.IsCollectionSetup)
-				SkillCollection.SetupCollection ();
-
-			if (SkillCollection.IsCollectionSetup) {
-				var collection = SkillSystemDatabase.GambitCollections.Get (GambitCollectionId);
-				if (collection != null) {
+			var collection = SystemDatabase.GambitCollections.Get (GambitCollectionId);
+			if (collection != null) {
+				if (collection.SkillCollectionId != SkillCollection.SkillCollectionId) 
+					Debug.LogError ("Non matching skill collection id!");
+				else
 					SetupCollection (collection);	
-				}
 			}
 		}
 
@@ -150,7 +131,7 @@ namespace GameSystems.GambitSystem{
 		}
 
 		// Use this for initialization
-		void Start () {
+		void Awake () {
 			SetupCollection();
 		}
 			

@@ -73,7 +73,7 @@ namespace GameSystems.GambitSystem.Editor{
 				GUILayout.Label ("Priority",EditorStyles.boldLabel,GUILayout.Width (100));
 				GUILayout.Label ("Type",EditorStyles.boldLabel,GUILayout.Width (200));
 				GUILayout.Label ("Skill",EditorStyles.boldLabel,GUILayout.Width (150));
-				GUILayout.Label ("Use",EditorStyles.boldLabel,GUILayout.Width (100));
+				GUILayout.Label ("Use Limit",EditorStyles.boldLabel,GUILayout.Width (100));
 				GUILayout.EndHorizontal ();
 
 				gambitSelectionScroll = GUILayout.BeginScrollView (gambitSelectionScroll, false,true);
@@ -120,12 +120,12 @@ namespace GameSystems.GambitSystem.Editor{
 							List<string> skillList = new List<string> ();
 							if (typeof(PositionGambitAsset).IsAssignableFrom (gambitAsset.GetType ())) {
 								for (int j = 0; j < skillCollectionAsset.Skills.Count; j++) {
-									if (typeof(PositionSkillAsset).IsAssignableFrom (skillCollectionAsset.Skills [j].GetType ()))
+									if (!typeof(TargetSkillAsset).IsAssignableFrom (skillCollectionAsset.Skills [j].GetType ()))
 										skillList.Add (skillCollectionAsset.Skills [j].Name);
 								}
 							} else {
 								for (int j = 0; j < skillCollectionAsset.Skills.Count; j++) {
-									if (typeof(TargetSkillAsset).IsAssignableFrom (skillCollectionAsset.Skills [j].GetType ()))
+									if (!typeof(PositionSkillAsset).IsAssignableFrom (skillCollectionAsset.Skills [j].GetType ()))
 										skillList.Add (skillCollectionAsset.Skills [j].Name);
 								}
 							}

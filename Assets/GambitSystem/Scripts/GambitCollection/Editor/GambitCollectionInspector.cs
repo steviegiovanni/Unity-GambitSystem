@@ -40,23 +40,6 @@ namespace GameSystems.GambitSystem.Editor{
 				displayText = "Missing";
 			}
 
-			var skillCollectionAsset = SkillCollectionDatabase.Instance.Get (collection.SkillCollectionId);
-			string skillDisplayText;
-			// if the asset is found, use its name
-			if (skillCollectionAsset != null) {
-				skillDisplayText = skillCollectionAsset.Name;
-			}
-			// if the id is below 0 no collection is assigned
-			else if (collection.SkillCollectionId <= 0) {
-				skillDisplayText = "Not set";
-			}
-			// if no asset is assigned and the id is above zero
-			// previous collection is missing
-			else {
-				skillDisplayText = "Missing";
-			}
-
-
 			GUILayout.Space (4);
 
 			// show the collection's name and id and allow user to change 
@@ -68,14 +51,6 @@ namespace GameSystems.GambitSystem.Editor{
 				XmlDatabaseEditorUtility.ShowContext (GambitCollectionDatabase.Instance, (value) => {
 					collection.GambitCollectionId = value.Id;
 				}, typeof(GambitCollectionWindow));
-			}
-
-			GUILayout.Label ("Skill Collection:");
-			if(GUILayout.Button(string.Format("[ID: {0}] {1}", Mathf.Max(0, collection.SkillCollectionId).ToString(), skillDisplayText),EditorStyles.toolbarPopup)){
-				SkillCollectionDatabase.Instance.LoadDatabase ();
-				XmlDatabaseEditorUtility.ShowContext (SkillCollectionDatabase.Instance, (value) => {
-					collection.SkillCollectionId = value.Id;
-				}, typeof(SkillCollectionWindow));
 			}
 
 			EditorGUI.EndDisabledGroup ();
