@@ -10,6 +10,8 @@ namespace GameSystems.EntitySystem.Database{
 	/// Gambit collection asset for entry on the collection database
 	/// </summary>
 	public class EntityAsset : XmlDatabaseAsset {
+		public string Description{ get; set;}
+
 		public int GambitCollectionId{ get; set;}
 		public int SkillCollectionId { get; set;}
 
@@ -19,6 +21,8 @@ namespace GameSystems.EntitySystem.Database{
 		#region implemented abstract members of XmlDatabaseAsset
 		public override void OnSaveAsset (XmlWriter writer)
 		{
+			writer.SetAttr ("Description", Description);
+
 			writer.WriteStartElement ("GambitCollection");
 			writer.SetAttr ("Id", GambitCollectionId);
 			writer.WriteEndElement ();
@@ -29,6 +33,10 @@ namespace GameSystems.EntitySystem.Database{
 		}
 		public override void OnLoadAsset (XmlReader reader)
 		{
+			Debug.Log ("reached");
+			Debug.Log ("reached2");
+			//Description = reader.GetAttrString ("Description", "wtf");
+			//Description = reader.GetAttrString ("Description", "wtf");
 			switch (reader.Name) {
 			case "SkillCollection":
 				{

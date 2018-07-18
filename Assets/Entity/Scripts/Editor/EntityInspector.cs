@@ -52,7 +52,7 @@ namespace GameSystems.EntitySystem.Editor{
 				EntityDatabase.Instance.LoadDatabase ();
 				XmlDatabaseEditorUtility.ShowContext (EntityDatabase.Instance, (value) => {
 					collection.GambitCollectionId = value.Id;
-				}, typeof(SkillCollectionWindow));
+				}, typeof(EntityWindow));
 			}
 
 			EditorGUI.EndDisabledGroup ();
