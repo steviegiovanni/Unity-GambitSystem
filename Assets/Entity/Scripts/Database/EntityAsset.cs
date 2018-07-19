@@ -33,8 +33,6 @@ namespace GameSystems.EntitySystem.Database{
 		}
 		public override void OnLoadAsset (XmlReader reader)
 		{
-			Debug.Log ("reached");
-			Debug.Log ("reached2");
 			//Description = reader.GetAttrString ("Description", "wtf");
 			//Description = reader.GetAttrString ("Description", "wtf");
 			switch (reader.Name) {
