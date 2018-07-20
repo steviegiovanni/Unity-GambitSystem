@@ -131,7 +131,7 @@ namespace GameSystems.GambitSystem{
 		}
 
 		// Use this for initialization
-		void Start () {
+		void Awake () {
 			SetupCollection();
 		}
 			

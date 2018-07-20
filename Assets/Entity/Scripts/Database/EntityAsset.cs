@@ -11,6 +11,10 @@ namespace GameSystems.EntitySystem.Database{
 	/// </summary>
 	public class EntityAsset : XmlDatabaseAsset {
 		public string Description{ get; set;}
+		public int Tag{ get; set;}
+		public int AlertMask{ get; set;}
+		public float Vision{ get; set;}
+
 
 		public int GambitCollectionId{ get; set;}
 		public int SkillCollectionId { get; set;}
@@ -21,7 +25,12 @@ namespace GameSystems.EntitySystem.Database{
 		#region implemented abstract members of XmlDatabaseAsset
 		public override void OnSaveAsset (XmlWriter writer)
 		{
+			writer.WriteStartElement ("EntityInfo");
 			writer.SetAttr ("Description", Description);
+			writer.SetAttr ("Tag", Tag);
+			writer.SetAttr ("AlertMask", AlertMask);
+			writer.SetAttr ("Vision", Vision);
+			writer.WriteEndElement ();
 
 			writer.WriteStartElement ("GambitCollection");
 			writer.SetAttr ("Id", GambitCollectionId);
@@ -33,8 +42,6 @@ namespace GameSystems.EntitySystem.Database{
 		}
 		public override void OnLoadAsset (XmlReader reader)
 		{
-			//Description = reader.GetAttrString ("Description", "wtf");
-			//Description = reader.GetAttrString ("Description", "wtf");
 			switch (reader.Name) {
 			case "SkillCollection":
 				{
@@ -44,6 +51,14 @@ namespace GameSystems.EntitySystem.Database{
 			case "GambitCollection":
 				{
 					GambitCollectionId = reader.GetAttrInt ("Id", -1);
+				}
+				break;
+			case "EntityInfo":
+				{
+					Description = reader.GetAttrString ("Description", "");
+					Tag = reader.GetAttrInt ("Tag", 0);
+					AlertMask = reader.GetAttrInt ("AlertMask", 0);
+					Vision = reader.GetAttrFloat ("Vision", 0.0f);
 				}
 				break;
 			default:

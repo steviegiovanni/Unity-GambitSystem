@@ -11,6 +11,7 @@ using GameSystems.SkillSystem;
 using GameSystems.EntitySystem;
 using GameSystems.EntitySystem.Database;
 using System.Collections.Generic;
+using GameSystems.PerceptionSystem;
 
 namespace GameSystems.EntitySystem.Editor{
 	public class EntityWindow : XmlDatabaseWindowSimple<EntityAsset> {
@@ -81,9 +82,24 @@ namespace GameSystems.EntitySystem.Editor{
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal();
-			GUILayout.Label("WTF", GUILayout.Width(100));
+			GUILayout.Label("Description", GUILayout.Width(100));
 			asset.Description = EditorGUILayout.TextField(asset.Description);
 			GUILayout.EndHorizontal();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("Tag", GUILayout.Width (100));
+			asset.Tag = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField((PerceptionTags)asset.Tag));
+			GUILayout.EndHorizontal ();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("Alert Mask", GUILayout.Width (100));
+			asset.AlertMask = (int)(PerceptionTags)(EditorGUILayout.EnumFlagsField((PerceptionTags)asset.AlertMask));
+			GUILayout.EndHorizontal ();
+
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("Vision", GUILayout.Width (100));
+			asset.Vision = EditorGUILayout.FloatField (asset.Vision);
+			GUILayout.EndHorizontal ();
 
 			GUILayout.EndVertical();
 		}

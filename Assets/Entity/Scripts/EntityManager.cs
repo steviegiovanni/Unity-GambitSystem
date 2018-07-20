@@ -28,12 +28,7 @@ namespace GameSystems.EntitySystem{
 			EntityAsset entityAsset = EntityDatabase.Instance.Get (id);
 			GameObject entityPrefab = Resources.Load <GameObject>("Entity");
 			GameObject entity = Instantiate (entityPrefab);
-			entity.GetComponent<Entity> ().SkillCollectionId = entityAsset.SkillCollectionId;
-			entity.GetComponent<Entity> ().GambitCollectionId = entityAsset.GambitCollectionId;
-			entity.GetComponent<SkillCollection> ().SkillCollectionId = entityAsset.SkillCollectionId;
-			entity.GetComponent<SkillCollection> ().SetupCollection ();
-			entity.GetComponent<GambitCollection> ().GambitCollectionId = entityAsset.GambitCollectionId;
-			entity.GetComponent<GambitCollection> ().SetupCollection ();
+			entity.GetComponent<Entity> ().Setup (entityAsset);
 			return entity;
 		}
 

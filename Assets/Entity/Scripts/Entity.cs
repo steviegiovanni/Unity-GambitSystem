@@ -6,6 +6,7 @@ using GameSystems;
 using GameSystems.SkillSystem;
 using GameSystems.PerceptionSystem;
 using GameSystems.GambitSystem;
+using GameSystems.EntitySystem.Database;
 
 /// <summary>
 /// Entity class. A test class that implements all of the required interfaces
@@ -249,5 +250,17 @@ public class Entity : MonoBehaviour, IPerceivable, IMovable, IHasPerception, IHa
 	public int SkillCollectionId {
 		get { return _skillCollectionId;}
 		set{ _skillCollectionId = value;}
+	}
+
+	public void Setup(EntityAsset asset){
+		SkillCollectionId = asset.SkillCollectionId;
+		GambitCollectionId = asset.GambitCollectionId;
+		GetComponent<SkillCollection> ().SkillCollectionId = asset.SkillCollectionId;
+		GetComponent<SkillCollection> ().SetupCollection ();
+		GetComponent<GambitCollection> ().GambitCollectionId = asset.GambitCollectionId;
+		GetComponent<GambitCollection> ().SetupCollection ();
+		Perception.AlertMask = asset.AlertMask;
+		Perception.Range = asset.Vision;
+		Tag = asset.Tag;
 	}
 }
