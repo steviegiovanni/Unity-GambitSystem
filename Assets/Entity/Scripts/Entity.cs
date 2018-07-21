@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameSystems;
+using GameSystems.EntitySystem.Database;
+using GameSystems.GambitSystem;
+using GameSystems.PerceptionSystem;
+using GameSystems.SkillSystem;
 using UnityEngine;
 using UnityEngine.AI;
-using GameSystems;
-using GameSystems.SkillSystem;
-using GameSystems.PerceptionSystem;
-using GameSystems.GambitSystem;
-using GameSystems.EntitySystem.Database;
 
 /// <summary>
 /// Entity class. A test class that implements all of the required interfaces

@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 using UtilitySystems;
 
-/// <summary>
-/// event with hashtable parameter
-/// </summary>
-public class HashtableEvent : UnityEvent <Hashtable> {}
-
 namespace GameSystems.PerceptionSystem{
+	/// <summary>
+	/// event with hashtable parameter
+	/// </summary>
+	public class HashtableEvent : UnityEvent <Hashtable> {}
+
 	/// <summary>
 	/// singleton event manager to process all perception event
 	/// </summary>
