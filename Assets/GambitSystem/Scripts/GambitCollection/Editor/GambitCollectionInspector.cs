@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using GameSystems.SkillSystem.Database;
-using GameSystems.SkillSystem.Editor;
 using GameSystems.GambitSystem.Database;
 using UtilitySystems.XmlDatabase.Editor;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
 namespace GameSystems.GambitSystem.Editor{
 	[CustomEditor(typeof(GambitCollection))]

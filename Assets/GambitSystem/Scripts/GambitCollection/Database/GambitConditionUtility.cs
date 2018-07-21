@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace GameSystems.GambitSystem{
+﻿namespace GameSystems.GambitSystem{
 	/// <summary>
 	/// utility class to instantiate the corresponding gambit conditionasset when needed
 	/// </summary>

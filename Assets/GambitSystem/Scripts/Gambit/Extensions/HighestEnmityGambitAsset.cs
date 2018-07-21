@@ -1,7 +1,4 @@
-﻿using System.Xml;
-using UtilitySystems.XmlDatabase;
-
-namespace GameSystems.GambitSystem{
+﻿namespace GameSystems.GambitSystem{
 	/// <summary>
 	/// target gambit asset that will create a target gambit that 
 	/// targets entity with the highest enmity 

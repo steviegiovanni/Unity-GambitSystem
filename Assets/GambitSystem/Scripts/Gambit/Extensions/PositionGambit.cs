@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GameSystems.SkillSystem;
-using GameSystems.PerceptionSystem;
 
 namespace GameSystems.GambitSystem{
 	/// <summary>

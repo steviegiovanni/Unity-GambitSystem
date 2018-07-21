@@ -1,14 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using GameSystems.GambitSystem;
+using GameSystems.GambitSystem.Database;
+using GameSystems.SkillSystem;
+using GameSystems.SkillSystem.Database;
 using UnityEditor;
-using System;
+using UnityEngine;
 using UtilitySystems.XmlDatabase;
 using UtilitySystems.XmlDatabase.Editor;
-using System.Linq;
-using GameSystems.SkillSystem.Database;
-using GameSystems.GambitSystem.Database;
-using GameSystems.GambitSystem;
-using GameSystems.SkillSystem;
-using System.Collections.Generic;
 
 namespace GameSystems.GambitSystem.Editor{
 	public class GambitCollectionWindow : XmlDatabaseWindowComplex<GambitCollectionAsset> {

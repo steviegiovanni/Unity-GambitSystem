@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GameSystems.SkillSystem;
-
-namespace GameSystems.GambitSystem{
+﻿namespace GameSystems.GambitSystem{
+	/// <summary>
+	/// condition where a specific stat is less than some value
+	/// </summary>
 	public class StatLessThanGC : StatGambitCondition {
 		public StatLessThanGC (StatLessThanGCAsset asset) : base (asset){}
 

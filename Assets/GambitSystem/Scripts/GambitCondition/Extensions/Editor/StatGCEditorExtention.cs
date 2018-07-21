@@ -1,8 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using UnityEditor;
-using GameSystems.SkillSystem.Database;
-using GameSystems.PerceptionSystem;
 using UtilitySystems.XmlDatabase.Editor;
 
 namespace GameSystems.GambitSystem.Editor{

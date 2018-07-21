@@ -1,8 +1,5 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 namespace GameSystems.GambitSystem{
 	public class StatGambitConditionAsset : GambitConditionAsset {

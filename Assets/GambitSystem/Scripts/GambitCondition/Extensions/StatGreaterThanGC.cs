@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GameSystems.SkillSystem;
-
-namespace GameSystems.GambitSystem{
+﻿namespace GameSystems.GambitSystem{
+	/// <summary>
+	/// condition where a specific stat is greater than some value
+	/// </summary>
 	public class StatGreaterThanGC : StatGambitCondition {
 		public StatGreaterThanGC (StatGreaterThanGCAsset asset) : base (asset){}
 

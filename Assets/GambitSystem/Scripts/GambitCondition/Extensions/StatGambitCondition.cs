@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace GameSystems.GambitSystem{
+﻿namespace GameSystems.GambitSystem{
+	/// <summary>
+	/// condition where a specific stat is considered
+	/// </summary>
 	public class StatGambitCondition : GambitCondition {
 		private string _statName;
 		public string StatName{

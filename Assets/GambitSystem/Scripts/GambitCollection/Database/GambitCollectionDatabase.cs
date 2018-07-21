@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UtilitySystems.XmlDatabase;
+﻿using UtilitySystems.XmlDatabase;
 
 namespace GameSystems.GambitSystem.Database{
 	/// <summary>
