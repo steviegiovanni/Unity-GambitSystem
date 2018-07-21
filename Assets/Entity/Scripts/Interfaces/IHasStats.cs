@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace GameSystems{
+﻿namespace GameSystems.StatSystem{
 	/// <summary>
 	/// an entity implementing this interface should have the following
 	/// - a function that returns the stat value in percent

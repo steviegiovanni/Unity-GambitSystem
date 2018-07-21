@@ -1,4 +1,6 @@
-﻿namespace GameSystems.SkillSystem{
+﻿using GameSystems.StatSystem;
+
+namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// prerequisite of using a skill (e.g. need a certain amount of mp, or energy)
 	/// </summary>

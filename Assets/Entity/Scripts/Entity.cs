@@ -1,11 +1,13 @@
 ﻿using System.Collections;
-using GameSystems;
-using GameSystems.EntitySystem.Database;
 using GameSystems.GambitSystem;
+using GameSystems.LevelSystem;
+using GameSystems.Movement;
 using GameSystems.PerceptionSystem;
 using GameSystems.SkillSystem;
+using GameSystems.StatSystem;
 using UnityEngine;
 using UnityEngine.AI;
+using GameSystems.Entities.Database;
 
 namespace GameSystems.Entities{
 	/// <summary>

@@ -1,4 +1,6 @@
-﻿namespace GameSystems.Effects{
+﻿using GameSystems.StatSystem;
+
+namespace GameSystems.Effects{
 	/// <summary>
 	/// Targetable effect that modifies target's stats
 	/// </summary>

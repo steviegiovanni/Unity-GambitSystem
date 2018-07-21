@@ -2,6 +2,7 @@
 using UnityEngine;
 using GameSystems.SkillSystem;
 using GameSystems.PerceptionSystem;
+using GameSystems.Movement;
 
 namespace GameSystems.GambitSystem{
 	/// <summary>

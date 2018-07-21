@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace GameSystems{
+namespace GameSystems.Movement{
 	/// <summary>
 	/// an entity implementing this interface should have the following
 	/// - a function that moves the entity to a certain position

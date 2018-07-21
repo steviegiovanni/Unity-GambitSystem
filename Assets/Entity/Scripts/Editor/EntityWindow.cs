@@ -1,19 +1,13 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System;
 using UtilitySystems.XmlDatabase;
 using UtilitySystems.XmlDatabase.Editor;
-using System.Linq;
 using GameSystems.SkillSystem.Database;
 using GameSystems.GambitSystem.Database;
-using GameSystems.GambitSystem;
-using GameSystems.SkillSystem;
-using GameSystems.EntitySystem;
-using GameSystems.EntitySystem.Database;
-using System.Collections.Generic;
+using GameSystems.Entities.Database;
 using GameSystems.PerceptionSystem;
 
-namespace GameSystems.EntitySystem.Editor{
+namespace GameSystems.Entities.Editor{
 	public class EntityWindow : XmlDatabaseWindowSimple<EntityAsset> {
 		private EntityDatabase _database = null;
 

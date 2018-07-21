@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using GameSystems.EntitySystem;
+﻿using UnityEngine;
+using GameSystems.Entities;
 
 public class Test : MonoBehaviour {
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using GameSystems.Effects;
 using UnityEngine;
+using GameSystems.StatSystem;
 
 namespace GameSystems.SkillSystem{
 	/// <summary>

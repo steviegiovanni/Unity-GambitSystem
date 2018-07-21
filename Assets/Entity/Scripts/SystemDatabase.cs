@@ -1,7 +1,7 @@
 ﻿using UtilitySystems;
 using GameSystems.SkillSystem.Database;
 using GameSystems.GambitSystem.Database;
-using GameSystems.EntitySystem.Database;
+using GameSystems.Entities.Database;
 
 /// <summary>
 /// main singleton database that will load the entities, skill collection, and the gambit collection

@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UtilitySystems;
-using GameSystems.EntitySystem.Database;
-using GameSystems.SkillSystem;
-using GameSystems.GambitSystem;
+using GameSystems.Entities.Database;
 
-namespace GameSystems.EntitySystem{
+namespace GameSystems.Entities{
 	/// <summary>
 	/// singleton manager to process requiest to instantiate / destroy entities
 	/// </summary>

@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using GameSystems.PerceptionSystem;
+﻿using GameSystems.PerceptionSystem;
+using GameSystems.StatSystem;
+using UnityEngine;
 
 namespace GameSystems.Effects{
 	/// <summary>

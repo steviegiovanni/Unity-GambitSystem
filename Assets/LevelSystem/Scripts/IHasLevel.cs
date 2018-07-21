@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace GameSystems{
+﻿namespace GameSystems.LevelSystem{
 	/// <summary>
 	/// an entity implementing this interface should have the following
 	/// - a function that returns the level of the entity

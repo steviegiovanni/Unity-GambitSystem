@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UtilitySystems.XmlDatabase;
+﻿using UtilitySystems.XmlDatabase;
 
-namespace GameSystems.EntitySystem.Database{
+namespace GameSystems.Entities.Database{
 	/// <summary>
 	/// Gambit collection database
 	/// </summary>

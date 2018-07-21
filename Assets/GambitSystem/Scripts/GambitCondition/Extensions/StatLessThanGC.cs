@@ -1,4 +1,6 @@
-﻿namespace GameSystems.GambitSystem{
+﻿using GameSystems.StatSystem;
+
+namespace GameSystems.GambitSystem{
 	/// <summary>
 	/// condition where a specific stat is less than some value
 	/// </summary>

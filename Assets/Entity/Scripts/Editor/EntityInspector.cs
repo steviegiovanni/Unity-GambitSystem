@@ -1,15 +1,9 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using GameSystems.SkillSystem.Database;
-using GameSystems.SkillSystem.Editor;
-using GameSystems.GambitSystem.Database;
-using GameSystems.EntitySystem.Database;
+using GameSystems.Entities.Database;
 using UtilitySystems.XmlDatabase.Editor;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 
-namespace GameSystems.EntitySystem.Editor{
+namespace GameSystems.Entities.Editor{
 	[CustomEditor(typeof(Entity))]
 	public class EntityInspector : UnityEditor.Editor {
 		public override bool RequiresConstantRepaint ()
