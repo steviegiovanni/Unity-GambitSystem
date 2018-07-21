@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using GameSystems.Effects;
 using UnityEngine;
 
 namespace GameSystems.SkillSystem{

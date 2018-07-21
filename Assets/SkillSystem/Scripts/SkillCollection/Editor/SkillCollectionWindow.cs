@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿using GameSystems.Effects;
+using GameSystems.Effects.Editor;
+using GameSystems.SkillSystem;
+using GameSystems.SkillSystem.Database;
 using UnityEditor;
+using UnityEngine;
 using UtilitySystems.XmlDatabase;
 using UtilitySystems.XmlDatabase.Editor;
-using System.Linq;
-using GameSystems.SkillSystem.Database;
-using GameSystems.SkillSystem;
-using GameSystems.Editor;
 
 namespace GameSystems.SkillSystem.Editor{
 	public class SkillCollectionWindow : XmlDatabaseWindowComplex<SkillCollectionAsset> {

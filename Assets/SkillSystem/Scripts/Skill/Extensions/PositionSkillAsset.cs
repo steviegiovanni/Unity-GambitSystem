@@ -1,7 +1,4 @@
-﻿using System.Xml;
-using UtilitySystems.XmlDatabase;
-
-namespace GameSystems.SkillSystem{
+﻿namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// Positional skill asset, derived from based skill asset
 	/// </summary>

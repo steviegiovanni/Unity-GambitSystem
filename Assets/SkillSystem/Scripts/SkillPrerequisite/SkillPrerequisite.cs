@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace GameSystems.SkillSystem{
+﻿namespace GameSystems.SkillSystem{
 	/// <summary>
 	/// prerequisite of using a skill (e.g. need a certain amount of mp, or energy)
 	/// </summary>

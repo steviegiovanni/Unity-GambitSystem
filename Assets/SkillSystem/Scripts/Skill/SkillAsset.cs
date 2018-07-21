@@ -1,7 +1,7 @@
-﻿using System.Xml;
+﻿using System.Collections.Generic;
+using System.Xml;
+using GameSystems.Effects;
 using UtilitySystems.XmlDatabase;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace GameSystems.SkillSystem{
 	/// <summary>
@@ -41,7 +41,7 @@ namespace GameSystems.SkillSystem{
 			case "Effect":
 				{
 					string skillEffectAssetType = reader.GetAttrString ("AssetType", "");
-					var asset = SkillEffectUtility.CreateAssetOfType(skillEffectAssetType);
+					var asset = EffectUtility.CreateAssetOfType(skillEffectAssetType);
 					if (asset != null) {
 						Effects.Add (asset);
 						Effects[Effects.Count-1].OnLoadAsset(reader);

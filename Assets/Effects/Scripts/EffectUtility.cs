@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GameSystems.SkillSystem{
+namespace GameSystems.Effects{
 	/// <summary>
 	/// Utility class. Instantiate a
 	/// </summary>
-	static public class SkillEffectUtility{
+	static public class EffectUtility{
 		static public EffectAsset CreateAssetOfType(string skillEffectAssetType){
 			if (typeof(EffectAsset).Name == skillEffectAssetType) {
 				return new EffectAsset ();

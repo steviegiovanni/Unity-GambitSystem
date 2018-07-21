@@ -1,7 +1,5 @@
 ﻿using System.Xml;
 using UtilitySystems.XmlDatabase;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace GameSystems.SkillSystem{
 	public class SkillPrerequisiteAsset : IXmlOnSaveAsset, IXmlOnLoadAsset  {
