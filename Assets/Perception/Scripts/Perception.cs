@@ -23,6 +23,16 @@ namespace GameSystems.PerceptionSystem{
 		}
 
 		/// <summary>
+		/// whether this perception component is alerted or not
+		/// </summary>
+		[SerializeField]
+		private bool _alerted = false;
+		public bool Alerted{
+			get{ return _alerted;}
+			set{ _alerted = value;}
+		}
+
+		/// <summary>
 		/// the range in which objects will cause perception component to be alerted
 		/// </summary>
 		[SerializeField]
@@ -83,10 +93,13 @@ namespace GameSystems.PerceptionSystem{
 			}
 
 			//invoke alert and unalerted accordingly
-			if (alerted && (OnAlerted != null))
+			if (alerted && (OnAlerted != null) && !Alerted) {
+				Alerted = alerted;
 				OnAlerted.Invoke ();
-			else if (!alerted && (OnUnalerted != null))
+			} else if (!alerted && (OnUnalerted != null) && Alerted) {
+				Alerted = alerted;
 				OnUnalerted.Invoke ();
+			}
 		}
 
 		/// <summary>
@@ -100,6 +113,7 @@ namespace GameSystems.PerceptionSystem{
 		/// On disable, stop listening to perception events
 		/// </summary>
 		void OnDisable(){
+			Alerted = false;
 			PerceptionEVManager.StopListening ("PERCEPTION", Perceived);
 		}
 

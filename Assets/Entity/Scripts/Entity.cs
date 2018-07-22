@@ -196,6 +196,15 @@ namespace GameSystems.Entities{
 				return _skillCollection;
 			}
 		}
+
+		/// <summary>
+		/// whether the entity is being controlled by player (true) or AI (false) 
+		/// </summary>
+		private bool _controlled = false;
+		public bool Controlled{
+			get{ return _controlled;}
+			set{ _controlled = value;}
+		}
 			
 		// Use this for initialization
 		void Start () {
@@ -211,6 +220,13 @@ namespace GameSystems.Entities{
 			// make every entity broadcasts an event to the other entities every frame
 			PerceptionEVManager.TriggerEvent ("PERCEPTION", new Hashtable (){ { "OBJECT",this.gameObject } });
 
+			// every update, if the entity is not being controlled, check for perception component alerted or not
+			if (!Controlled && Perception != null && GambitCollection != null) {
+				// enable the gambit if gambit is off and is alerted
+				if (Perception.Alerted && !GambitCollection.enabled)
+					GambitCollection.enabled = true;
+			}
+
 			// test levelling
 			if (Input.GetKeyUp (KeyCode.Space)) {
 				if (EntityLevel != null)
@@ -222,16 +238,23 @@ namespace GameSystems.Entities{
 		/// when perception is alerted, enable gambit
 		/// </summary>
 		void OnAlerted(){
-			if(GambitCollection != null)
-				GambitCollection.enabled = true;
+			// enable gambit if the entity is not being commanded by player
+			if (!Controlled) {
+				if (GambitCollection != null)
+					GambitCollection.enabled = true;
+			}
 		}
 
 		/// <summary>
 		/// when perception is unalerted, disable gambit
 		/// </summary>
 		void OnUnalerted(){
-			if(GambitCollection != null)
-				GambitCollection.enabled = false;
+			// disable gambit if the entity is not being commanded by player
+			// if it is, then the gambit must've been disabled when the entity was given the command
+			if (!Controlled) {
+				if (GambitCollection != null)
+					GambitCollection.enabled = false;
+			}
 		}
 
 		/// <summary>
