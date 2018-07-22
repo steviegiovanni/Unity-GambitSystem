@@ -4,6 +4,7 @@ using UnityEngine;
 using GameSystems.SkillSystem;
 using GameSystems.GambitSystem.Database;
 using GameSystems.PerceptionSystem;
+using GameSystems.Movement;
 
 namespace GameSystems.GambitSystem{
 	/// <summary>
@@ -197,9 +198,9 @@ namespace GameSystems.GambitSystem{
 		void OnDisable(){
 			StopAllCoroutines ();
 			IsGambitRunning = false;
-			//IMovable owner = GetComponent<IMovable> ();
-			//if (owner != null)
-			//	owner.Stopped = true;
+			IMovable owner = GetComponent<IMovable> ();
+			if (owner != null)
+				owner.Stopped = true;
 		}
 
 		/// <summary>

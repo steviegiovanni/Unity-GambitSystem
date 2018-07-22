@@ -42,10 +42,10 @@ namespace GameSystems.Entities.Editor{
 			// the assigned stat collection via a dialogue pop up
 			EditorGUI.BeginDisabledGroup(Application.isPlaying);
 			GUILayout.Label ("Entity:");
-			if(GUILayout.Button(string.Format("[ID: {0}] {1}", Mathf.Max(0, collection.GambitCollectionId).ToString(), displayText),EditorStyles.toolbarPopup)){
+			if(GUILayout.Button(string.Format("[ID: {0}] {1}", Mathf.Max(0, collection.EntityId).ToString(), displayText),EditorStyles.toolbarPopup)){
 				EntityDatabase.Instance.LoadDatabase ();
 				XmlDatabaseEditorUtility.ShowContext (EntityDatabase.Instance, (value) => {
-					collection.GambitCollectionId = value.Id;
+					collection.EntityId = value.Id;
 				}, typeof(EntityWindow));
 			}
 
