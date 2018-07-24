@@ -106,7 +106,7 @@ namespace UtilitySystems.XmlDatabase.Editor {
         }
 
         private void DisplayContent() {
-            GUILayout.BeginVertical();
+           	GUILayout.BeginVertical();
             var asset = GetDatabaseInstance().Get(SelectedAssetId);
             if (asset != null) {
                 DisplayAssetGUI(asset);

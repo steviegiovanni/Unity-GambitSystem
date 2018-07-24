@@ -26,7 +26,7 @@ namespace GameSystems.GambitSystem.Editor{
 			}
 		}
 
-		[MenuItem("Window/Game Systems/Skills/Gambit Collections")]
+		[MenuItem("Window/Game Systems/Gambit Collections")]
 		static public void ShowWindow(){
 			var wnd = GetWindow<GambitCollectionWindow> ();
 			wnd.titleContent.text = "Gambit Collections";

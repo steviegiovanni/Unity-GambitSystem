@@ -40,7 +40,7 @@ namespace GameSystems.SkillSystem.Editor{
 
 
 
-		[MenuItem("Window/Game Systems/Skills/Skill Collections")]
+		[MenuItem("Window/Game Systems/Skill Collections")]
 		static public void ShowWindow(){
 			var wnd = GetWindow<SkillCollectionWindow> ();
 			wnd.titleContent.text = "Skill Collections";

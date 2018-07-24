@@ -60,7 +60,7 @@ namespace UtilitySystems.XmlDatabase {
         }
 
         public T Get(int assetId) {
-            return Get(assetId, true);
+            return Get(assetId, false);
         }
 
         /// <summary>
@@ -83,6 +83,7 @@ namespace UtilitySystems.XmlDatabase {
         /// <param name="loadAssetIfMissing">Try to load asset from file if not currently loaded</param>
         /// <returns>If an asset with the passed Id was found</returns>
         public bool TryGet(int assetId, out T asset, bool loadAssetIfMissing = false) {
+			asset = null;
             // Check if asset is already in the database
             if (AssetDict.ContainsKey(assetId)) {
                 asset = AssetDict[assetId];

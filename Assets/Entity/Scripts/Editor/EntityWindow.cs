@@ -11,7 +11,7 @@ namespace GameSystems.Entities.Editor{
 	public class EntityWindow : XmlDatabaseWindowSimple<EntityAsset> {
 		private EntityDatabase _database = null;
 
-		[MenuItem("Window/Game Systems/Skills/Entity Database")]
+		[MenuItem("Window/Game Systems/Entity Database")]
 		static public void ShowWindow(){
 			var wnd = GetWindow<EntityWindow> ();
 			wnd.titleContent.text = "Entities";
