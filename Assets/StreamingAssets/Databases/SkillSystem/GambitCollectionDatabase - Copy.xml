@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assets>
+  <Asset Id="1" Name="test" Type="GambitCollectionAsset">
+    <SkillCollection Id="1" />
+    <Gambit AssetType="HighestEnmityGambitAsset" Priority="1" Skill="Auto1" MaxUse="-1">
+      <Condition Type="GambitConditionAsset" />
+      <Condition Type="GambitConditionAsset" />
+    </Gambit>
+    <Gambit AssetType="HighestEnmityGambitAsset" Priority="3" Skill="Auto2" MaxUse="1">
+      <Condition Type="GambitConditionAsset" />
+      <Condition Type="GambitConditionAsset" />
+      <Condition Type="StatLessThanGCAsset" StatName="health" StatValue="0.5" />
+    </Gambit>
+    <Gambit AssetType="PositionGambitAsset" PosX="0" PosY="0" PosZ="0" Priority="2" Skill="Positional" MaxUse="-1" />
+  </Asset>
+</Assets>

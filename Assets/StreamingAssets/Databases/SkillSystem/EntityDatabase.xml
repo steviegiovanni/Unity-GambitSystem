@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assets>
+  <Asset Id="1" Name="TestEntity" Type="EntityAsset">
+    <EntityInfo Description="test description" Tag="1" AlertMask="2" Vision="5" />
+    <GambitCollection Id="2" />
+    <SkillCollection Id="2" />
+  </Asset>
+</Assets>

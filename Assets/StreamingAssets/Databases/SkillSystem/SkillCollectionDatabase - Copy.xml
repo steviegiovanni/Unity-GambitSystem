@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Assets>
+  <Asset Id="1" Name="test" Type="SkillCollectionAsset">
+    <Skill AssetType="TargetSkillAsset" TargetType="2" IncludeSelf="False" Name="Auto1" Cooldown="5" CastTime="0" Range="2" Delay="4" Interruptable="False" Level="1">
+      <Effect AssetType="StatGlobalEffectAsset" Delay="2" />
+      <Effect AssetType="TargetPrefabEffectAsset" Delay="3" PrefabName="Meteor.prefab" />
+      <Effect AssetType="TargetStatEffectAsset" Delay="0" Modifier="1.2" StatBase="health" FlatValue="2" TargetStat="health" />
+    </Skill>
+    <Skill AssetType="TargetSkillAsset" TargetType="2" IncludeSelf="False" Name="Auto2" Cooldown="15" CastTime="0" Range="2" Delay="7" Interruptable="False" Level="1">
+      <Effect AssetType="EffectAsset" Delay="1" />
+      <Effect AssetType="EffectAsset" Delay="2" />
+    </Skill>
+    <Skill AssetType="PositionSkillAsset" Name="Positional" Cooldown="10" CastTime="0" Range="2" Delay="7" Interruptable="False" Level="1">
+      <Effect AssetType="EffectAsset" Delay="2" />
+      <Effect AssetType="EffectAsset" Delay="4" />
+      <Effect AssetType="EffectAsset" Delay="5" />
+      <Effect AssetType="PositionPrefabEffectAsset" Delay="6" PrefabName="Meteor.prefab" />
+    </Skill>
+  </Asset>
+  <Asset Id="2" Name="test 2" Type="SkillCollectionAsset">
+    <Skill AssetType="TargetSkillAsset" TargetType="0" IncludeSelf="False" Name="Auto2" Cooldown="10" CastTime="0" Range="2" Delay="7" Interruptable="False" Level="0">
+      <Effect AssetType="EffectAsset" Delay="2" />
+      <Effect AssetType="EffectAsset" Delay="4" />
+    </Skill>
+  </Asset>
+</Assets>
